@@ -18,11 +18,11 @@
                 <div class="col-md-6 login-form-1">
                     <h3>Loaner Form</h3>
                     <form action="{{ route('loaner.check') }}" method="post" autocomplete="off">
-                    @if (Session::get('fail'))
+                    <!-- @if (Session::get('fail'))
                         <div class="alert alert-danger">
                             {{ Session::get('fail') }}
                         </div>
-                    @endif
+                    @endif -->
                     @csrf
                         <div class="form-group">
                             <label for="email" class="btnForgetPwd">Email</label>
@@ -48,11 +48,6 @@
                     </div>
                     <h3>Borrower From</h3>
                     <form action="{{ route('borrower.check') }}" method="post" autocomplete="off">
-                    @if (Session::get('fail1'))
-                        <div class="alert alert-danger">
-                            {{ Session::get('fail1') }}
-                        </div>
-                    @endif
                     @csrf
                         <div class="form-group">
                             <label for="email" class="btnForgetPwd">Email</label>
@@ -75,5 +70,20 @@
             </div>
         </div>
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        @if (Session::get('fail'))
+            <script>
+                    swal("Sorry Fail!","{!! Session::get('fail') !!}","error",{
+                    button:"OK",
+                    });             
+            </script>
+         @endif
+        @if (Session::get('fail1'))
+            <script>
+                    swal("Sorry Fail!","{!! Session::get('fail1') !!}","error",{
+                        button:"OK",
+                        });             
+                    </script>
+            @endif            
 </body>
 </html>
