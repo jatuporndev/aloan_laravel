@@ -3,7 +3,7 @@
 
 @section('content')
 
-                    @if (Session::get('success'))
+                    <!-- @if (Session::get('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <span class="alert-icon"><i class="ni ni-like-2"></i></span>
                     <span class="alert-text"><strong>Success! </strong>{{ Session::get('success') }}</span>
@@ -21,7 +21,7 @@
                     <span aria-hidden="true">&times;</span>
                     </button>         
                     </div>
-                    @endif
+                    @endif -->
 
 
 <div class="header bg-primary pb-4">

@@ -17,17 +17,6 @@
             <div class="col-md-4 offset-md-4" style="margin-top: 45px;">
                   <h4>Borrower Register</h4><hr>
                   <form action="{{ route('borrower.create') }}" method="post" autocomplete="off">
-                    @if (Session::get('success'))
-                         <div class="alert alert-success">
-                             {{ Session::get('success') }}
-                         </div>
-                    @endif
-                    @if (Session::get('fail'))
-                    <div class="alert alert-danger">
-                        {{ Session::get('fail') }}
-                    </div>
-                    @endif
-
                     @csrf
                       <div class="form-group">
                           <label for="firstname">FName</label>
@@ -86,5 +75,20 @@
         </div>
     </div>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                    @if (Session::has('success'))
+                        <script>
+                            swal("Congrate!","{!! Session::get('success') !!}","success",{
+                            button:"OK",
+                            });             
+                        </script>
+                    @endif
+                    @if (Session::get('fail'))
+                        <script>
+                            swal("Sorry Fail!","{!! Session::get('fail') !!}","warning",{
+                            button:"OK",
+                            });             
+                        </script>
+                    @endif
 </body>
 </html>
