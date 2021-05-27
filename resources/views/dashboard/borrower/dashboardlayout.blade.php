@@ -35,19 +35,19 @@
           <!-- Nav items -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a href="{{ route('admin.home') }}" is class="nav-link {{ (request()->is('admin/home*')) ? 'active' : ''}}">
+              <a href="{{ route('borrower.home') }}" is class="nav-link {{ (request()->is('borrower/home*')) ? 'active' : ''}}">
                 <i class="ni ni-tv-2 text-primary"></i>
                 <span class="nav-link-text">Dashboard</span>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('admin.loanermanage') }}" is class="nav-link {{ (request()->is('admin/loanermanage*')) ? 'active' : ''}}">
+              <a href="#" is class="nav-link {{ (request()->is('borrower/loanermanage*')) ? 'active' : ''}}">
                 <i class="ni ni-planet text-orange"></i>
                 <span class="nav-link-text">My Loaner</span>
               </a>
             </li>
             <li class="nav-item">
-            <a href="{{ route('admin.borrowermanage') }}" is class="nav-link {{ (request()->is('admin/borrowermanage*')) ? 'active' : ''}}">
+            <a href="#" is class="nav-link {{ (request()->is('admin/borrowermanage*')) ? 'active' : ''}}">
                 <i class="ni ni-pin-3 text-primary"></i>
                 <span class="nav-link-text">Something</span>
               </a>
@@ -59,11 +59,11 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('admin.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+              <a class="nav-link" href="{{ route('borrower.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                 <i class="ni ni-bullet-list-67 text-default"></i>
                 <span class="nav-link-text">Logout</span>
               </a>
-              <form action="{{ route('admin.logout') }}" method="post" class="d-none" id="logout-form">@csrf</form>
+              <form action="{{ route('borrower.logout') }}" method="post" class="d-none" id="logout-form">@csrf</form>
             </li>
           </ul>
           <!-- Divider -->
@@ -133,7 +133,7 @@
                     <img alt="Image placeholder" src="assets/img/theme/team-4.jpg">
                   </span> -->
                   <div class="media-body  ml-2  d-none d-lg-block">
-                    <span class="mb-0 text-sm  font-weight-bold">{{ Auth::guard('admins')->user()->firstname }}</span>
+                    <span class="mb-0 text-sm  font-weight-bold">{{ Auth::guard('borrower')->user()->firstname }}</span>
                   </div>
                 </div>
               </a>

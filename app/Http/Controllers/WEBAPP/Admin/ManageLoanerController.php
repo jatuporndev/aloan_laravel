@@ -16,6 +16,7 @@ class ManageLoanerController extends Controller
          
         $sql = "SELECT * FROM loaners";
         $post = DB::select($sql);
+        $post = Loaner::paginate(10);
         
         return view('dashboard.admin.loanermanage', ['post'=> $post]);
     }

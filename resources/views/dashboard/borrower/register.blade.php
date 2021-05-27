@@ -19,15 +19,38 @@
                   <form action="{{ route('borrower.create') }}" method="post" autocomplete="off">
                     @csrf
                       <div class="form-group">
-                          <label for="firstname">FName</label>
-                          <input type="text" class="form-control" name="firstname" placeholder="Enter f name" value="{{ old('firstname') }}">
+                          <label for="firstname">FirstName</label>
+                          <input type="text" class="form-control" name="firstname" placeholder="Enter first name" value="{{ old('firstname') }}">
                           <span class="text-danger">@error('firstname'){{ $message }} @enderror</span>
                       </div>
 					  <div class="form-group">
-                          <label for="lastname">LName</label>
-                          <input type="text" class="form-control" name="lastname" placeholder="Enter L name" value="{{ old('lastname') }}">
+                          <label for="lastname">LastName</label>
+                          <input type="text" class="form-control" name="lastname" placeholder="Enter last name" value="{{ old('lastname') }}">
                           <span class="text-danger">@error('lastname'){{ $message }} @enderror</span>
                       </div>
+
+                      <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <p></p>
+                            <div class="from-check form-check-inline">
+                                <input class="form-check-input @error('gender') is-invalid @enderror" type="radio" name="gender" id="genderM" value="0" {{ old('gender') == '0' ? 'checked' : ''}}>
+                                <label for="genderM" class="form-check-label">Male</label>
+                            </div>
+                            <div class="from-check form-check-inline">
+                                <input class="form-check-input  @error('gender') is-invalid @enderror" type="radio" name="gender" id="genderF" value="1" {{ old('gender') == '1' ? 'checked' : ''}}>
+                                <label for="genderF" class="form-check-label">Female</label>
+                                <span class="text-danger">@error('gender'){{ $message }} @enderror</span>
+                            </div>
+                      </div>
+
+                      <div class="from-group">
+                            <label for="birthday">Birthday</label>
+                            <p></p>
+                            <input type="date" id="birthday" name="birthday" class="from-control @error('birthday') is-invalid @enderror" value="{{ old('birthday') }}">
+                            <span class="text-danger">@error('birthday'){{ $message }} @enderror</span>
+                        </div>
+                        <p></p>
+
 					  <div class="form-group">
                           <label for="address">Address</label>
                           <input type="text" class="form-control" name="address" placeholder="Enter Address" value="{{ old('address') }}">
@@ -43,6 +66,51 @@
                           <input type="text" class="form-control" name="job" placeholder="Enter job" value="{{ old('job') }}">
                           <span class="text-danger">@error('job'){{ $message }} @enderror</span>
                       </div>
+
+                      <div class="form-group">
+                          <label for="salary">Salary</label>
+                          <input type="number" class="form-control" name="salary" placeholder="Enter salary" value="{{ old('salary') }}">
+                          <span class="text-danger">@error('salary'){{ $message }} @enderror</span>
+                      </div>
+
+                      <div class="form-group">
+                            <label for="married">Relationship Status</label>
+                            <p></p>
+                            <div class="from-check form-check-inline">
+                                <input class="form-check-input  @error('gender') is-invalid @enderror" type="radio" name="married" id="single" value="0" {{ old('married') == '0' ? 'checked' : ''}}>
+                                <label for="single" class="form-check-label">Single</label>
+                            </div>
+                            <div class="from-check form-check-inline">
+                                <input class="form-check-input  @error('gender') is-invalid @enderror" type="radio" name="married" id="marriedD" value="1" {{ old('married') == '1' ? 'checked' : ''}}>
+                                <label for="marriedD" class="form-check-label">Married</label>
+                                <span class="text-danger">@error('married'){{ $message }} @enderror</span>
+                            </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="IDCard">เลขบัตรประชาชน</label>
+                        <input type="text" class="form-control" name="IDCard" placeholder="Enter IDCard" value="{{ old('IDCard') }}">
+                        <span class="text-danger">@error('IDCard'){{ $message }} @enderror</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="IDCard_back">รหัสหลังบัตรประชาชน</label>
+                        <input type="text" class="form-control" name="IDCard_back" placeholder="Enter IDCard_back" value="{{ old('IDCard_back') }}">
+                        <span class="text-danger">@error('IDCard_back'){{ $message }} @enderror</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bank">ธนาคาร</label>
+                        <input type="text" class="form-control" name="bank" placeholder="Enter Bank" value="{{ old('bank') }}">
+                        <span class="text-danger">@error('bank'){{ $message }} @enderror</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="IDBank">เลขที่บัญชีธนาคาร</label>
+                        <input type="text" class="form-control" name="IDBank" placeholder="Enter IDBank" value="{{ old('IDBank') }}">
+                        <span class="text-danger">@error('IDBank'){{ $message }} @enderror</span>
+                    </div>
+
                       <div class="form-group">
                         <label for="email">Email</label>
                         <input type="text" class="form-control" name="email" placeholder="Enter email address" value="{{ old('email') }}">
@@ -75,7 +143,7 @@
         </div>
     </div>
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
                     @if (Session::has('success'))
                         <script>
                             swal("Congrate!","{!! Session::get('success') !!}","success",{

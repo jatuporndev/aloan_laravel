@@ -88,7 +88,7 @@
                       <div class="form-group">
                       <label class="form-control-label" >Lastname</label>
                        <p>
-                       {{$view -> firstname}}
+                       {{$view -> lastname}}
                        </p>
                       </div>
                     </div>
@@ -133,7 +133,9 @@
                       <label class="form-control-label" >Register date</label>
                       <p>
                       @if ($view->created_at == null)
-                            --   
+                            --
+                      @else 
+                          {{$view -> created_at}}          
                     @endif
                     </p>
                       </div>
@@ -268,10 +270,6 @@
                 <p>
                 <img src="{{ url('/') }}/assets/uploadfile/Loaner/cardimage/{{ $view->image_IDCard }}" width='200px' height='200px'>
                 </p>
-                <label class="form-control-label" >Signature</label>
-                <p>
-                <img src="{{ url('/') }}/assets/uploadfile/Loaner/signature/{{ $view->signature }}" width='200px' height='200px'>
-                </p>
                 </div>
                 </div>
               </form>
@@ -279,34 +277,5 @@
           </div>
         </div>
       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      
 @endsection

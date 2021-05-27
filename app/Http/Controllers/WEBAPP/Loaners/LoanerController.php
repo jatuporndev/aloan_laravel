@@ -16,8 +16,15 @@ class LoanerController extends Controller
           'firstname' => ['required', 'string', 'max:255'],
           'lastname' => ['required', 'string', 'max:255'],
           'address' => ['required', 'string', 'max:255'],
-          'phone' => ['required', 'string', 'max:255'],
+          'gender' => ['required', 'string'],
+          'married' => ['required', 'string'],
+          'birthday' => ['required', 'date'],
+          'phone' => ['required', 'string', 'max:10'],
           'job' => ['required', 'string', 'max:255'],
+          'IDCard' => ['required', 'string', 'max:13'],
+          'IDCard_back' => ['required', 'string', 'max:10'],
+          'bank' => ['required', 'string', 'max:13'],
+          'IDBank' => ['required', 'string', 'max:10'],
           'email' => ['required', 'string', 'email', 'max:255', 'unique:loaners'],
           'password' => ['required', 'string', 'min:5', 'confirmed'],
           
@@ -27,8 +34,15 @@ class LoanerController extends Controller
         $loaner->firstname = $request->firstname;
         $loaner->lastname = $request->lastname;
         $loaner->address = $request->address;
+        $loaner->gender = $request->gender;
+        $loaner->married = $request->married;
+        $loaner->birthday = $request->birthday;
         $loaner->phone = $request->phone;
         $loaner->job = $request->phone;
+        $loaner->IDCard = $request->IDCard;
+        $loaner->IDCard_back = $request->IDCard_back;
+        $loaner->bank = $request->bank;
+        $loaner->IDBank = $request->IDBank;
         $loaner->email = $request->email;
         $loaner->password = \Hash::make($request->password);
         $save = $loaner->save();

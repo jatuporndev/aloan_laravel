@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WEBAPP\Admin\AdminController;
+use App\Http\Controllers\WEBAPP\Admin\ManageLoanerController;
+use App\Http\Controllers\WEBAPP\Admin\ManageBorrowerController;
 use App\Http\Controllers\WEBAPP\Loaners\LoanerController;
 use App\Http\Controllers\WEBAPP\Borrowers\BorrowerController;
 /*
