@@ -81,10 +81,10 @@ class LoanerController extends Controller
             return redirect('/multi')->with('fail','Incorrect Credential');
     
 
+    }
+
     function logout(){
         Auth::guard('loaner')->logout();
         return redirect('/');
         }
-
-    }
 }

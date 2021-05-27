@@ -44,7 +44,7 @@
                 </div>
                 <div class="col-md-6 login-form-2">
                     <div class="login-logo">
-                        <img src="img/alogo.png" alt=""/>
+                        <a class="" href={{ url('/')}}><img src="img/alogo.png" alt=""> </a>
                     </div>
                     <h3>Borrower From</h3>
                     <form action="{{ route('borrower.check') }}" method="post" autocomplete="off">

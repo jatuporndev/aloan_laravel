@@ -81,9 +81,10 @@ class BorrowerController extends Controller
      }
         return redirect('/multi')->with('fail','Incorrect Credential');
 
+    }
+
     function logout(){
         Auth::guard('borrower')->logout();
         return redirect('/');
         }
-    }
 }
