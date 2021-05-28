@@ -17,9 +17,25 @@
             </div>
           </div>
 
+          <!-- php ------------------------------- -->
+          <?php $i = Auth::guard('loaner')->user()->setborrowlist ;
+                $id =Auth::guard('loaner')->user()->LoanerID ;
+              
+              ?>
+        <!--  don't touch this -->
+          @if( $i=== 0)
+          <script>window.location = "loaner/addborrowlist/{{$id}}";</script>
+          @endif
+        <!-- -->
+          <?php $sql="SELECT *  FROM borrowlist WHERE LoanerID = $id" ;
+                $databorrowlist=DB::select($sql)[0]
+              ?>
 
-
-
+         วงเงินต่ำสุด = {{$databorrowlist -> money_min}}
+        วงเงินสุงสุด = {{$databorrowlist -> money_max}}
+         {{$databorrowlist -> interest}}
+         {{$databorrowlist -> borrowlistID}}
+         {{$databorrowlist -> borrowlistID}}
 
 
           @endsection

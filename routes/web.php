@@ -72,6 +72,11 @@ Route::prefix('loaner')->name('loaner.')->group(function(){
     Route::middleware(['auth:loaner','PreventBackHistory'])->group(function(){
           Route::view('/home','dashboard.loaner.home')->name('home');
           Route::post('/logout',[LoanerController::class,'logout'])->name('logout');
+          
+          Route::get('/addborrowlist/{id}', [App\Http\Controllers\WEBAPP\Loaners\BorrowlistController::class, 'create']);
+          Route::get('/insertCri/{borrowlistID}', [App\Http\Controllers\WEBAPP\Loaners\BorrowlistController::class, 'insertCri']);
+          Route::get('/setborrowlist/{id}', [App\Http\Controllers\WEBAPP\Loaners\LoanerController::class, 'setborrowlist']);
+
     });
 
  });

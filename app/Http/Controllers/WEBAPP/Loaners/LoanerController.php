@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Loaners;
 use Illuminate\Support\Facades\Auth;
-
+use DB;
 class LoanerController extends Controller
 {
 
@@ -87,4 +87,17 @@ class LoanerController extends Controller
         Auth::guard('loaner')->logout();
         return redirect('/');
         }
+        
+    public function setborrowlist($id)
+        {       
+            $user = Loaners::find($id);
+            $user->setborrowlist = 1;            
+            $user->save();
+
+            $sql="SELECT *  FROM borrowlist WHERE LoanerID = $id" ;
+            $databorrowlist=DB::select($sql)[0];
+    
+            return redirect('loaner/insertCri/'.$databorrowlist -> borrowlistID);
+    }
+
 }
