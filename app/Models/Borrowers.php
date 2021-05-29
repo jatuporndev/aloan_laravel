@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notifiable;
 class Borrowers extends Authenticatable
 {
     use HasFactory, Notifiable;
+    protected $table='borrowers';
     protected $primaryKey='BorrowerID';
     /**
      * The attributes that are mass assignable.
@@ -21,24 +22,25 @@ class Borrowers extends Authenticatable
         'lastname',
         'phone',
         'address',
-        // 'gender',
-        //'birthday',
+        'gender',
+        'birthday',
         'job',
-        //'married',
-        //'salary',
-        //'IDCard',
-        //'IDCard_back',
-        //'bank',
-        //'IDBank',
-        //'LineID',
-        //'image',
-        //'image_IDCard',
-        //'imageProfile',
-        //'signature',
+        'married',
+        'IDCard',
+        'IDCard_back',
+        'bank',
+        'IDBank',
+        'LineID',
+        'salary',
+        'image_face',
+        'image_IDCard',
+        'imageProfile',
+        'signature',
         'email',
         'password',
-        //'verify',
+        'verify',
     ];
+
 
     /**
      * The attributes that should be hidden for arrays.

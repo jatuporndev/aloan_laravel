@@ -259,17 +259,17 @@
                 </div>
                 <div class="col-lg-6">
                 <div class="form-group">
-                <label class="form-control-label" >Image</label>
+                <label class="form-control-label" >รูปคู่กับบัตรประชาชน</label>
                 <p>
                 <img src="{{ url('/') }}/assets/uploadfile/Borrower/imageVetify/{{ $view->image_face }}" width='200px' height='200px'>
+                </p>
+                <label class="form-control-label" >รูปบัตรประชาชนตัวจริง</label>
+                <p>
+                <img src="{{ url('/') }}/assets/uploadfile/Borrower/cardimage/{{ $view->image_IDCard }}" width='200px' height='200px'>
                 </p>
                 <label class="form-control-label" >Image Profile</label>
                 <p>
                 <img src="{{ url('/') }}/assets/uploadfile/Borrower/profile/{{ $view->imageProfile }}" width='200px' height='200px'>
-                </p>
-                <label class="form-control-label" >Image Profile</label>
-                <p>
-                <img src="{{ url('/') }}/assets/uploadfile/Borrower/cardimage/{{ $view->image_IDCard }}" width='200px' height='200px'>
                 </p>
                 </div>
                 </div>

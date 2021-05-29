@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-4 offset-md-4" style="margin-top: 45px;">
                   <h4>Loaner Register</h4><hr>
-                  <form action="{{ route('loaner.create') }}" method="post" autocomplete="off">
+                  <form action="{{ route('loaner.create') }}" method="post" autocomplete="off" enctype="multipart/form-data">
                     @csrf
                       <div class="form-group">
                           <label for="firstname">First Name</label>
@@ -101,6 +101,16 @@
                         <label for="IDBank">เลขที่บัญชีธนาคาร</label>
                         <input type="text" class="form-control" name="IDBank" placeholder="Enter IDBank" value="{{ old('IDBank') }}">
                         <span class="text-danger">@error('IDBank'){{ $message }} @enderror</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="image_IDCard">รูปบัตรประชาชนตัวจริง</label>
+                        <input type="file" name="image_IDCard" class="form-control">  
+                    </div>
+
+                    <div class="form-group">
+                        <label for="image">ถ่ายรูปหน้าตรงคู่กับบัตรประชาชน</label>
+                        <input type="file" name="image" class="form-control">  
                     </div>
 
                       <div class="form-group">

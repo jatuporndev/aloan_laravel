@@ -132,7 +132,7 @@
                       <div class="form-group">
                       <label class="form-control-label" >Register date</label>
                       <p>
-                      @if ($view->created_at == null)
+                      @if ($view->created_at === null)
                             --
                       @else 
                           {{$view -> created_at}}          
@@ -258,17 +258,17 @@
                 </div>
                 <div class="col-lg-6">
                 <div class="form-group">
-                <label class="form-control-label" >Image</label>
+                <label class="form-control-label" >รูปคู่กับบัตรประชาชน</label>
                 <p>
                 <img src="{{ url('/') }}/assets/uploadfile/Loaner/imageVetify/{{ $view->image }}" width='200px' height='200px'>
+                </p>
+                <label class="form-control-label" >รูปบัตรประชาชนตัวจริง</label>
+                <p>
+                <img src="{{ url('/') }}/assets/uploadfile/Loaner/cardimage/{{ $view->image_IDCard }}" width='200px' height='200px'>
                 </p>
                 <label class="form-control-label" >Image Profile</label>
                 <p>
                 <img src="{{ url('/') }}/assets/uploadfile/Loaner/profile/{{ $view->imageProfile }}" width='200px' height='200px'>
-                </p>
-                <label class="form-control-label" >Image IDCard</label>
-                <p>
-                <img src="{{ url('/') }}/assets/uploadfile/Loaner/cardimage/{{ $view->image_IDCard }}" width='200px' height='200px'>
                 </p>
                 </div>
                 </div>
