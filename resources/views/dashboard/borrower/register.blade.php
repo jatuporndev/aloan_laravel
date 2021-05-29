@@ -123,12 +123,12 @@
 
                     <div class="form-group">
                         <label for="image_IDCard">รูปบัตรประชาชนตัวจริง</label>
-                        <input type="file" name="image_IDCard" class="form-control" id="image_IDCard">  
+                        <input type="file" name="image_IDCard" class="form-control">  
                     </div>
 
                     <div class="form-group">
                         <label for="image_face">ถ่ายรูปหน้าตรงคู่กับบัตรประชาชน</label>
-                        <input type="file" name="image_face" class="form-control" id="image_face">  
+                        <input type="file" name="image_face" class="form-control">  
                     </div>
 
                       <div class="form-group">

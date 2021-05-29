@@ -16,14 +16,27 @@ class RequestController extends Controller
         $recount=DB::select($sql);         
         return response()->json($recount);
     }
+
     public function ViewBorrowerRequest($requestID)
     { 
         $sql="SELECT * FROM request
         INNER JOIN borrowlist ON borrowlist.borrowlistID = request.borrowlistID
         INNER JOIN borrowers ON request.BorrowerID  = borrowers.BorrowerID 
-        WHERE request.requestID = $requestID " ;
+        WHERE request.RequestID= $requestID " ;
         $recount=DB::select($sql)[0];         
         return response()->json($recount);
+    }
+    
+    public function updateUnpass($id)
+    {       
+        $user = RequestM::find($id);
+        $user->status = 4;          
+        $user->comment = $request->get('comment');  
+        $user->save();
+
+        return response()->json(array(
+            'message' => 'update successfully', 
+            'status' => 'true'));
     }
 
 }
