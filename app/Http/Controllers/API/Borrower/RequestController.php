@@ -31,7 +31,7 @@ class RequestController extends Controller
         $sql="SELECT request.*,loaners.*  FROM request
         INNER JOIN borrowlist ON borrowlist.borrowlistID =request.borrowlistID
         INNER JOIN loaners ON loaners.LoanerID  =borrowlist.LoanerID 
-        WHERE 1 ";
+        WHERE 1  AND request.status = 0  ";
         if($borrowlistID!=""){
             $sql.=" AND borrowlist.borrowlistID =$borrowlistID ";      
         }if($BorrowerID!=""){
