@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-4 offset-md-4" style="margin-top: 45px;">
                   <h4>Borrower Register</h4><hr>
-                  <form action="{{ route('borrower.create') }}" method="post" autocomplete="off">
+                  <form action="{{ route('borrower.create') }}" method="post" autocomplete="off" enctype="multipart/form-data">
                     @csrf
                       <div class="form-group row">
                           <label for="firstname" class="col-md-3 col-form-label text-md-right">FirstName</label>

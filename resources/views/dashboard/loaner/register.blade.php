@@ -18,15 +18,19 @@
                   <h4>Loaner Register</h4><hr>
                   <form action="{{ route('loaner.create') }}" method="post" autocomplete="off" enctype="multipart/form-data">
                     @csrf
-                      <div class="form-group">
-                          <label for="firstname">First Name</label>
+                    <div class="form-group row">
+                          <label for="firstname" class="col-md-3 col-form-label text-md-right">FirstName</label>
+                          <div class="col-md-8">
                           <input type="text" class="form-control" name="firstname" placeholder="Enter firstname" value="{{ old('firstname') }}">
                           <span class="text-danger">@error('firstname'){{ $message }} @enderror</span>
+                          </div>
                       </div>
-					  <div class="form-group">
-                          <label for="lastname">Last Name</label>
+                      <div class="form-group row">
+                          <label for="lastname"class="col-md-3 col-form-label text-md-right">LastName</label>
+                          <div class="col-md-8">
                           <input type="text" class="form-control" name="lastname" placeholder="Enter lastname" value="{{ old('lastname') }}">
                           <span class="text-danger">@error('lastname'){{ $message }} @enderror</span>
+                          </div>
                       </div>
                       <div class="form-group">
                             <label for="gender">Gender</label>
@@ -54,15 +58,19 @@
                           <input type="text" class="form-control" name="address" placeholder="Enter Address" value="{{ old('address') }}">
                           <span class="text-danger">@error('address'){{ $message }} @enderror</span>
                       </div>
-					  <div class="form-group">
-                          <label for="phone">Phone</label>
+                      <div class="form-group row">
+                          <label for="phone" class="col-md-2 col-form-label text-md-right">Phone</label>
+                          <div class="col-md-8">
                           <input type="tel" class="form-control" name="phone" placeholder="Enter Phone" value="{{ old('phone') }}">
                           <span class="text-danger">@error('phone'){{ $message }} @enderror</span>
+                          </div>
                       </div>
-                      <div class="form-group">
-                          <label for="job">Job</label>
+                      <div class="form-group row">
+                          <label for="job" class="col-md-2 col-form-label text-md-right">Job</label>
+                          <div class="col-md-8">
                           <input type="text" class="form-control" name="job" placeholder="Enter job" value="{{ old('job') }}">
                           <span class="text-danger">@error('job'){{ $message }} @enderror</span>
+                          </div>
                       </div>
 
                       <div class="form-group">
@@ -130,7 +138,7 @@
                         <span class="text-danger">@error('cpassword'){{ $message }} @enderror</span>
                     </div> -->
 					<div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <label for="password-confirm" class="col-md-5 col-form-label">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
