@@ -26,6 +26,7 @@ Route::put('Loaner/update/{id}', 'API\Loaner\LoanerController@update');//
 Route::post('Loaner/update/{id}', 'API\Loaner\LoanerController@update');//
 Route::put('setborrowlist/{id}', 'API\Loaner\LoanerController@setborrowlist');//
 Route::post('setborrowlist/{id}', 'API\Loaner\LoanerController@setborrowlist');
+
 //Loaner -process
 Route::post('Loaner/list/{id}', 'API\Loaner\BorrowerlistController@create');
 Route::get('Loaner/show/{id}', 'API\Loaner\BorrowerlistController@index');
@@ -41,8 +42,11 @@ Route::put('UpdateCriterion/{id}', 'API\Loaner\CriterionController@update');//
 Route::post('UpdateCriterion/{id}', 'API\Loaner\CriterionController@update');//
 Route::get('viewCriterion/{criterionID}', 'API\Loaner\CriterionController@view');
 Route::DELETE('Loaner/deleteCriterion/{id}', 'API\Loaner\CriterionController@delete');
+
+//Loaner -MENU
 Route::get('Menu1request/{LoanerID}', 'API\Loaner\RequestController@request');
 Route::get('DetailMenu1request/{requestID}', 'API\Loaner\RequestController@ViewBorrowerRequest');
+Route::post('updateUnpass/{id}', 'API\Loaner\RequestController@updateUnpass');//
 
 
 

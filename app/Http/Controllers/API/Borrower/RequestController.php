@@ -54,12 +54,14 @@ class RequestController extends Controller
         $sql="SELECT DISTINCT  
                      (SELECT count(RequestID) FROM request WHERE status = 0 AND BorrowerID =$BorrowerID) as count_waiting,
                      (SELECT count(RequestID) FROM request WHERE status = 1 AND BorrowerID =$BorrowerID) as count_confirm,
+                     (SELECT count(RequestID) FROM request WHERE status = 4 AND BorrowerID =$BorrowerID) as count_unpass,
 
                      (SELECT count(RequestID) FROM request,borrowlist WHERE request.borrowlistID =borrowlist.borrowlistID AND 
                      request.status = 0 AND borrowlist.LoanerID  =$BorrowerID) as count_request_loaner,
-                     (SELECT count(RequestID) FROM request,borrowlist WHERE request.borrowlistID =borrowlist.borrowlistID AND 
+                     (SELECT count(RequestID) FROM request,borrowlist WHERE request.borrowlistID =borrowlist.borrowlistID AND
                      request.status = 2 AND borrowlist.LoanerID  =$BorrowerID) as count_pay_loaner
-        FROM request " ;
+        FROM request " ;//บน Borrower = BorrowerID
+                        //ล่าง Loaner = LoanerID
         $recount=DB::select($sql)[0];         
         
         return response()->json($recount);
