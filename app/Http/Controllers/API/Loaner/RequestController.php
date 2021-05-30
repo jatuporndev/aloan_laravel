@@ -31,7 +31,8 @@ class RequestController extends Controller
     {       
         
         $user = RequestM::find($id);
-        $user->status = 4;          
+        $user->status = 4;     
+        $user->dateCheck = date('Y-m-d');     
         if($request->get('comment') =="" ){
         $user->comment = "ไม่ได้ระบุ.";
         }else{

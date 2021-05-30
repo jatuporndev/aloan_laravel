@@ -23,6 +23,7 @@ class RequestController extends Controller
         'message' => 'add a  successfully',
         'status' =>'true'));
     }
+    //ใช้ดูทั้งหน้าแรก และดีเทล
     public function viewRequest(Request $request)
     { 
         $BorrowerID = $request->get('BorrowerID');
@@ -42,12 +43,33 @@ class RequestController extends Controller
         return response()->json($recount);
     }
 
+    public function viewUnpass(Request $request)
+    { 
+        $BorrowerID = $request->get('BorrowerID');
+        $borrowlistID  = $request->get('borrowlistID');
+
+        $sql="SELECT request.*,loaners.*  FROM request
+        INNER JOIN borrowlist ON borrowlist.borrowlistID =request.borrowlistID
+        INNER JOIN loaners ON loaners.LoanerID  =borrowlist.LoanerID 
+        WHERE 1  AND request.status = 4 OR request.status = 14 ";
+        if($borrowlistID!=""){
+            $sql.=" AND borrowlist.borrowlistID =$borrowlistID ";      
+        }if($BorrowerID!=""){
+            $sql.=" AND request.BorrowerID =$BorrowerID ";      
+        }
+     
+        $recount=DB::select($sql);         
+        return response()->json($recount);
+    }
+
+
     public function delete($RequestID)
     { 
         $sql="DELETE FROM request WHERE RequestID=$RequestID";
         $recount=DB::select($sql);         
         return response()->json($recount);
     }
+    
 
     public function count($BorrowerID)
     { 

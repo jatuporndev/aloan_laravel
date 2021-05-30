@@ -62,6 +62,7 @@ Route::post('Addpined', 'API\Borrower\ListController@addpined');
 Route::DELETE('deletepined/{borrowerID},{BorrowelistID}', 'API\Borrower\ListController@delete');
 Route::post('AddRequest', 'API\Borrower\RequestController@addRequest');
 Route::get('viewrequest/', 'API\Borrower\RequestController@viewRequest');
+Route::get('viewunpass/', 'API\Borrower\RequestController@viewUnpass');
 Route::DELETE('deleteRequest/{RequestID}', 'API\Borrower\RequestController@delete');
 Route::get('viewpined/{id}', 'API\Borrower\PinedController@index');
 Route::get('count/{BorrowerID}', 'API\Borrower\RequestController@count');
