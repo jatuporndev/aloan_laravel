@@ -82,7 +82,8 @@
                         </div>
                         <div class="service-content">
                             <h5>Loaner</h5>
-                            <p>Third don't lights wherein was. bring to build them, seas. Thing gathering answ gaered beast third that heaven after all that living one bank limit</p>
+                            <p>A person who loans something.
+                            </p>
                             
                         </div>
                     </div>
@@ -96,7 +97,7 @@
                         </div>
                         <div class="service-content">
                             <h5>Platfrom</h5>
-                            <p>Third don't lights wherein was. bring to build them, seas. Thing gathering answ gaered beast third that heaven after all that living one bank limit</p>
+                            <p>A platform is a business model that creates value by facilitating exchanges between two or more interdependent groups, usually consumers and producers.</p>
                             
                         </div>
                     </div>
@@ -111,7 +112,7 @@
                         </div>
                         <div class="service-content">
                             <h5>Borrower</h5>
-                            <p>Third don't lights wherein was. bring to build them, seas. Thing gathering answ gaered beast third that heaven after all that living one bank limit</p>
+                            <p>A person or company that has received money from another party with the agreement that the money will be repaid.</p>
                             
                         </div>
                     </div>
@@ -141,8 +142,8 @@
                                     <i class="ti-thought"></i>
                                 </div>
                                 <div class="single-about-content">
-                                    <h5>Cloud Compatibility</h5>
-                                    <p>There earth face earth behold. She stars made void two given and also our own grass days. Greater </p>
+                                    <h5>Data Compatibility</h5>
+                                    <p></p>
                                 </div>
                             </div>
                         </div>
@@ -152,8 +153,8 @@
                                     <i class="ti-truck"></i>
                                 </div>
                                 <div class="single-about-content">
-                                    <h5>On Time Delivery</h5>
-                                    <p>There earth face earth behold. She stars made void two given and also our own grass days. Greater </p>
+                                    <h5>On Time Service</h5>
+                                    <p></p>
                                 </div>
                             </div>
                         </div>
@@ -172,7 +173,7 @@
                 <div class="offset-lg-6 col-lg-6">
                     <div class="area-heading light">
                         <h4>Easy to Use <br>Mobile Application</h4>
-                        <p>There earth face earth behold. She'd stars made void two given do and also. Our own grass days.  Greater male Shall There faced earth behold She star</p>
+                        <p></p>
                     </div>
                     <div class="row">
                         <div class="col-">
@@ -181,8 +182,8 @@
                                     <i class="ti-layers"></i>
                                 </div>
                                 <div class="single-feature-content">
-                                    <h5>Add New Project</h5>
-                                    <p>There earth face earth behold. She stars made void two given and also our own grass days. Greater </p>
+                                    <h5>Available on Play Store</h5>
+                                    <p></p>
                                 </div>
                             </div>
                         </div>
@@ -192,8 +193,8 @@
                                     <i class="ti-layers"></i>
                                 </div>
                                 <div class="single-feature-content">
-                                    <h5>Generating Leads</h5>
-                                    <p>There earth face earth behold. She stars made void two given and also our own grass days. Greater </p>
+                                    <h5>Top 5 P2P Platfrom</h5>
+                                    <p></p>
                                 </div>
                             </div>
                         </div>
@@ -211,7 +212,7 @@
 
                 <div class="col-lg-3 col-sm-6 mb-4 mb-xl-0 single-footer-widget">
                     <h4>About Us</h4>
-                    <p>Heaven fruitful doesn't over lesser days appear creeping seasons so behold bearing days open</p>
+                    <p>Eat Sleep Code Repeat</p>
                     <div class="footer-logo">
                         <img src="img/alogo2.png" alt="">
                     </div>
@@ -220,27 +221,24 @@
                 <div class="col-lg-3 col-sm-6 mb-4 mb-xl-0 single-footer-widget">
                     <h4>Contact Info</h4>
                     <div class="footer-address">
-                        <p>Address :Your address goes
-                        here, your demo address.</p>
-                        <span>Phone : +8880 44338899</span>
-                        <span>Email : info@colorlib.com</span>
+                        <p>Address : DinDaeng-Ramintra</p>
+                        <span>Phone : 0993212046</span>
+                        <span>Email : panat_ban@rmutto.ac.th</span>
+                        <span>Email : jatuporn_san@rmutto.ac.th</span>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-sm-6 mb-4 mb-xl-0 single-footer-widget">
-                    <h4>Important Link</h4>
+                    <h4>Developer</h4>
                     <ul>
-                        <li><a href="#">WHMCS-bridge</a></li>
-                        <li><a href="#">Search Domain</a></li>
-                        <li><a href="#">My Account</a></li>
-                        <li><a href="#">Shopping Cart</a></li>
-                        <li><a href="#">Our Shop</a></li>
+                        <li><a href="https://web.facebook.com/mzero.bangsangoon/">Panat Bangsang-oon</a></li>
+                        <li><a href="https://web.facebook.com/jrtuporn.santupohm">Jatuporn Sangtip</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-3 col-md-8 mb-4 mb-xl-0 single-footer-widget">
                     <h4>Newsletter</h4>
-                    <p>Heaven fruitful doesn't over lesser in days. Appear creeping seasons deve behold bearing days open</p>
+                    <p>“In an online world, our online words are our emissaries; they tell the world who we are”</p>
 
                   
 
@@ -250,12 +248,6 @@
             <p class="footer-text m-0 col-lg-8 col-md-12"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-            <div class="col-lg-4 col-md-12 text-center text-lg-right footer-social">
-                <a href="#"><i class="ti-facebook"></i></a>
-                <a href="#"><i class="ti-twitter-alt"></i></a>
-                <a href="#"><i class="ti-dribbble"></i></a>
-                <a href="#"><i class="ti-linkedin"></i></a>
-            </div>
         </div>
     </div>
 </footer>
