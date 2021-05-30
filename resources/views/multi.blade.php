@@ -12,10 +12,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 </head>
-<body>
+<body style="background-image: url('img/bg.jpg'); background-size: 100%;  ">
 <div class="container login-container">
             <div class="row">
-                <div class="col-md-6 login-form-1">
+                <div class="col-md-6 login-form-1"  style="text-shadow: 2px 2px green; box-shadow: 0 8px 6px -6px green;">
                     <h3>Loaner Form</h3>
                     <form action="{{ route('loaner.check') }}" method="post" autocomplete="off">
                     <!-- @if (Session::get('fail'))
@@ -23,6 +23,7 @@
                             {{ Session::get('fail') }}
                         </div>
                     @endif -->
+      
                     @csrf
                         <div class="form-group">
                             <label for="email" class="btnForgetPwd">Email</label>
@@ -42,7 +43,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-md-6 login-form-2">
+                <div class="col-md-6 login-form-2"  style="text-shadow: 2px 2px red; box-shadow: 0 8px 6px -6px red;"  >
                     <div class="login-logo">
                         <a class="" href={{ url('/')}}><img src="img/alogo.png" alt=""> </a>
                     </div>

@@ -23,6 +23,7 @@ class RequestController extends Controller
         'message' => 'add a  successfully',
         'status' =>'true'));
     }
+    //ใช้ดูทั้งหน้าแรก และดีเทล
     public function viewRequest(Request $request)
     { 
         $BorrowerID = $request->get('BorrowerID');
@@ -42,24 +43,47 @@ class RequestController extends Controller
         return response()->json($recount);
     }
 
+    public function viewUnpass(Request $request)
+    { 
+        $BorrowerID = $request->get('BorrowerID');
+        $borrowlistID  = $request->get('borrowlistID');
+
+        $sql="SELECT request.*,loaners.*  FROM request
+        INNER JOIN borrowlist ON borrowlist.borrowlistID =request.borrowlistID
+        INNER JOIN loaners ON loaners.LoanerID  =borrowlist.LoanerID 
+        WHERE 1  AND request.status = 4 OR request.status = 14 ";
+        if($borrowlistID!=""){
+            $sql.=" AND borrowlist.borrowlistID =$borrowlistID ";      
+        }if($BorrowerID!=""){
+            $sql.=" AND request.BorrowerID =$BorrowerID ";      
+        }
+     
+        $recount=DB::select($sql);         
+        return response()->json($recount);
+    }
+
+
     public function delete($RequestID)
     { 
         $sql="DELETE FROM request WHERE RequestID=$RequestID";
         $recount=DB::select($sql);         
         return response()->json($recount);
     }
+    
 
     public function count($BorrowerID)
     { 
         $sql="SELECT DISTINCT  
                      (SELECT count(RequestID) FROM request WHERE status = 0 AND BorrowerID =$BorrowerID) as count_waiting,
                      (SELECT count(RequestID) FROM request WHERE status = 1 AND BorrowerID =$BorrowerID) as count_confirm,
+                     (SELECT count(RequestID) FROM request WHERE status = 4 AND BorrowerID =$BorrowerID) as count_unpass,
 
                      (SELECT count(RequestID) FROM request,borrowlist WHERE request.borrowlistID =borrowlist.borrowlistID AND 
                      request.status = 0 AND borrowlist.LoanerID  =$BorrowerID) as count_request_loaner,
-                     (SELECT count(RequestID) FROM request,borrowlist WHERE request.borrowlistID =borrowlist.borrowlistID AND 
+                     (SELECT count(RequestID) FROM request,borrowlist WHERE request.borrowlistID =borrowlist.borrowlistID AND
                      request.status = 2 AND borrowlist.LoanerID  =$BorrowerID) as count_pay_loaner
-        FROM request " ;
+        FROM request " ;//บน Borrower = BorrowerID
+                        //ล่าง Loaner = LoanerID
         $recount=DB::select($sql)[0];         
         
         return response()->json($recount);

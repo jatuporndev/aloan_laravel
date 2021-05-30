@@ -12,7 +12,7 @@ class RequestController extends Controller
         $sql="SELECT * FROM request
         INNER JOIN borrowlist ON borrowlist.borrowlistID = request.borrowlistID
         INNER JOIN borrowers ON request.BorrowerID  = borrowers.BorrowerID 
-        WHERE borrowlist.LoanerID = $LoanerID " ;
+        WHERE request.status =0 AND  borrowlist.LoanerID = $LoanerID " ;
         $recount=DB::select($sql);         
         return response()->json($recount);
     }
@@ -27,11 +27,18 @@ class RequestController extends Controller
         return response()->json($recount);
     }
     
-    public function updateUnpass($id)
+    public function updateUnpass($id,Request $request)
     {       
+        
         $user = RequestM::find($id);
-        $user->status = 4;          
+        $user->status = 4;     
+        $user->dateCheck = date('Y-m-d');     
+        if($request->get('comment') =="" ){
+        $user->comment = "ไม่ได้ระบุ.";
+        }else{
         $user->comment = $request->get('comment');  
+        }
+        
         $user->save();
 
         return response()->json(array(
