@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://media.discordapp.net/attachments/802932825887866904/838457418488086588/152.png?width=673&height=673" width="400"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://cdn.discordapp.com/attachments/798505705845817384/848762402962407464/alogo2.png" width="400"></a></p>
 
 
 
