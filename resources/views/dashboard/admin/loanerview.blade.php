@@ -266,10 +266,12 @@
                 <p>
                 <img src="{{ url('/') }}/assets/uploadfile/Loaner/cardimage/{{ $view->image_IDCard }}" width='200px' height='200px'>
                 </p>
+                <!--
                 <label class="form-control-label" >Image Profile</label>
                 <p>
                 <img src="{{ url('/') }}/assets/uploadfile/Loaner/profile/{{ $view->imageProfile }}" width='200px' height='200px'>
                 </p>
+                -->
                 </div>
                 </div>
               </form>
