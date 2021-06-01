@@ -20,9 +20,9 @@ class BorrowerlistController extends Controller
         //add user data into users table
         $borrowerlist = new Borrowlist();
         $borrowerlist->	money_min = 0;
-        $borrowerlist->money_max = 1500;        
-        $borrowerlist->	interest = 0;
-        $borrowerlist->	Interest_penalty = 0;
+        $borrowerlist->money_max = 15000;        
+        $borrowerlist->	interest = 5;
+        $borrowerlist->	Interest_penalty = 5;
         $borrowerlist->	LoanerID = $id;
          
         $borrowerlist->save();                

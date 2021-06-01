@@ -42,6 +42,7 @@ Route::put('UpdateCriterion/{id}', 'API\Loaner\CriterionController@update');//
 Route::post('UpdateCriterion/{id}', 'API\Loaner\CriterionController@update');//
 Route::get('viewCriterion/{criterionID}', 'API\Loaner\CriterionController@view');
 Route::DELETE('Loaner/deleteCriterion/{id}', 'API\Loaner\CriterionController@delete');
+Route::post('Loaner/addbank/{LoanerID}', 'API\Loaner\BankController@create');
 
 //Loaner -MENU
 Route::get('Menu1request/{LoanerID}', 'API\Loaner\RequestController@request');
