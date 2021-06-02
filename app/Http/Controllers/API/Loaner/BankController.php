@@ -21,4 +21,18 @@ class BankController extends Controller
              'message' => 'add a bank successfully', 
              'status' => 'true'));  
     }
+
+    public function index($LoanerID)
+    { 
+        $sql="SELECT * FROM loaner_bank WHERE LoanerID =$LoanerID";
+         
+        $recount=DB::select($sql);         
+        return response()->json($recount);
+    }
+     public function delete($bankID)
+    { 
+        $sql="DELETE FROM loaner_bank WHERE bankID=$bankID";
+        $recount=DB::select($sql);         
+        return response()->json($recount);
+    }
 }

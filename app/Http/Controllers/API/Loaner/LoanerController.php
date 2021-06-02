@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Loaner;
 use App\Models\Loaners;
+use App\Models\Bank;
 use Illuminate\Support\Facades\Auth;
 use DB;
 
@@ -87,7 +88,23 @@ class LoanerController extends Controller
         $user->image = $imageVerify;  
         $user->Image_IDCard = $image_IDCard;  
         //$user->signature = $signature;           
-        $user->save();                
+        $user->save();   
+        
+        
+        $sql="SELECT *  FROM loaners ORDER BY `LoanerID` DESC" ;
+        $dataloaner=DB::select($sql)[0];
+
+        //return redirect('loaner/insertCri/'.$databorrowlist -> borrowlistID);
+
+        //addbank
+        $bankData = new Bank();
+        $bankData ->bank = $request->get('Bank');
+        $bankData ->holderName = $request->get('FirstName')." ".$request->get('LastName');       
+        $bankData ->bankNumber = $request->get('IDBank');
+        $bankData ->LoanerID  = $dataloaner -> LoanerID; 
+
+        $bankData ->save(); 
+
         return response()->json(array(
             'message' => 'add a user successfully', 
             'status' => 'true'));  
