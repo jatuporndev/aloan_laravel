@@ -52,6 +52,8 @@ Route::DELETE('Loaner/deleteBank/{bankID}', 'API\Loaner\BankController@delete');
 Route::get('Menu1request/{LoanerID}', 'API\Loaner\RequestController@request');
 Route::get('DetailMenu1request/{requestID}', 'API\Loaner\RequestController@ViewBorrowerRequest');
 Route::post('updateUnpass/{id}', 'API\Loaner\RequestController@updateUnpass');//
+Route::post('updatePass/{id}', 'API\Loaner\RequestController@updatePass');//
+
 
 
 
@@ -65,11 +67,13 @@ Route::get('list/', 'API\Borrower\ListController@index');
 Route::get('pined/{borrowerID},{BorrowelistID}', 'API\Borrower\ListController@pined');
 Route::post('Addpined', 'API\Borrower\ListController@addpined');
 Route::DELETE('deletepined/{borrowerID},{BorrowelistID}', 'API\Borrower\ListController@delete');
-Route::post('AddRequest', 'API\Borrower\RequestController@addRequest');
-Route::get('viewrequest/', 'API\Borrower\RequestController@viewRequest');
-Route::get('viewunpass/', 'API\Borrower\RequestController@viewUnpass');
 Route::DELETE('deleteRequest/{RequestID}', 'API\Borrower\RequestController@delete');
 Route::get('viewpined/{id}', 'API\Borrower\PinedController@index');
 Route::get('count/{BorrowerID}', 'API\Borrower\RequestController@count');
 
 
+//Borrower menu
+Route::post('AddRequest', 'API\Borrower\RequestController@addRequest');
+Route::get('viewrequest/', 'API\Borrower\RequestController@viewRequest');
+Route::get('viewunpass/', 'API\Borrower\RequestController@viewUnpass');
+Route::post('updateUnpassChecked/{id}', 'API\Borrower\RequestController@updateUnpassChecked');//

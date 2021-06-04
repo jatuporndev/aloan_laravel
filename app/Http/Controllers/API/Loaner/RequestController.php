@@ -45,5 +45,16 @@ class RequestController extends Controller
             'message' => 'update successfully', 
             'status' => 'true'));
     }
+    public function updatePass($id)
+    {       
+        $user = RequestM::find($id);
+        $user->status = 1;     
+        $user->dateCheck = date('Y-m-d');     
+        $user->save();
+
+        return response()->json(array(
+            'message' => 'update successfully', 
+            'status' => 'true'));
+    }
 
 }

@@ -62,6 +62,16 @@ class RequestController extends Controller
         return response()->json($recount);
     }
 
+    public function updateUnpassChecked($id)
+    {       
+        $user = RequestM::find($id);
+        $user->status = 14;      
+        $user->save();
+        return response()->json(array(
+            'message' => 'update successfully', 
+            'status' => 'true'));
+    }
+
 
     public function delete($RequestID)
     { 
