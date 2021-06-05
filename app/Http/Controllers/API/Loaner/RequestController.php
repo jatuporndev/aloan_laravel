@@ -29,7 +29,7 @@ class RequestController extends Controller
     
     public function updateUnpass($id,Request $request)
     {       
-        
+        date_default_timezone_set('Asia/Bangkok');
         $user = RequestM::find($id);
         $user->status = 4;     
         $user->dateCheck = date('Y-m-d');     
@@ -45,11 +45,14 @@ class RequestController extends Controller
             'message' => 'update successfully', 
             'status' => 'true'));
     }
-    public function updatePass($id)
+    public function updatePass($id,Request $request)
     {       
+        date_default_timezone_set('Asia/Bangkok');
         $user = RequestM::find($id);
         $user->status = 1;     
-        $user->dateCheck = date('Y-m-d');     
+        $user->dateCheck = date('Y-m-d');  
+        $user->money_confirm = $request->get('money_confirm');  
+        $user->instullment_confirm = $request->get('instullment_confirm');     
         $user->save();
 
         return response()->json(array(

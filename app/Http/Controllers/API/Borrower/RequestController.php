@@ -9,6 +9,7 @@ class RequestController extends Controller
 {
     public function addRequest(Request $request)
     { 
+        date_default_timezone_set('Asia/Bangkok');
         $re = new RequestM();
         $re->Money  = $request->get('Money');
         $re->instullment_request  = $request->get('instullment');
@@ -60,6 +61,16 @@ class RequestController extends Controller
      
         $recount=DB::select($sql);         
         return response()->json($recount);
+    }
+    public function viewConfirmed($BorrowerID){
+        $sql="SELECT request.*,loaners.* FROM request 
+        INNER JOIN borrowlist ON borrowlist.borrowlistID =request.borrowlistID
+        INNER JOIN loaners ON loaners.LoanerID  =borrowlist.LoanerID 
+        WHERE 1 AND (request.status = 1 OR request.status = 11) 
+        AND request.BorrowerID =$BorrowerID";
+        
+        $confirm=DB::select($sql);
+        return response()->json($confirm);
     }
 
     public function updateUnpassChecked($id)
