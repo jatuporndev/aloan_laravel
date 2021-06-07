@@ -82,7 +82,7 @@ class BorrowerController extends Controller
         $user->salary = $request->get('Salary');
         $user->married = $request->get('Married');
         
-        $user->imageProfile= $imagePro;  
+       // $user->imageProfile= $imagePro;  
         $user->image_face = $imageVerify;  
         $user->Image_IDCard = $image_IDCard;   
         //$user->signature = $signature;              

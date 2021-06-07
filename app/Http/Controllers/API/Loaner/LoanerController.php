@@ -84,7 +84,7 @@ class LoanerController extends Controller
         $user->IDCard_back = $request->get('IDCard_back');
         $user->LineID = $request->get('LineID');
         
-        $user->imageProfile= $imagePro;  
+       // $user->imageProfile= $imagePro;  
         $user->image = $imageVerify;  
         $user->Image_IDCard = $image_IDCard;  
         //$user->signature = $signature;           

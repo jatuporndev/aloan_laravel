@@ -77,4 +77,7 @@ Route::post('AddRequest', 'API\Borrower\RequestController@addRequest');
 Route::get('viewrequest/', 'API\Borrower\RequestController@viewRequest');
 Route::get('viewunpass/', 'API\Borrower\RequestController@viewUnpass');
 Route::get('viewConfirmed/{BorrowerID}', 'API\Borrower\RequestController@viewConfirmed');
+Route::get('viewConfirmedDetail/{RequestID}', 'API\Borrower\RequestController@viewConfirmedDetail');
 Route::post('updateUnpassChecked/{id}', 'API\Borrower\RequestController@updateUnpassChecked');//
+Route::post('updateAccept/{id}', 'API\Borrower\RequestController@updateAccept');//
+Route::post('cancleRequest/{BorrowerID}', 'API\Borrower\RequestController@cancleRequest');//

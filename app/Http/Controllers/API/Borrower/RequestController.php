@@ -33,10 +33,12 @@ class RequestController extends Controller
         $sql="SELECT request.*,loaners.*  FROM request
         INNER JOIN borrowlist ON borrowlist.borrowlistID =request.borrowlistID
         INNER JOIN loaners ON loaners.LoanerID  =borrowlist.LoanerID 
-        WHERE 1  AND request.status = 0  ";
+        WHERE 1 ";
         if($borrowlistID!=""){
-            $sql.=" AND borrowlist.borrowlistID =$borrowlistID ";      
-        }if($BorrowerID!=""){
+            $sql.=" AND (request.status = 0 OR request.status = 1 OR request.status = 2 OR request.status = 3 )"; 
+            $sql.=" AND borrowlist.borrowlistID =$borrowlistID AND request.BorrowerID =$BorrowerID";   
+        }if($BorrowerID!="" && $borrowlistID==""){
+            $sql.=" AND request.status = 0 "; 
             $sql.=" AND request.BorrowerID =$BorrowerID ";      
         }
      
@@ -73,10 +75,29 @@ class RequestController extends Controller
         return response()->json($confirm);
     }
 
+    public function viewConfirmedDetail($RequestID){
+        $sql="SELECT request.*,loaners.* FROM request
+        INNER JOIN borrowlist ON borrowlist.borrowlistID =request.borrowlistID
+        INNER JOIN loaners ON loaners.LoanerID  =borrowlist.LoanerID 
+        WHERE 1 AND request.RequestID = $RequestID";
+
+        $confirm=DB::select($sql)[0];
+        return response()->json($confirm);
+    }
+
     public function updateUnpassChecked($id)
     {       
         $user = RequestM::find($id);
         $user->status = 14;      
+        $user->save();
+        return response()->json(array(
+            'message' => 'update successfully', 
+            'status' => 'true'));
+    }
+    public function updateAccept($id)
+    {       
+        $user = RequestM::find($id);
+        $user->status = 2;      
         $user->save();
         return response()->json(array(
             'message' => 'update successfully', 
@@ -87,6 +108,15 @@ class RequestController extends Controller
     public function delete($RequestID)
     { 
         $sql="DELETE FROM request WHERE RequestID=$RequestID";
+        $recount=DB::select($sql);         
+        return response()->json($recount);
+    }
+
+    public function cancleRequest($BorrowerID)
+    { 
+        $sql="UPDATE request
+        SET status = 5
+        WHERE status = 1 AND BorrowerID =$BorrowerID ;";
         $recount=DB::select($sql);         
         return response()->json($recount);
     }
