@@ -66,27 +66,4 @@ class BorrowlistController extends Controller
         
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
