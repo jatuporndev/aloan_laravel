@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="assets/css/argon.css?v=1.2.0" type="text/css">
 </head>
    
-</head>
+
 <!--body>
 
     < <div class="container">
@@ -83,7 +83,7 @@
           
             <div class="card-body px-lg-5 py-lg-5">
               <div class="text-center text-muted mb-4">
-                <small>Sign In</small>
+                <h2>Log In</h2>
               </div>
               <form action="{{ route('admin.check') }}" method="post" autocomplete="off">
               @if (Session::get('fail'))
