@@ -25,6 +25,10 @@ Route::get('/multi', function () {
     return view('multi');
 });
 
+Route::get('/cookie', function () {
+    return view('cookie');
+});
+
 
 Auth::routes();
 
