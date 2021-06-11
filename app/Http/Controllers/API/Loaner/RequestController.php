@@ -9,10 +9,10 @@ class RequestController extends Controller
 {
     public function request($LoanerID)
     { 
-        $sql="SELECT * FROM request
+        $sql="SELECT borrowers.*,request.* FROM request
         INNER JOIN borrowlist ON borrowlist.borrowlistID = request.borrowlistID
         INNER JOIN borrowers ON request.BorrowerID  = borrowers.BorrowerID 
-        WHERE request.status =0 AND  borrowlist.LoanerID = $LoanerID " ;
+        WHERE (request.status = 0 OR request.status = 1) AND  borrowlist.LoanerID = $LoanerID " ;
         $recount=DB::select($sql);         
         return response()->json($recount);
     }
@@ -24,6 +24,16 @@ class RequestController extends Controller
         INNER JOIN borrowers ON request.BorrowerID  = borrowers.BorrowerID 
         WHERE request.RequestID= $requestID " ;
         $recount=DB::select($sql)[0];         
+        return response()->json($recount);
+    }
+
+    public function MenuWaitingPay($LoanerID)
+    { 
+        $sql="SELECT borrowers.*,request.* FROM request
+        INNER JOIN borrowlist ON borrowlist.borrowlistID = request.borrowlistID
+        INNER JOIN borrowers ON request.BorrowerID  = borrowers.BorrowerID 
+        WHERE request.status = 2 AND  borrowlist.LoanerID = $LoanerID " ;
+        $recount=DB::select($sql);         
         return response()->json($recount);
     }
     

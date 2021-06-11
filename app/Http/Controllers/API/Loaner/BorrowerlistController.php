@@ -38,8 +38,12 @@ class BorrowerlistController extends Controller
         $borrowerlist->interest = $request->get('interest');    
         $borrowerlist->Interest_penalty = $request->get('Interest_penalty');   
         $borrowerlist->instullment_max = $request->get('instullment_max');   
-
         $borrowerlist->save();
+
+        $moneyMax=$request->get('money_max');
+        $cri="UPDATE criterion SET money_max = $moneyMax
+        WHERE borrowlistID =$borrowerlist->borrowlistID AND money_max > $borrowerlist->money_max";
+        DB::select($cri);
 
         return response()->json(array(
             'message' => 'update a user successfully', 

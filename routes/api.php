@@ -50,6 +50,7 @@ Route::DELETE('Loaner/deleteBank/{bankID}', 'API\Loaner\BankController@delete');
 
 //Loaner -MENU
 Route::get('Menu1request/{LoanerID}', 'API\Loaner\RequestController@request');
+Route::get('Menu2WaitingPay/{LoanerID}', 'API\Loaner\RequestController@MenuWaitingPay');
 Route::get('DetailMenu1request/{requestID}', 'API\Loaner\RequestController@ViewBorrowerRequest');
 Route::post('updateUnpass/{id}', 'API\Loaner\RequestController@updateUnpass');//
 Route::post('updatePass/{id}', 'API\Loaner\RequestController@updatePass');//
