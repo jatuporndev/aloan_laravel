@@ -91,8 +91,8 @@ class LoanerController extends Controller
         $user->save();   
         
         
-        $sql="SELECT *  FROM loaners ORDER BY `LoanerID` DESC" ;
-        $dataloaner=DB::select($sql)[0];
+        $sql="SELECT *  FROM banklist WHERE bankname = '$user->bank'" ;
+        $databank=DB::select($sql)[0];
 
         //return redirect('loaner/insertCri/'.$databorrowlist -> borrowlistID);
 
@@ -101,8 +101,8 @@ class LoanerController extends Controller
         $bankData ->bank = $request->get('Bank');
         $bankData ->holderName = $request->get('FirstName')." ".$request->get('LastName');       
         $bankData ->bankNumber = $request->get('IDBank');
-        $bankData ->LoanerID  = $dataloaner -> LoanerID; 
-
+        $bankData ->LoanerID  = $user -> LoanerID; 
+        $bankData ->banklistID  = $databank -> banklistID; 
         $bankData ->save(); 
 
         return response()->json(array(
