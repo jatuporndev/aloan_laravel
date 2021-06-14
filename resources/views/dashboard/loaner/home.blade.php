@@ -96,7 +96,8 @@
                                                   </button>
                                               </div>
                                               <div class="modal-body">
-                                                <form role="form">
+                                                <form  action="{{ route('loaner.updateBorrowlist',['id' => $databorrowlist->borrowlistID]) }}" method="POST" autocomplete="off" enctype="multipart/form-data">
+                                                @csrf
                                                       <div class="row">
                                                           <div class="col-lg-4">
                                                                 <div class="form-group">
@@ -105,7 +106,7 @@
                                                           </div>
                                                           <div class="col-md-6">
                                                             <div class="input-group">
-                                                              <input class="form-control"  type="number" value="{{$databorrowlist -> money_min}}"> 
+                                                              <input class="form-control" name="money_min"  type="number" value="{{$databorrowlist -> money_min}}"> 
                                                               <div class="input-group-append">
                                                                 <span class="input-group-text">บาท</span>
                                                               </div> 
@@ -120,7 +121,7 @@
                                                           </div>
                                                           <div class="col-md-6">
                                                             <div class="input-group">
-                                                              <input class="form-control"  type="number" value="{{$databorrowlist -> money_max}}"> 
+                                                              <input class="form-control" name="money_max" type="number" value="{{$databorrowlist -> money_max}}"> 
                                                               <div class="input-group-append">
                                                                 <span class="input-group-text">บาท</span>
                                                               </div> 
@@ -135,7 +136,7 @@
                                                           </div>
                                                           <div class="col-md-6">
                                                             <div class="input-group">
-                                                              <input class="form-control"  type="number" value="{{$databorrowlist -> interest}}"> 
+                                                              <input class="form-control"  name="interest" type="number" value="{{$databorrowlist -> interest}}"> 
                                                               <div class="input-group-append">
                                                                 <span class="input-group-text">%</span>
                                                               </div> 
@@ -150,7 +151,7 @@
                                                           </div>
                                                           <div class="col-md-6">
                                                             <div class="input-group">
-                                                              <input class="form-control"  type="number" value="{{$databorrowlist -> Interest_penalty}}">
+                                                              <input class="form-control" name="Interest_penalty"  type="number" value="{{$databorrowlist -> Interest_penalty}}">
                                                               <div class="input-group-append">
                                                                 <span class="input-group-text">%</span>
                                                               </div> 
@@ -161,7 +162,7 @@
                                     
                                                 <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-                                            <button type="button" class="btn btn-primary">บันทึก</button>
+                                            <button type="submit" class="btn btn-primary">บันทึก</button>
                                                 </div>
                                                 </form>
                                             </div>

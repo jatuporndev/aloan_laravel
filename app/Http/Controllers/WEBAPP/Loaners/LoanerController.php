@@ -81,6 +81,7 @@ class LoanerController extends Controller
              return redirect()->back()->with('fail','Something went Wrong, failed to register');
          }
   }
+
     
     function check(Request $request){
          //Validate Inputs
@@ -127,5 +128,6 @@ class LoanerController extends Controller
     
             return redirect('loaner/insertCri/'.$databorrowlist -> borrowlistID);
     }
+   
 
 }

@@ -77,6 +77,7 @@ class BorrowerController extends Controller
         $user->IDBank = $request->get('IDBank');
         $user->bank = $request->get('Bank');
         $user->job = $request->get('Job');
+        $user->IDCard_back = $request->get('IDCard_back');
         //$user->IDCard_back = $request->get('IDCard_back');
         $user->LineID = $request->get('LineID');
         $user->salary = $request->get('Salary');

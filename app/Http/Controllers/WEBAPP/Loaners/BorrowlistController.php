@@ -65,5 +65,21 @@ class BorrowlistController extends Controller
         return redirect()->route('loaner.home');
         
     }
+    public function update($id,Request $request)
+    {   
+    
+        //add user data into users table
+        $borrowerlist = Borrowlist::find($id);  
+        $borrowerlist->	money_min = $request->get('money_min');  
+        $borrowerlist->money_max =$request->get('money_max');       
+        $borrowerlist->	interest = $request->get('interest');  
+        $borrowerlist->	Interest_penalty = $request->get('Interest_penalty');  
+        $borrowerlist->save();     
+
+        
+        
+
+        return redirect()->route('loaner.home');
+    }
 
 }
