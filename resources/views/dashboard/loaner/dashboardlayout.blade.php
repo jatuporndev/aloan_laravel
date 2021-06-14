@@ -35,7 +35,7 @@
           <!-- Nav items -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a href="#" is class="nav-link {{ (request()->is('admin/home*')) ? 'active' : ''}}">
+              <a href="{{ route('loaner.home') }}" is class="nav-link {{ (request()->is('loaner/home*')) ? 'active' : ''}}">
                 <i class="ni ni-tv-2 text-primary"></i>
                 <span class="nav-link-text">Dashboard</span>
               </a>

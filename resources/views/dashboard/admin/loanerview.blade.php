@@ -34,7 +34,7 @@
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{ route('admin.home') }}"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Dashboards</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Loaner</li>
+                  <li class="breadcrumb-item active" aria-current="page">LoanerDetail</li>
                 </ol>
               </nav>
             </div>
@@ -52,8 +52,8 @@
   
 
    <!-- Page content -->
-   <div class="container-fluid mt--6">
-      <div class="row">
+   <div class="container-fluid mt--7">
+      <div class="row justify-content-center">
                   
         <div class="col-xl-8 order-xl-1">
           <div class="card">

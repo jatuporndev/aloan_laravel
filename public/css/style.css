@@ -55,12 +55,16 @@ a {
 .row.m0 {
   margin: 0px; }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
 body {
   line-height: 24px;
   font-size: 14px;
   font-family: "Poppins", sans-serif;
   font-weight: normal;
-  color: #7f7f7f; }
+  color: #7f7f7f;  }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Poppins", sans-serif;
@@ -124,7 +128,7 @@ ul {
   top: 0;
   left: 0;
   z-index: 99;
-  transition: background 0.4s, all 0.3s linear; }
+  transition: background 0.4s, all 0.3s linear;  }
   .header_area .navbar {
     background: transparent;
     padding: 0px;
@@ -334,7 +338,8 @@ ul {
 .home_banner_area {
   position: relative;
   z-index: 1;
-  min-height: 900px; }
+  min-height: 900px;
+  }
   .home_banner_area .banner_inner {
     position: relative;
     overflow: hidden;
@@ -3002,7 +3007,8 @@ h6 {
   background-image: url(../img/elements/single_bg.png);
   background-position: right top;
   background-repeat: no-repeat;
-  transition: all 300ms linear 0s; }
+  transition: all 300ms linear 0s;  
+   }
   .service-area .single-service .service-icon {
     width: 170px;
     height: 95px;
@@ -3101,7 +3107,8 @@ h6 {
 /* About Area css
 ============================================================================================ */
 .about-area {
-  position: relative; }
+  position: relative; 
+   }
   .about-area:after {
     content: '';
     position: absolute;

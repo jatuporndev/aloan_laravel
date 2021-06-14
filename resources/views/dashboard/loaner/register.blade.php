@@ -59,7 +59,7 @@
                         <div class="from-group">
                             <label for="birthday">Birthday</label>
                             <p></p>
-                            <input type="date" id="birthday" name="birthday" class="from-control @error('birthday') is-invalid @enderror" value="{{ old('birthday') }}">
+                            <input class="form-control @error('birthday') is-invalid @enderror" type="date" value="{{ old('birthday') }}" id="birthday" name="birthday">
                             <span class="text-danger">@error('birthday'){{ $message }} @enderror</span>
                         </div>
                         <p></p>
