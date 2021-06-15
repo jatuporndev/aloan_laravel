@@ -30,11 +30,12 @@
           <script>window.location = "loaner/addborrowlist/{{$id}}";</script>
           @endif
         <!-- -->
+          @if( $i=== 1)
           <?php $sql="SELECT *  FROM borrowlist WHERE LoanerID = $id" ;
                 $databorrowlist=DB::select($sql)[0];
               ?>
-
-      <div class="container-fluid mt--7">
+          
+          <div class="container-fluid mt--7">
           <div class="row justify-content-center">
               <div class="col-xl-6 order-xl-2">
                   <div class="card">
@@ -174,6 +175,10 @@
                </div>
             </div>
       </div>
+
+
+
+      @endif
 
 
 
