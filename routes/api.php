@@ -46,6 +46,7 @@ Route::DELETE('Loaner/deleteCriterion/{id}', 'API\Loaner\CriterionController@del
 //Loaner-bank
 Route::post('Loaner/addbank/{LoanerID}', 'API\Loaner\BankController@create');
 Route::get('Loaner/viewbank/{LoanerID}', 'API\Loaner\BankController@index');
+Route::get('viewBankfromname/{bnakname}', 'API\Loaner\BankController@View');
 Route::get('allbank/', 'API\Loaner\BankController@indexbank');
 Route::get('Viewbank/{banklistID}', 'API\Loaner\BankController@indexbank');
 Route::DELETE('Loaner/deleteBank/{bankID}', 'API\Loaner\BankController@delete');

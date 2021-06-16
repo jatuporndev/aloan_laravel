@@ -16,14 +16,15 @@ class RequestController extends Controller
         $recount=DB::select($sql);         
         return response()->json($recount);
     }
-
+    //ดูข้อมูลจากไอดี
     public function ViewBorrowerRequest($requestID)
     { 
         $sql="SELECT * FROM request
         INNER JOIN borrowlist ON borrowlist.borrowlistID = request.borrowlistID
         INNER JOIN borrowers ON request.BorrowerID  = borrowers.BorrowerID 
         WHERE request.RequestID= $requestID " ;
-        $recount=DB::select($sql)[0];         
+        $recount=DB::select($sql)[0];      
+           
         return response()->json($recount);
     }
 

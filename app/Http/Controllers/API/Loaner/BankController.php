@@ -7,6 +7,15 @@ use DB;
 
 class BankController extends Controller
 {
+    public function View($bankname)
+    { 
+        $sql="SELECT * FROM banklist 
+        WHERE bankname ='$bankname'";
+         
+        $recount=DB::select($sql)[0];         
+        return response()->json($recount);
+    }
+
     public function create(Request $request, $LoanerID){
          //add user data into users table
          $banklistID=$request->get('bank');    
@@ -37,6 +46,7 @@ class BankController extends Controller
         $recount=DB::select($sql);         
         return response()->json($recount);
     }
+
      public function delete($bankID)
     { 
         $sql="DELETE FROM loaner_bank WHERE bankID=$bankID";

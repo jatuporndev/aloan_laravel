@@ -5,6 +5,7 @@ namespace App\Http\Controllers\WEBAPP\Loaners;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Loaners;
+use App\Models\Bank;
 use Illuminate\Support\Facades\Auth;
 use DB;
 
@@ -24,7 +25,7 @@ class LoanerController extends Controller
           'job' => ['required', 'string', 'max:255'],
           'IDCard' => ['required', 'string', 'max:13'],
           'IDCard_back' => ['required', 'string', 'max:10'],
-          'bank' => ['required', 'string', 'max:13'],
+          'bank' => ['required', 'string'],
           'IDBank' => ['required', 'string', 'max:10'],
           'image_IDCard' => 'required|image|mimes:jpeg,png,jpg,|max:2048',
           'image' => 'required|image|mimes:jpeg,png,jpg,|max:2048',
@@ -73,6 +74,21 @@ class LoanerController extends Controller
          $loaner->email = $request->email;
          $loaner->password = \Hash::make($request->password);
          $save = $loaner->save();
+
+         $sql="SELECT *  FROM banklist WHERE bankname = '$loaner->bank'" ;
+        $databank=DB::select($sql)[0];
+
+        //return redirect('loaner/insertCri/'.$databorrowlist -> borrowlistID);
+
+        //addbank
+        $bankData = new Bank();
+        $bankData ->bank = $request->get('bank');
+        $bankData ->holderName = $request->get('firstname')." ".$request->get('lastname');       
+        $bankData ->bankNumber = $request->get('IDBank');
+        $bankData ->LoanerID  = $loaner -> LoanerID; 
+        $bankData ->banklistID  = $databank -> banklistID; 
+        $bankData ->save(); 
+
         
          if( $save ){
              return redirect()->back()->with('success','You are now registered successfully as loaner');
