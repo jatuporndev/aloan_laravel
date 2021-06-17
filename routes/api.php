@@ -58,6 +58,8 @@ Route::get('DetailMenu1request/{requestID}', 'API\Loaner\RequestController@ViewB
 Route::post('updateUnpass/{id}', 'API\Loaner\RequestController@updateUnpass');//
 Route::post('updatePass/{id}', 'API\Loaner\RequestController@updatePass');//
 
+//Loaner -BorrowDetail
+Route::post('addBorrowDetail/{RequestID}', 'API\Loaner\BorrowDetailcontroller@add');//
 
 
 

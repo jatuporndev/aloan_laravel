@@ -3,6 +3,7 @@ namespace App\Http\Controllers\API\Loaner;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\RequestM;
+use Illuminate\Support\Facades\Mail;
 use DB;
 
 class RequestController extends Controller
