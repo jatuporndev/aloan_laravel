@@ -87,3 +87,8 @@ Route::get('viewConfirmedDetail/{RequestID}', 'API\Borrower\RequestController@vi
 Route::post('updateUnpassChecked/{id}', 'API\Borrower\RequestController@updateUnpassChecked');//
 Route::post('updateAccept/{id}', 'API\Borrower\RequestController@updateAccept');//
 Route::post('cancleRequest/{BorrowerID}', 'API\Borrower\RequestController@cancleRequest');//
+
+//Borrower -BorrowDetail
+Route::get('Menupay/{BorrowerID}', 'API\Borrower\Borrowdetailcontroller@index');//
+Route::get('ManuPaydetail/{BorrowDetailID}', 'API\Borrower\Borrowdetailcontroller@ManuPaydetail');
+Route::get('ViewPaying/{BorrowDetailID}', 'API\Borrower\Borrowdetailcontroller@ViewPaying');

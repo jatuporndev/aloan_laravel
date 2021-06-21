@@ -131,6 +131,7 @@ class RequestController extends Controller
                      (SELECT count(RequestID) FROM request WHERE (request.status = 0 OR request.status = 2) AND BorrowerID =$BorrowerID) as count_waiting,
                      (SELECT count(RequestID) FROM request WHERE status = 1 AND BorrowerID =$BorrowerID) as count_confirm,
                      (SELECT count(RequestID) FROM request WHERE status = 4 AND BorrowerID =$BorrowerID) as count_unpass,
+                     (SELECT count(RequestID) FROM request WHERE status = 3 AND BorrowerID =$BorrowerID) as count_paying,
 
                      (SELECT count(RequestID) FROM request,borrowlist WHERE request.borrowlistID =borrowlist.borrowlistID AND 
                      (request.status = 0 OR request.status = 1)AND borrowlist.LoanerID  =$BorrowerID) as count_request_loaner,

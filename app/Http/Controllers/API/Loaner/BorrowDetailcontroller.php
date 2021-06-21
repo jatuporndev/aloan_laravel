@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BorrowDetail;
 use App\Models\RequestM;
+use App\Models\History;
 use Illuminate\Support\Facades\Mail;
 use DB;
 
@@ -27,7 +28,11 @@ class BorrowDetailcontroller extends Controller
         $detail ->Principle = $datarequest->money_confirm;
         $detail ->Interest = $datarequest->Interest_request;
         $detail ->Interest_penalty = $datarequest->Interest_penalty_request;
-        $detail ->remain = $datarequest->money_confirm;
+
+        $money =$datarequest->money_confirm;;//เงินต้น
+        $instu =$datarequest->instullment_confirm;//งวด
+        $inter =$datarequest->Interest_request;//ดอกเบี้ย
+        $detail ->remain = $money+($money*($inter/100));
         $detail ->instullment_total = $datarequest->instullment_confirm;
         $detail ->instullment_Amount = $datarequest->instullment_confirm;
 
@@ -49,12 +54,22 @@ class BorrowDetailcontroller extends Controller
         $sql="SELECT *  FROM borrowers WHERE BorrowerID= $user->BorrowerID" ;
         $datarequest=DB::select($sql)[0];
 
-        $to_name = "RECEIVER_NAME";
-        $to_email = "Yoneya@gmail";
+
+        for($i=1; $i <= $detail->instullment_total; $i++){
+        $effectiveDate2 = date('Y-m-d');
+        $history = new History();
+        $effectiveDate2 = strtotime("+".$i." months", strtotime($effectiveDate2));
+        $history ->settlement_date = date('Y-m-d',$effectiveDate2);
+        $history ->BorrowDetailID =$detail->BorrowDetailID;
+        $history ->save();
+    }
+
+      /*  $to_name = "RECEIVER_NAME";
+        $to_email = "Yoneya.ohm1221@gmail";
         $data = array(
             "name" => "สวัสดีคุณ ".$datarequest->firstname." ".$datarequest->lastname,
-            "body" => "วันที่ทำรายการ ".date('Y-m-d')."\n 
-                        หลักฐานการโอน",
+            "body" => "วันที่ทำรายการ ".date('Y-m-d'),
+            "body" => "ผู้ให้กู้โอนเงินเรียบร้อยแล้ว ".date('Y-m-d'),
             "slip"  => $detail->receipt_slip,           
             "not"  => "นี้เป็นข้อความแจ้งเตือน ไม่ต้องตอบกลับ");
         Mail::send('email', $data, function($message) use ($to_name, $to_email) {
@@ -62,8 +77,8 @@ class BorrowDetailcontroller extends Controller
         ->subject("ผู้ให้กู้โอนเงินเรียบร้อยแล้ว");
        $message->from("Alone@gmail.com","Aloan Notification!");
         });
+        */
         
-
         return response()->json($datarequest);
     }
 }
