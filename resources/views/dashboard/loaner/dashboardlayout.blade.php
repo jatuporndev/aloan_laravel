@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Loaner Dashboard</title>
   <base href="{{ \URL::to('/')}}">
   <!-- Favicon -->
@@ -165,6 +166,75 @@
   <script src="assets/vendor/chart.js/dist/Chart.extension.js"></script>
   <!-- Argon JS -->
   <script src="assets/js/argon.js?v=1.2.0"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  @if (Session::has('success'))
+      <script>
+          swal("Success!","{!! Session::get('success') !!}","success",{
+          button:"OK",
+          });             
+      </script>
+  @endif
+  @if (Session::has('fail'))
+      <script>
+        swal("Success!","{!! Session::get('fail') !!}","warning",{
+        button:"OK",
+        });             
+      </script>
+  @endif
+
+  <script>
+  $.ajaxSetup({
+     headers:{
+       'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+     }
+  });
+  
+  $(function(){
+              
+              $("#Update").on('submit', function(e){
+                  e.preventDefault();
+          
+                  $.ajax({
+                      url:$(this).attr('action'),
+                      method:$(this).attr('method'),
+                      data:new FormData(this),
+                      processData:false,
+                      dataType:'json',
+                      contentType:false,
+                      beforeSend:function(){
+                          $(document).find('span.error-text').text('');
+                      },
+                      success:function(data){
+                          if(data.status == 0){
+                              $.each(data.error, function(prefix, val){
+                                  $('span.'+prefix+'_error').text(val[0]);
+                              });
+                          }else{
+                            $('.money_minn').each(function(){
+                              $(this).html( $('#Update').find( $('input[name="money_min"]') ).val() );
+                            });
+                            $('.money_maxx').each(function(){
+                              $(this).html( $('#Update').find( $('input[name="money_max"]') ).val() );
+                            });
+                            $('.interestt').each(function(){
+                              $(this).html( $('#Update').find( $('input[name="interest"]') ).val() );
+                            });
+                            $('.Interest_penaltyy').each(function(){
+                              $(this).html( $('#Update').find( $('input[name="Interest_penalty"]') ).val() );
+                            });
+                              swal("Success!",data.msg,"success",{
+                              button:"OK",
+                              })
+                              .then((value) => {
+                                $('#exampleModal').modal('hide');
+                              }); 
+                              
+                          }
+                      }
+                  });
+              });
+          });
+  </script>
 </body>
 
 </html>

@@ -122,6 +122,7 @@
                         @foreach($post as $item)
                         <option value="{{$item -> bankname}} "   >{{$item -> bankname}}</option>
                         @endforeach
+                        </select>
                         <span class="text-danger">@error('bank'){{ $message }} @enderror</span>
                     </div>
 
