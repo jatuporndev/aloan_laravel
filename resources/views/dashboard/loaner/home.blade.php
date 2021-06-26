@@ -34,6 +34,13 @@
           @if( $i=== 1)
           <?php $sql="SELECT *  FROM borrowlist WHERE LoanerID = $id" ;
                 $databorrowlist=DB::select($sql)[0];
+
+                $sql2="SELECT *  FROM criterion WHERE borrowlistID = $databorrowlist->borrowlistID";
+                $datacriterion=DB::select($sql2);
+
+                $arrayAge=["18-28 ปี","29-39 ปี","40-50 ปี","51ปีขึ้นไป"];
+                $arrayMarri=["โสด","แต่งงานแล้ว"];
+                $arraySalary=["0-9000","9000-15000","15000-50000","มากกว่า5หมื่น"];
               ?>
           
           <div class="container-fluid mt--7">
@@ -214,36 +221,45 @@
                     <th scope="col" class="sort" >สถานภาพ</th>
                     <th scope="col" class="sort" >ช่วงเงินเดือน</th>
                     <th scope="col" class="sort" >วงเงินสูงสุดที่ให้กู้</th>
+                    <th scope="col" class="sort" >งวดสูงสุด</th>
                     <th scope="col" class="sort" data-sort="completion">Completion</th>
             
                   </tr>
                 </thead>
                 <tbody class="list">
-
+                @foreach($datacriterion as $item)
                
+                
                   <tr>
                     <th scope="row">
                   
-                    
+                    {{$arrayAge[$item->Married]}}
                   
                     </th>
                     <td class="budget">
                     
-                   
+                    {{$arrayMarri[$item->Married]}}
                      
                     </td>
                     <td>
                
+                    {{$arraySalary[$item->Married]}}
                     </td>
                     <td>
                    
-                    
+                    {{$item->money_max}}
                   
                     </td>
                     <td>
+                   
+                   {{$item->instullment_max}}
+                 
+                   </td>
+                    <td>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                             แก้ไข
-                      </button></div>
+                      </button>
+                      </div>
 
                       <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -336,7 +352,7 @@
                     </td>
                     
                   </tr>
-                
+                  @endforeach
                   </tbody>
               </table>
             </div>
