@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Borrowlist;
 use DB;
+use Validator;
+
 class BorrowlistController extends Controller
 {
     public function create($id)
@@ -65,21 +67,49 @@ class BorrowlistController extends Controller
         return redirect()->route('loaner.home');
         
     }
-    public function update($id,Request $request)
-    {   
-    
-        //add user data into users table
-        $borrowerlist = Borrowlist::find($id);  
-        $borrowerlist->	money_min = $request->get('money_min');  
-        $borrowerlist->money_max =$request->get('money_max');       
-        $borrowerlist->	interest = $request->get('interest');  
-        $borrowerlist->	Interest_penalty = $request->get('Interest_penalty');  
-        $borrowerlist->save();     
 
+    public function showCri(){
         
+        $sql = "SELECT * FROM loaners";
+        $post = DB::select($sql);
+        $post = Loaner::paginate(10);
         
-
-        return redirect()->route('loaner.home');
+        return view('dashboard.loaner.loanerhome', ['post'=> $post]);
     }
 
+    public function update(Request $request, $id)
+    {   
+        //add user data into users table
+        // $borrowerlist = Borrowlist::find($id);  
+        // $borrowerlist->	money_min = $request->get('money_min');  
+        // $borrowerlist->money_max =$request->get('money_max');       
+        // $borrowerlist->	interest = $request->get('interest');  
+        // $borrowerlist->	Interest_penalty = $request->get('Interest_penalty');  
+        // $borrowerlist->save();     
+        // return redirect()->route('loaner.home')->with('success','ss');
+        $validator = \Validator::make($request->all(),[
+            'money_min'=>'required|integer|min:1',
+            'money_max'=>'required|integer|min:1',
+            'interest'=>'required|integer|min:1|max:15',
+            'Interest_penalty'=>'required|integer|min:1',
+        ]);
+
+        if(!$validator->passes()){
+            return response()->json(['status'=>0, 'error'=>$validator->errors()->toArray()]);
+        }else{
+                
+                $borrowerlist = Borrowlist::find($id);  
+                $borrowerlist->	money_min = $request->get('money_min');  
+                $borrowerlist->money_max =$request->get('money_max');       
+                $borrowerlist->	interest = $request->get('interest');  
+                $borrowerlist->	Interest_penalty = $request->get('Interest_penalty');  
+                $save = $borrowerlist->save();
+
+            if( $save ){
+                return response()->json(['status'=>1, 'msg'=>'บันทึกข้อมูลสำเร็จ']);
+            }
+        }
+  }
+
 }
+
