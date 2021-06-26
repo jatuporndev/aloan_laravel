@@ -68,4 +68,17 @@ class BankController extends Controller
         $recount=DB::select($sql);         
         return response()->json($recount);
     }
+
+
+    public function ViewbankLoaner($LoanerID)
+    { 
+        $sql="SELECT * FROM loaner_bank
+        INNER JOIN banklist ON loaner_bank.banklistID  = banklist.banklistID 
+         WHERE LoanerID =$LoanerID";
+         
+        $recount=DB::select($sql);         
+        return response()->json($recount);
+    }
+
+
 }

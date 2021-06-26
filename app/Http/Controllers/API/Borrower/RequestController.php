@@ -145,5 +145,14 @@ class RequestController extends Controller
         
         return response()->json($recount);
     }
+
+    public function nextDate($BorrowDetailID){
+
+        $sql="SELECT settlement_date FROM history 
+              WHERE 1 AND  BorrowDetailID = $BorrowDetailID AND status =0";
+        $data = DB::select($sql)[0];
+
+        return response()->json($data);
+    }
     
 }

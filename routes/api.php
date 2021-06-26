@@ -50,6 +50,7 @@ Route::get('viewBankfromname/{bnakname}', 'API\Loaner\BankController@View');
 Route::get('allbank/', 'API\Loaner\BankController@indexbank');
 Route::get('Viewbank/{banklistID}', 'API\Loaner\BankController@indexbank');
 Route::DELETE('Loaner/deleteBank/{bankID}', 'API\Loaner\BankController@delete');
+Route::get('ViewbankLoaner/{LoanerID}', 'API\Loaner\BankController@ViewbankLoaner');
 
 //Loaner -MENU
 Route::get('Menu1request/{LoanerID}', 'API\Loaner\RequestController@request');
@@ -87,8 +88,12 @@ Route::get('viewConfirmedDetail/{RequestID}', 'API\Borrower\RequestController@vi
 Route::post('updateUnpassChecked/{id}', 'API\Borrower\RequestController@updateUnpassChecked');//
 Route::post('updateAccept/{id}', 'API\Borrower\RequestController@updateAccept');//
 Route::post('cancleRequest/{BorrowerID}', 'API\Borrower\RequestController@cancleRequest');//
+Route::get('nextDate/{BorrowDetailID}', 'API\Borrower\RequestController@nextDate');
 
 //Borrower -BorrowDetail
 Route::get('Menupay/{BorrowerID}', 'API\Borrower\Borrowdetailcontroller@index');//
 Route::get('ManuPaydetail/{BorrowDetailID}', 'API\Borrower\Borrowdetailcontroller@ManuPaydetail');
 Route::get('ViewPaying/{BorrowDetailID}', 'API\Borrower\Borrowdetailcontroller@ViewPaying');
+
+Route::post('createHis/{BorrowDetailID}/{moneytotal}', 'API\Borrower\Borrowdetailcontroller@createHis');
+Route::post('updateStatusHistory/{BorrowDetailID}', 'API\Borrower\Borrowdetailcontroller@update');

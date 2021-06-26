@@ -4,6 +4,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Borrower;
 use App\Models\Borrowers;
+use App\Models\History;
+use App\Models\HistoryBill;
 use Illuminate\Support\Facades\Auth;
 use DB;
 
@@ -21,6 +23,7 @@ class Borrowdetailcontroller extends Controller
         return response()->json($data);
     }
 
+
     public function ManuPaydetail($BorrowDetailID){
 
         $sql="SELECT borrowdetail.*,loaners.* FROM borrowdetail 
@@ -33,10 +36,6 @@ class Borrowdetailcontroller extends Controller
     }
 
     public function ViewPaying($BorrowDetailID){
-
-       // $sql="SELECT history.* FROM history
-      // INNER JOIN borrowdetail ON borrowdetail.BorrowDetailID = history.BorrowDetailID 
-      //  WHERE 1 AND history.BorrowDetailID =$BorrowDetailID ";
         date_default_timezone_set('Asia/Bangkok');
         $datenow = date('Y-m-d');
         $Date = date('Y-m-d');
@@ -52,5 +51,43 @@ class Borrowdetailcontroller extends Controller
         $data = DB::select($sql);
 
         return response()->json($data);
+    }
+
+    public function createHis($BorrowDetailID,$moneytotal,Request $request){
+
+        date_default_timezone_set('Asia/Bangkok');
+        $data = new HistoryBill();
+        $data-> datepaying = date('Y-m-d');   
+        $data-> BorrowDetailID = $BorrowDetailID; 
+        $data-> money_total = $moneytotal; 
+
+        $file = $request->file('imageBill');
+        if(isset($file)){
+            $file->move('assets/uploadfile/Borrower/payment',$file->getClientOriginalName());
+            $data->imageBill = $file->getClientOriginalName();
+        } 
+        $data->save();
+        return response()->json(array(
+            'message' => 'update a  successfully', 
+            'status' => 'true'));
+
+    }
+    public function update($historyID){//loop in android
+
+        $sql="SELECT `historyDetailID` FROM `historydetailbill` WHERE 1 ORDER by `historyDetailID` DESC";
+        $datahis = DB::select($sql)[0];
+
+        date_default_timezone_set('Asia/Bangkok');
+        $data = History::find($historyID);
+        $data-> date_pay = date('Y-m-d');
+        $data->historyDetailID = $datahis->historyDetailID;   
+        $data->status = 1;      
+        $data->save();
+
+
+        return response()->json(array(
+            'message' => 'update a History successfully', 
+            'status' => 'true'));
+
     }
 }
