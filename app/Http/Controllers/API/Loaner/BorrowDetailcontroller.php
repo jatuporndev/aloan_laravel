@@ -81,4 +81,34 @@ class BorrowDetailcontroller extends Controller
         
         return response()->json($datarequest);
     }
+
+    public function index($LoanerID){
+
+        $sql="SELECT * FROM borrowdetail 
+        INNER JOIN Borrowers ON borrowdetail.BorrowerID = Borrowers.BorrowerID
+        INNER JOIN borrowlist ON borrowdetail.borrowlistID = borrowlist.borrowlistID
+        WHERE 1 AND borrowlist.LoanerID = $LoanerID";
+        $data = DB::select($sql);
+        
+        return response()->json($data);
+    }
+
+    public function checkpay($borrowdetailID){
+
+        $sql="SELECT * FROM history WHERE BorrowDetailID = $borrowdetailID AND status = 1";
+        $data = DB::select($sql);
+        
+        return response()->json($data);
+    }
+
+    public function ManuGetMoneydetail($BorrowDetailID){
+
+        $sql="SELECT borrowdetail.*,Borrowers.* FROM borrowdetail 
+              INNER JOIN borrowlist ON borrowdetail.borrowlistID = borrowlist.borrowlistID
+              INNER JOIN Borrowers ON Borrowers.BorrowerID  = borrowdetail.BorrowerID 
+              WHERE 1 AND  BorrowDetailID = $BorrowDetailID";
+
+        $data = DB::select($sql)[0];
+        return response()->json($data);
+    }
 }

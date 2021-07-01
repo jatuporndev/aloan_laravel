@@ -61,6 +61,9 @@ Route::post('updatePass/{id}', 'API\Loaner\RequestController@updatePass');//
 
 //Loaner -BorrowDetail
 Route::post('addBorrowDetail/{RequestID}', 'API\Loaner\BorrowDetailcontroller@add');//
+Route::get('loaner/borrowdetail/{LoanerID}', 'API\Loaner\BorrowDetailcontroller@index');
+Route::get('loaner/checkpayMenu/{borrowdetailID}', 'API\Loaner\BorrowDetailcontroller@checkpay');
+Route::get('ManuGetMoneydetail/{BorrowDetailID}', 'API\Loaner\Borrowdetailcontroller@ManuGetMoneydetail');
 
 
 

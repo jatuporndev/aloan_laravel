@@ -23,44 +23,50 @@ class BorrowlistController extends Controller
         $borrowerlist->save();                
         return redirect('loaner/setborrowlist/'.$id);
     }
+    
     public function insertCri($borrowlistID)
     { 
-        $sql="INSERT INTO criterion
-             ( Age_range, Saraly_range, Married,borrowlistID )
-        VALUES
-          (0, 0, 0,$borrowlistID), 
-          (1, 0, 0,$borrowlistID), 
-          (2, 0, 0,$borrowlistID),
-          (3, 0, 0,$borrowlistID),
-          (0, 1, 0,$borrowlistID),
-          (1, 1, 0,$borrowlistID),
-          (2, 1, 0,$borrowlistID),
-          (3, 1, 0,$borrowlistID),
-          (0, 2, 0,$borrowlistID),
-          (1, 2, 0,$borrowlistID),
-          (2, 2, 0,$borrowlistID),
-          (3, 2, 0,$borrowlistID),
-          (0, 3, 0,$borrowlistID),
-          (1, 3, 0,$borrowlistID),
-          (2, 3, 0,$borrowlistID),
-          (3, 3, 0,$borrowlistID),
+        $sql="SELECT * FROM borrowlist WHERE borrowlistID =$borrowlistID";
+        $dataBorrowlist=DB::select($sql)[0];  
+        $money_max = $dataBorrowlist->money_max;
+        $instullment_max = $dataBorrowlist->instullment_max;
 
-          (0, 0, 1,$borrowlistID), 
-          (1, 0, 1,$borrowlistID), 
-          (2, 0, 1,$borrowlistID),
-          (3, 0, 1,$borrowlistID),
-          (0, 1, 1,$borrowlistID),
-          (1, 1, 1,$borrowlistID),
-          (2, 1, 1,$borrowlistID),
-          (3, 1, 1,$borrowlistID),
-          (0, 2, 1,$borrowlistID),
-          (1, 2, 1,$borrowlistID),
-          (2, 2, 1,$borrowlistID),
-          (3, 2, 1,$borrowlistID),
-          (0, 3, 1,$borrowlistID),
-          (1, 3, 1,$borrowlistID),
-          (2, 3, 1,$borrowlistID),
-          (3, 3, 1,$borrowlistID)";
+        $sql="INSERT INTO criterion
+             ( Age_range, Saraly_range, Married,borrowlistID,money_max,instullment_max)
+        VALUES
+          (0, 0, 0,$borrowlistID,$money_max,$instullment_max), 
+          (1, 0, 0,$borrowlistID,$money_max,$instullment_max), 
+          (2, 0, 0,$borrowlistID,$money_max,$instullment_max),
+          (3, 0, 0,$borrowlistID,$money_max,$instullment_max),
+          (0, 1, 0,$borrowlistID,$money_max,$instullment_max),
+          (1, 1, 0,$borrowlistID,$money_max,$instullment_max),
+          (2, 1, 0,$borrowlistID,$money_max,$instullment_max),
+          (3, 1, 0,$borrowlistID,$money_max,$instullment_max),
+          (0, 2, 0,$borrowlistID,$money_max,$instullment_max),
+          (1, 2, 0,$borrowlistID,$money_max,$instullment_max),
+          (2, 2, 0,$borrowlistID,$money_max,$instullment_max),
+          (3, 2, 0,$borrowlistID,$money_max,$instullment_max),
+          (0, 3, 0,$borrowlistID,$money_max,$instullment_max),
+          (1, 3, 0,$borrowlistID,$money_max,$instullment_max),
+          (2, 3, 0,$borrowlistID,$money_max,$instullment_max),
+          (3, 3, 0,$borrowlistID,$money_max,$instullment_max),
+
+          (0, 0, 1,$borrowlistID,$money_max,$instullment_max), 
+          (1, 0, 1,$borrowlistID,$money_max,$instullment_max), 
+          (2, 0, 1,$borrowlistID,$money_max,$instullment_max),
+          (3, 0, 1,$borrowlistID,$money_max,$instullment_max),
+          (0, 1, 1,$borrowlistID,$money_max,$instullment_max),
+          (1, 1, 1,$borrowlistID,$money_max,$instullment_max),
+          (2, 1, 1,$borrowlistID,$money_max,$instullment_max),
+          (3, 1, 1,$borrowlistID,$money_max,$instullment_max),
+          (0, 2, 1,$borrowlistID,$money_max,$instullment_max),
+          (1, 2, 1,$borrowlistID,$money_max,$instullment_max),
+          (2, 2, 1,$borrowlistID,$money_max,$instullment_max),
+          (3, 2, 1,$borrowlistID,$money_max,$instullment_max),
+          (0, 3, 1,$borrowlistID,$money_max,$instullment_max),
+          (1, 3, 1,$borrowlistID,$money_max,$instullment_max),
+          (2, 3, 1,$borrowlistID,$money_max,$instullment_max),
+          (3, 3, 1,$borrowlistID,$money_max,$instullment_max)";
 
        // $sql="SELECT *  FROM criterion WHERE borrowlistID =$id";
         $recount=DB::select($sql);         

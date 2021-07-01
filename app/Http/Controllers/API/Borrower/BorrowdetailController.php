@@ -57,7 +57,8 @@ class Borrowdetailcontroller extends Controller
 
         date_default_timezone_set('Asia/Bangkok');
         $data = new HistoryBill();
-        $data-> datepaying = date('Y-m-d');   
+        $data-> datepaying = date('Y-m-d');  
+        $data-> money =$request->get('money');
         $data-> BorrowDetailID = $BorrowDetailID; 
         $data-> money_total = $moneytotal; 
 
