@@ -111,4 +111,13 @@ class BorrowDetailcontroller extends Controller
         $data = DB::select($sql)[0];
         return response()->json($data);
     }
+    public function Bill($BorrowDetailID){
+
+        $sql="SELECT * FROM historydetailbill 
+              WHERE 1 AND  BorrowDetailID = $BorrowDetailID";
+
+        $data = DB::select($sql);
+        return response()->json($data);
+    }
+
 }

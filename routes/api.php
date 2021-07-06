@@ -64,7 +64,12 @@ Route::post('addBorrowDetail/{RequestID}', 'API\Loaner\BorrowDetailcontroller@ad
 Route::get('loaner/borrowdetail/{LoanerID}', 'API\Loaner\BorrowDetailcontroller@index');
 Route::get('loaner/checkpayMenu/{borrowdetailID}', 'API\Loaner\BorrowDetailcontroller@checkpay');
 Route::get('ManuGetMoneydetail/{BorrowDetailID}', 'API\Loaner\Borrowdetailcontroller@ManuGetMoneydetail');
+Route::get('Bill/{BorrowDetailID}', 'API\Loaner\Borrowdetailcontroller@Bill');
 
+//Loaner -History
+Route::get('billDetail/{historyDetailID}', 'API\Loaner\HistoryController@billDetail');
+Route::get('historylist/{historyDetailID}', 'API\Loaner\HistoryController@history');
+Route::post('confrimBill/{historyDetailID}', 'API\Loaner\HistoryController@confrim');
 
 
 //Borrower
