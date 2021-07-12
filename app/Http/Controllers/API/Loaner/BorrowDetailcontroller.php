@@ -120,4 +120,8 @@ class BorrowDetailcontroller extends Controller
         return response()->json($data);
     }
 
+    public function test(){
+
+    }
+
 }

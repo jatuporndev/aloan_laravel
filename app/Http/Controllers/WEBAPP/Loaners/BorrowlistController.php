@@ -103,13 +103,20 @@ class BorrowlistController extends Controller
         if(!$validator->passes()){
             return response()->json(['status'=>0, 'error'=>$validator->errors()->toArray()]);
         }else{
-                
-                $borrowerlist = Borrowlist::find($id);  
-                $borrowerlist->	money_min = $request->get('money_min');  
-                $borrowerlist->money_max =$request->get('money_max');       
-                $borrowerlist->	interest = $request->get('interest');  
-                $borrowerlist->	Interest_penalty = $request->get('Interest_penalty');  
-                $save = $borrowerlist->save();
+           /*     
+            $borrowerlist =Borrowlist::where('LoanerID', '=', $id)->firstOrFail();
+            $borrowerlist->money_min = $request->get('money_min');
+            $borrowerlist->money_max = $request->get('money_max');        
+            $borrowerlist->interest = $request->get('interest');    
+            $borrowerlist->Interest_penalty = $request->get('Interest_penalty');   
+            $borrowerlist->instullment_max = $request->get('instullment_max');   
+            $borrowerlist->save();
+    
+            $moneyMax=$request->get('money_max');
+            $cri="UPDATE criterion SET money_max = $moneyMax,instullment_max= $borrowerlist->instullment_max
+            WHERE borrowlistID =$borrowerlist->borrowlistID AND money_max > $borrowerlist->money_max OR instullment_max > $borrowerlist->instullment_max";
+            DB::select($cri);
+    */
 
             if( $save ){
                 return response()->json(['status'=>1, 'msg'=>'บันทึกข้อมูลสำเร็จ']);

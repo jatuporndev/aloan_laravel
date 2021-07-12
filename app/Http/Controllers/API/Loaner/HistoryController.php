@@ -69,8 +69,45 @@ class HistoryController extends Controller
         WHERE borrowdetailID = $dataDetail->BorrowDetailID";
         $data = DB::select($sql);
 
+        
+        $sqlborrowdetail ="SELECT * FROM borrowdetail WHERE borrowdetailID = $dataDetail->BorrowDetailID";
+        $dataBorrowdetail = DB::select($sqlborrowdetail)[0];
+
+        if($dataBorrowdetail->remain == '0'){
+            $sql="UPDATE borrowdetail
+            SET status = 1
+            WHERE borrowdetailID = $dataBorrowdetail->BorrowDetailID";
+            $data = DB::select($sql);
+
+            $sql="UPDATE request
+            SET status = 6
+            WHERE RequestID = $dataBorrowdetail->RequestID";
+            $data = DB::select($sql);
+        }
 
         return response()->json($dataDetail);
 
     }
+
+    public function AllSuccess($loanerID){
+        
+        $sql="SELECT borrowers.*,borrowdetail.* FROM borrowdetail 
+        INNER JOIN borrowlist ON borrowlist.borrowlistID = borrowdetail.borrowlistID
+        INNER JOIN borrowers ON borrowers.BorrowerID =borrowdetail.BorrowerID
+        WHERE borrowlist.loanerID = $loanerID AND borrowdetail.status = 1";
+        $data = DB::select($sql);
+        return response()->json($data);
+
+    }
+
+    public function indexHistory($borrowerID){
+        $sql="SELECT loaners.*,borrowdetail.* FROM borrowdetail 
+        INNER JOIN borrowlist ON borrowlist.borrowlistID = borrowdetail.borrowlistID
+        INNER JOIN loaners ON loaners.LoanerID =borrowlist.LoanerID
+        WHERE borrowdetail.BorrowerID = $borrowerID ";
+        $data = DB::select($sql);
+        return response()->json($data);
+    }
+
+    
 }

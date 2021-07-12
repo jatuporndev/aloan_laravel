@@ -154,5 +154,14 @@ class RequestController extends Controller
 
         return response()->json($data);
     }
-    
+    public function AllSuccess($BorrowerID){
+        
+        $sql="SELECT loaners.*,borrowdetail.* FROM borrowdetail 
+        INNER JOIN borrowlist ON borrowlist.borrowlistID = borrowdetail.borrowlistID
+        INNER JOIN loaners ON loaners.LoanerID =borrowlist.LoanerID
+        WHERE borrowdetail.BorrowerID = $BorrowerID  AND borrowdetail.status = 1";
+        $data = DB::select($sql);
+        return response()->json($data);
+
+    }
 }
