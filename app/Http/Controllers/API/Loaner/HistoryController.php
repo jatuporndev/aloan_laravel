@@ -12,7 +12,7 @@ class HistoryController extends Controller
 {
     public function billDetail($historyDetailID)
     { 
-        $sql="SELECT * FROM historydetailbill WHERE historyDetailID = $historyDetailID";
+        $sql="SELECT *,ROUND((money_total - money),2) as fire FROM historydetailbill WHERE historyDetailID = $historyDetailID";
 
         $data = DB::Select($sql)[0];
 
@@ -27,8 +27,8 @@ class HistoryController extends Controller
         date_default_timezone_set('Asia/Bangkok');
         $datenow = date($data1->datepaying);
         $sql="SELECT history.*, IF(settlement_date < '$datenow', '1', '0') as dateset_status,
-        (borrowdetail.Principle+(borrowdetail.Principle*(borrowdetail.Interest/100)))/borrowdetail.instullment_total as moneySet,
-        ((borrowdetail.Principle+(borrowdetail.Principle*(borrowdetail.Interest/100)))/borrowdetail.instullment_total*(borrowdetail.Interest_penalty/100)) as interest_penalty_money
+       ROUND(( (borrowdetail.Principle+(borrowdetail.Principle*(borrowdetail.Interest/100)))/borrowdetail.instullment_total ),2) as moneySet,
+         ROUND(( ((borrowdetail.Principle+(borrowdetail.Principle*(borrowdetail.Interest/100)))/borrowdetail.instullment_total*(borrowdetail.Interest_penalty/100)) ),2) as interest_penalty_money
         FROM history 
         INNER JOIN borrowdetail ON borrowdetail.BorrowDetailID = history.BorrowDetailID 
         WHERE  history.historyDetailID = $historyDetailID ";
@@ -73,7 +73,7 @@ class HistoryController extends Controller
         $sqlborrowdetail ="SELECT * FROM borrowdetail WHERE borrowdetailID = $dataDetail->BorrowDetailID";
         $dataBorrowdetail = DB::select($sqlborrowdetail)[0];
 
-        if($dataBorrowdetail->remain == '0'){
+        if($dataBorrowdetail->instullment_Amount == '0'){
             $sql="UPDATE borrowdetail
             SET status = 1
             WHERE borrowdetailID = $dataBorrowdetail->BorrowDetailID";

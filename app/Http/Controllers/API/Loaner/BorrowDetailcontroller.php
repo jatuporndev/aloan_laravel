@@ -84,7 +84,7 @@ class BorrowDetailcontroller extends Controller
 
     public function index($LoanerID){
 
-        $sql="SELECT * FROM borrowdetail 
+        $sql="SELECT *,ROUND(( (borrowdetail.Principle+(borrowdetail.Principle*(borrowdetail.Interest/100)))/borrowdetail.instullment_total ),2) as perints FROM borrowdetail 
         INNER JOIN Borrowers ON borrowdetail.BorrowerID = Borrowers.BorrowerID
         INNER JOIN borrowlist ON borrowdetail.borrowlistID = borrowlist.borrowlistID
         WHERE 1 AND borrowlist.LoanerID = $LoanerID";

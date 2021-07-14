@@ -72,4 +72,17 @@ class RequestController extends Controller
             'status' => 'true'));
     }
 
+       public function viewUnpass($loanerID)
+    { 
+   
+        $sql="SELECT request.*,borrowers.*  FROM request
+        INNER JOIN borrowers ON request.BorrowerID = borrowers.BorrowerID
+        INNER JOIN borrowlist ON request.borrowlistID = borrowlist.borrowlistID
+        WHERE 1  AND  borrowlist.LoanerID  =$loanerID AND 
+        request.status = 4 OR request.status =14 ";
+     
+        $recount=DB::select($sql);         
+        return response()->json($recount);
+    }
+
 }

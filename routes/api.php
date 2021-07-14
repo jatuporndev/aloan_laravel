@@ -59,6 +59,7 @@ Route::get('DetailMenu1request/{requestID}', 'API\Loaner\RequestController@ViewB
 Route::post('updateUnpass/{id}', 'API\Loaner\RequestController@updateUnpass');//
 Route::post('updatePass/{id}', 'API\Loaner\RequestController@updatePass');//
 Route::get('AllSuccess/{loanerID}', 'API\Loaner\HistoryController@AllSuccess');//
+Route::get('loanerMenuUnpass/{loanerID}', 'API\Loaner\RequestController@viewUnpass');//
 
 //Loaner -BorrowDetail
 Route::post('addBorrowDetail/{RequestID}', 'API\Loaner\BorrowDetailcontroller@add');//
@@ -110,4 +111,5 @@ Route::get('ViewPaying/{BorrowDetailID}', 'API\Borrower\Borrowdetailcontroller@V
 Route::post('createHis/{BorrowDetailID}/{moneytotal}', 'API\Borrower\Borrowdetailcontroller@createHis');
 Route::post('updateStatusHistory/{BorrowDetailID}', 'API\Borrower\Borrowdetailcontroller@update');
 
-Route::get('test', 'API\Loaner\BorrowDetailcontroller@test');
+//Borrower -History
+Route::get('historybill/{borrowdetailID}', 'API\Borrower\Historycontroller@historybill');

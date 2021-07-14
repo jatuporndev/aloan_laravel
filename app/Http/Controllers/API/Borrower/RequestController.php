@@ -118,8 +118,8 @@ class RequestController extends Controller
     public function cancleRequest($BorrowerID)
     { 
         $sql="UPDATE request
-        SET status = 5
-        WHERE status = 1 AND BorrowerID =$BorrowerID ;";
+        SET status = 4 , comment = 'ยกเลิก'
+        WHERE status = 1 OR status = 0 AND BorrowerID =$BorrowerID ;";
         $recount=DB::select($sql);         
         return response()->json($recount);
     }
