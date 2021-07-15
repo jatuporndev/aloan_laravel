@@ -97,8 +97,7 @@ class BorrowlistController extends Controller
         if(!$validator->passes()){
             return response()->json(['status'=>0, 'error'=>$validator->errors()->toArray()]);
         }else{
-<<<<<<< HEAD
-                
+ 
                 $borrowerlist = Borrowlist::find($id);  
                 $borrowerlist->	money_min = $request->get('money_min');  
                 $borrowerlist->money_max =$request->get('money_max');       
@@ -106,22 +105,6 @@ class BorrowlistController extends Controller
                 $borrowerlist->	Interest_penalty = $request->get('Interest_penalty');  
                 $borrowerlist->instullment_max = $request->get('instullment_max');
                 $save = $borrowerlist->save();
-=======
-           /*     
-            $borrowerlist =Borrowlist::where('LoanerID', '=', $id)->firstOrFail();
-            $borrowerlist->money_min = $request->get('money_min');
-            $borrowerlist->money_max = $request->get('money_max');        
-            $borrowerlist->interest = $request->get('interest');    
-            $borrowerlist->Interest_penalty = $request->get('Interest_penalty');   
-            $borrowerlist->instullment_max = $request->get('instullment_max');   
-            $borrowerlist->save();
-    
-            $moneyMax=$request->get('money_max');
-            $cri="UPDATE criterion SET money_max = $moneyMax,instullment_max= $borrowerlist->instullment_max
-            WHERE borrowlistID =$borrowerlist->borrowlistID AND money_max > $borrowerlist->money_max OR instullment_max > $borrowerlist->instullment_max";
-            DB::select($cri);
-    */
->>>>>>> 7855516930a5d28d51e38ea9c8202e51571c6f59
 
                 $moneyMax=$request->get('money_max');
                 $cri="UPDATE criterion SET money_max = $moneyMax,instullment_max= $borrowerlist->instullment_max
