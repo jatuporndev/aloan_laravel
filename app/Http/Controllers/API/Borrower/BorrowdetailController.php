@@ -13,7 +13,7 @@ class Borrowdetailcontroller extends Controller
 {
     public function index($borrowerID){
 
-        $sql="SELECT borrowdetail.*,loaners.* FROM borrowdetail 
+        $sql="SELECT borrowdetail.*,loaners.*,ROUND(( (borrowdetail.Principle+(borrowdetail.Principle*(borrowdetail.Interest/100)))/borrowdetail.instullment_total ),2) as perints FROM borrowdetail 
               INNER JOIN borrowlist ON borrowdetail.borrowlistID = borrowlist.borrowlistID
               INNER JOIN loaners ON borrowlist.LoanerID = loaners.LoanerID
               WHERE 1 AND  BorrowerID = $borrowerID";
@@ -40,10 +40,10 @@ class Borrowdetailcontroller extends Controller
         $datenow = date('Y-m-d');
         $Date = date('Y-m-d');
         $Date = strtotime("+1 months", strtotime($Date));
-        $Date = date('Y-m-d',$Date);
+        $Date = date('Y-m-d',$Date); 
         $sql="SELECT history.*, IF(settlement_date < '$datenow', '1', '0') as dateset_status,
-        (borrowdetail.Principle+(borrowdetail.Principle*(borrowdetail.Interest/100)))/borrowdetail.instullment_total as moneySet,
-        ((borrowdetail.Principle+(borrowdetail.Principle*(borrowdetail.Interest/100)))/borrowdetail.instullment_total*(borrowdetail.Interest_penalty/100)) as interest_penalty_money
+         ROUND(( (borrowdetail.Principle+(borrowdetail.Principle*(borrowdetail.Interest/100)))/borrowdetail.instullment_total ),2) as moneySet,
+         ROUND(( ((borrowdetail.Principle+(borrowdetail.Principle*(borrowdetail.Interest/100)))/borrowdetail.instullment_total*(borrowdetail.Interest_penalty/100)) ),2) as interest_penalty_money
         FROM history 
         INNER JOIN borrowdetail ON borrowdetail.BorrowDetailID = history.BorrowDetailID 
         WHERE history.BorrowDetailID =$BorrowDetailID ";

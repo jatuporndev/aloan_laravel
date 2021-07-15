@@ -118,8 +118,8 @@ class RequestController extends Controller
     public function cancleRequest($BorrowerID)
     { 
         $sql="UPDATE request
-        SET status = 5
-        WHERE status = 1 AND BorrowerID =$BorrowerID ;";
+        SET status = 4 , comment = 'ยกเลิก'
+        WHERE status = 1 OR status = 0 AND BorrowerID =$BorrowerID ;";
         $recount=DB::select($sql);         
         return response()->json($recount);
     }
@@ -154,5 +154,14 @@ class RequestController extends Controller
 
         return response()->json($data);
     }
-    
+    public function AllSuccess($BorrowerID){
+        
+        $sql="SELECT loaners.*,borrowdetail.* FROM borrowdetail 
+        INNER JOIN borrowlist ON borrowlist.borrowlistID = borrowdetail.borrowlistID
+        INNER JOIN loaners ON loaners.LoanerID =borrowlist.LoanerID
+        WHERE borrowdetail.BorrowerID = $BorrowerID  AND borrowdetail.status = 1";
+        $data = DB::select($sql);
+        return response()->json($data);
+
+    }
 }

@@ -84,7 +84,7 @@ class BorrowDetailcontroller extends Controller
 
     public function index($LoanerID){
 
-        $sql="SELECT * FROM borrowdetail 
+        $sql="SELECT *,ROUND(( (borrowdetail.Principle+(borrowdetail.Principle*(borrowdetail.Interest/100)))/borrowdetail.instullment_total ),2) as perints FROM borrowdetail 
         INNER JOIN Borrowers ON borrowdetail.BorrowerID = Borrowers.BorrowerID
         INNER JOIN borrowlist ON borrowdetail.borrowlistID = borrowlist.borrowlistID
         WHERE 1 AND borrowlist.LoanerID = $LoanerID";
@@ -111,4 +111,17 @@ class BorrowDetailcontroller extends Controller
         $data = DB::select($sql)[0];
         return response()->json($data);
     }
+    public function Bill($BorrowDetailID){
+
+        $sql="SELECT * FROM historydetailbill 
+              WHERE 1 AND  BorrowDetailID = $BorrowDetailID";
+
+        $data = DB::select($sql);
+        return response()->json($data);
+    }
+
+    public function test(){
+
+    }
+
 }

@@ -58,13 +58,22 @@ Route::get('Menu2WaitingPay/{LoanerID}', 'API\Loaner\RequestController@MenuWaiti
 Route::get('DetailMenu1request/{requestID}', 'API\Loaner\RequestController@ViewBorrowerRequest');
 Route::post('updateUnpass/{id}', 'API\Loaner\RequestController@updateUnpass');//
 Route::post('updatePass/{id}', 'API\Loaner\RequestController@updatePass');//
+Route::get('AllSuccess/{loanerID}', 'API\Loaner\HistoryController@AllSuccess');//
+Route::get('loanerMenuUnpass/{loanerID}', 'API\Loaner\RequestController@viewUnpass');//
 
 //Loaner -BorrowDetail
 Route::post('addBorrowDetail/{RequestID}', 'API\Loaner\BorrowDetailcontroller@add');//
 Route::get('loaner/borrowdetail/{LoanerID}', 'API\Loaner\BorrowDetailcontroller@index');
 Route::get('loaner/checkpayMenu/{borrowdetailID}', 'API\Loaner\BorrowDetailcontroller@checkpay');
 Route::get('ManuGetMoneydetail/{BorrowDetailID}', 'API\Loaner\Borrowdetailcontroller@ManuGetMoneydetail');
+Route::get('Bill/{BorrowDetailID}', 'API\Loaner\Borrowdetailcontroller@Bill');
 
+
+//Loaner -History
+Route::get('billDetail/{historyDetailID}', 'API\Loaner\HistoryController@billDetail');
+Route::get('historylist/{historyDetailID}', 'API\Loaner\HistoryController@history');
+Route::post('confrimBill/{historyDetailID}', 'API\Loaner\HistoryController@confrim');
+Route::get('indexHistory/{borrowerID}', 'API\Loaner\HistoryController@indexHistory');
 
 
 //Borrower
@@ -92,6 +101,7 @@ Route::post('updateUnpassChecked/{id}', 'API\Borrower\RequestController@updateUn
 Route::post('updateAccept/{id}', 'API\Borrower\RequestController@updateAccept');//
 Route::post('cancleRequest/{BorrowerID}', 'API\Borrower\RequestController@cancleRequest');//
 Route::get('nextDate/{BorrowDetailID}', 'API\Borrower\RequestController@nextDate');
+Route::get('BorrowerAllSuccess/{BorrowerID}', 'API\Borrower\RequestController@AllSuccess');//
 
 //Borrower -BorrowDetail
 Route::get('Menupay/{BorrowerID}', 'API\Borrower\Borrowdetailcontroller@index');//
@@ -100,3 +110,6 @@ Route::get('ViewPaying/{BorrowDetailID}', 'API\Borrower\Borrowdetailcontroller@V
 
 Route::post('createHis/{BorrowDetailID}/{moneytotal}', 'API\Borrower\Borrowdetailcontroller@createHis');
 Route::post('updateStatusHistory/{BorrowDetailID}', 'API\Borrower\Borrowdetailcontroller@update');
+
+//Borrower -History
+Route::get('historybill/{borrowdetailID}', 'API\Borrower\Historycontroller@historybill');
