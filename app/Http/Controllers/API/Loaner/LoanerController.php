@@ -31,7 +31,16 @@ class LoanerController extends Controller
 
     public function create(Request $request)
     {
-        
+        $emailloaner =$request->get('email');
+        $sqlloaner="SELECT * FROM Loaners WHERE email = '$emailloaner' AND (verify =0 OR verify =1) ";
+        $datalaoner = DB::select($sqlloaner);
+
+        if(!empty($datalaoner)){
+
+            return response()->json(array());  
+
+        }else{
+            
         //validate file uploading,  where image works for jpeg, png, bmp, gif, or svg
         $this->validate($request, ['filePro' => 'image']);
         $this->validate($request, ['fileVe' => 'image']);
@@ -108,6 +117,7 @@ class LoanerController extends Controller
         return response()->json(array(
             'message' => 'add a user successfully', 
             'status' => 'true'));  
+        }
     }
     public function setborrowlist($id)
     {       
@@ -160,5 +170,21 @@ class LoanerController extends Controller
             'message' => 'update a user successfully', 
             'status' => 'true'));
     }
+
+    public function test(){
+        $emailloaner ="ggg@ggg";
+        $sqlloaner="SELECT * FROM Loaners WHERE email = '$emailloaner' AND (verify =0 OR verify =1) ";
+        $datalaoner = DB::select($sqlloaner);
+
+        if(!empty($datalaoner)){
+            $tt ="0";
+        }else{
+            $tt ="1";
+        }
+
+        return response()->json(array(
+            'message' =>   $tt, 
+            'status' => 'true'));
+    } 
     
 }

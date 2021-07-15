@@ -109,5 +109,20 @@ class HistoryController extends Controller
         return response()->json($data);
     }
 
+    public function cancle($historyDetailID){
+        date_default_timezone_set('Asia/Bangkok');
+        $sql="UPDATE history
+        SET status = 0,historyDetailID = NULL
+        WHERE historyDetailID = $historyDetailID";
+        $data = DB::select($sql);
+
+        $sql="UPDATE historydetailbill
+        SET status = 2
+        WHERE historyDetailID = $historyDetailID";
+        $data = DB::select($sql);
+
+      return response()->json($data);
+    }
+
     
 }

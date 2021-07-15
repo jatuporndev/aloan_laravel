@@ -45,6 +45,7 @@ class Loaner extends Model
         return DB::table('loaners')
                 ->select('*')
                 ->where('email', $email)
+                ->orderBy('LoanerID', 'desc')
                // ->Where('isActive', 1)
                 ->first();
     }

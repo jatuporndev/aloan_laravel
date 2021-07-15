@@ -26,6 +26,7 @@ Route::put('Loaner/update/{id}', 'API\Loaner\LoanerController@update');//
 Route::post('Loaner/update/{id}', 'API\Loaner\LoanerController@update');//
 Route::put('setborrowlist/{id}', 'API\Loaner\LoanerController@setborrowlist');//
 Route::post('setborrowlist/{id}', 'API\Loaner\LoanerController@setborrowlist');
+Route::get('test2', 'API\Loaner\LoanerController@test');
 
 //Loaner -process
 Route::post('Loaner/list/{id}', 'API\Loaner\BorrowerlistController@create');
@@ -73,6 +74,7 @@ Route::get('Bill/{BorrowDetailID}', 'API\Loaner\Borrowdetailcontroller@Bill');
 Route::get('billDetail/{historyDetailID}', 'API\Loaner\HistoryController@billDetail');
 Route::get('historylist/{historyDetailID}', 'API\Loaner\HistoryController@history');
 Route::post('confrimBill/{historyDetailID}', 'API\Loaner\HistoryController@confrim');
+Route::post('cancleBill/{historyDetailID}', 'API\Loaner\HistoryController@cancle');
 Route::get('indexHistory/{borrowerID}', 'API\Loaner\HistoryController@indexHistory');
 
 

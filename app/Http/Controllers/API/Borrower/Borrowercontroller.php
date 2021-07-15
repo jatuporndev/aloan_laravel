@@ -30,6 +30,15 @@ class BorrowerController extends Controller
 
     public function create(Request $request)
     {
+        $emailBorrowers =$request->get('email');
+        $sqlBorrowers="SELECT * FROM Borrowers WHERE email = '$emailBorrowers' AND (verify =0 OR verify =1) ";
+        $dataBorrowers = DB::select($sqlBorrowers);
+
+        if(!empty($dataBorrowers)){
+
+            return response()->json(array());  
+
+        }else{
         //validate file uploading,  where image works for jpeg, png, bmp, gif, or svg
         $this->validate($request, ['filePro' => 'image']);
         $this->validate($request, ['fileVe' => 'image']);
@@ -91,6 +100,7 @@ class BorrowerController extends Controller
         return response()->json(array(
             'message' => 'add a user successfully', 
             'status' => 'true'));  
+        }
     }
     public function index($BorrowerID)
     { 
