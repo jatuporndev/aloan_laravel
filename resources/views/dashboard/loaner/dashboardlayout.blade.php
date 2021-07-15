@@ -81,7 +81,7 @@
   <!-- Main content -->
   <div class="main-content" id="panel">
     <!-- Topnav -->
-    <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
+    <nav class="navbar navbar-top navbar-expand navbar-dark  border-bottom" style="background-image: linear-gradient( 135deg, #81FBB8 10%, #28C76F 100%);">
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <!-- Search form -->
@@ -145,7 +145,7 @@
     </nav>
     <!-- Header -->
     <!-- Header -->
-    <div class="header bg-primary pb-6">
+    <div class="header pb-6 ">
     @yield('content')
     </div>
     <!-- Page content -->
@@ -189,6 +189,8 @@
      }
   });
   
+
+
   $(function(){
               
               $("#Update").on('submit', function(e){
@@ -222,18 +224,64 @@
                             $('.Interest_penaltyy').each(function(){
                               $(this).html( $('#Update').find( $('input[name="Interest_penalty"]') ).val() );
                             });
+                            $('.instullment_maxx').each(function(){
+                              $(this).html( $('#Update').find( $('input[name="instullment_max"]') ).val() );
+                            });
                               swal("Success!",data.msg,"success",{
                               button:"OK",
                               })
                               .then((value) => {
                                 $('#exampleModal').modal('hide');
+                                window.location.reload();
                               }); 
                               
                           }
                       }
                   });
               });
-          });
+
+              // $("#UpdateCri").on('submit', function(e){
+              //     e.preventDefault();
+          
+              //     $.ajax({
+              //         url:$(this).attr('action'),
+              //         method:$(this).attr('method'),
+              //         data:new FormData(this),
+              //         processData:false,
+              //         dataType:'json',
+              //         contentType:false,
+              //         beforeSend:function(){
+              //             $(document).find('span.error-text').text('');
+              //         },
+              //         success:function(data){
+              //             if(data.status == 0){
+              //                 $.each(data.error, function(prefix, val){
+              //                     $('span.'+prefix+'_error').text(val[0]);
+              //                 });
+              //             }else{
+              //               $('.money_maxx').each(function(){
+              //                 $(this).html( $('#UpdateCriTable').find( $('input[name="money_max"]') ).val() );
+              //               });
+              //               $('.instullment_maxx').each(function(){
+              //                 $(this).html( $('#UpdateCriTable').find( $('input[name="instullment_max"]') ).val() );
+              //               });
+              //                 swal("Success!",data.msg,"success",{
+              //                 button:"OK",
+              //                 })
+              //                 .then((value) => {
+              //                   $('#criModal').modal('hide');
+                                
+              //                 }); 
+                              
+              //             }
+              //         }
+              //     });
+              // });
+  });
+
+
+         
+
   </script>
 </body>
 
