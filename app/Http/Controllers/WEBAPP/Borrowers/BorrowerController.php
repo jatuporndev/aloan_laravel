@@ -5,6 +5,7 @@ namespace App\Http\Controllers\WEBAPP\Borrowers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Borrowers;
+use App\Models\Bank;
 use Illuminate\Support\Facades\Auth;
 use DB;
 
@@ -23,7 +24,7 @@ class BorrowerController extends Controller
             'job' => ['required', 'string', 'max:255'],
             'IDCard' => ['required', 'string', 'max:13'],
             'IDCard_back' => ['required', 'string', 'max:10'],
-            'bank' => ['required', 'string', 'max:13'],
+            'bank' => ['required', 'string'],
             'IDBank' => ['required', 'string', 'max:10'],
             'salary' => ['required', 'integer'],
             'image_IDCard' => 'required|image|mimes:jpeg,png,jpg,|max:2048',
@@ -62,6 +63,10 @@ class BorrowerController extends Controller
           $borrower->email = $request->email;
           $borrower->password = \Hash::make($request->password);
           $save = $borrower->save();
+
+         
+
+        
 
           if( $save ){
               return redirect()->back()->with('success','You are now registered successfully as borrower');
@@ -103,4 +108,5 @@ class BorrowerController extends Controller
         Auth::guard('borrower')->logout();
         return redirect('/');
         }
+           
 }

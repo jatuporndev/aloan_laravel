@@ -46,7 +46,7 @@
 
  <!-- Page content -->
  <div class="container-fluid mt--6">
-      <div class="row">
+      <div class="row justify-content-center">
        
         <div class="col-xl-8 order-xl-1">
           <div class="card">

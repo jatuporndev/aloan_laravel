@@ -119,9 +119,20 @@
                         <span class="text-danger">@error('IDCard_back'){{ $message }} @enderror</span>
                     </div>
 
+                     <!-- php  -->
+                     <?php 
+                        $sql = "SELECT * FROM banklist";
+                        $post=DB::select($sql);
+                        ?>
+                        <!-- end php  -->
+
                     <div class="form-group">
                         <label for="bank">ธนาคาร</label>
-                        <input type="text" class="form-control" name="bank" placeholder="Enter Bank" value="{{ old('bank') }}">
+                        <select id="comboA" onchange="getComboA(this)" type="text"  class="form-control" name="bank" placeholder="Enter Bank" value="{{ old('bank') }}">
+                        @foreach($post as $item)
+                        <option value="{{$item -> bankname}} "   >{{$item -> bankname}}</option>
+                        @endforeach
+                        </select>
                         <span class="text-danger">@error('bank'){{ $message }} @enderror</span>
                     </div>
 
