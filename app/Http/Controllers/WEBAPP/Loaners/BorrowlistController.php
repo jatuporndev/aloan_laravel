@@ -141,5 +141,12 @@ class BorrowlistController extends Controller
             }
         }
     }
+
+    public function setpublic($id,$status)
+    {       
+        $sql="UPDATE borrowlist SET status = $status WHERE LoanerID=$id";
+        $recount=DB::select($sql);         
+        return redirect()->route('loaner.home');
+    }
 }
 

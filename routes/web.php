@@ -86,6 +86,7 @@ Route::prefix('loaner')->name('loaner.')->group(function(){
           Route::view('/menu2','dashboard.loaner.menu2')->name('menu2');
           Route::post('/updateBorrowlist/{id}',[BorrowlistController::class,'update'])->name('updateBorrowlist');
           Route::post('/updateCriterion/{id}',[BorrowlistController::class,'updateCri'])->name('updateCriterion');
+          Route::get('/setpublic/{id},{status}',[BorrowlistController::class,'setpublic'])->name('setpublic');
           Route::post('/logout',[LoanerController::class,'logout'])->name('logout');
           
           Route::get('/addborrowlist/{id}', [App\Http\Controllers\WEBAPP\Loaners\BorrowlistController::class, 'create']);
