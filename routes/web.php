@@ -103,6 +103,7 @@ Route::prefix('borrower')->name('borrower.')->group(function(){
      Route::middleware(['auth:borrower','PreventBackHistory'])->group(function(){
             Route::view('/home','dashboard.borrower.home')->name('home');
             Route::post('logout',[BorrowerController::class,'logout'])->name('logout');
+
         });
 
  });

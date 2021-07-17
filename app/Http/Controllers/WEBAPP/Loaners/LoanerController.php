@@ -75,7 +75,7 @@ class LoanerController extends Controller
          $loaner->password = \Hash::make($request->password);
          $save = $loaner->save();
 
-         $sql="SELECT *  FROM banklist WHERE bankname = '$loaner->bank'" ;
+        $sql="SELECT *  FROM banklist WHERE bankname = '$loaner->bank'" ;
         $databank=DB::select($sql)[0];
 
         //return redirect('loaner/insertCri/'.$databorrowlist -> borrowlistID);
