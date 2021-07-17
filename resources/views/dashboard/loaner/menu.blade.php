@@ -20,8 +20,61 @@
     </div>
 </div>
 </div>
+<link rel="stylesheet" href="assets/css/style.css" type="text/css">
 
 
-testt
+
+
+
+	<body>
+
+		<div class="container">
+		
+			<div class="row">
+				<div class="col-md-12">
+					<div class="table-wrap">
+						<table class="table table-responsive-xl">
+						  <thead>
+						    <tr>
+						
+						    	<th>ผู้ให้กู้</th>
+                                <th>จำนวนเงิน</th>
+						      <th>จำนวนงวด</th>
+						      <th>Status</th>
+						      <th>&nbsp;</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+                          @foreach($post as $item)
+						    <tr class="alert" role="alert">
+                           
+						      <td class="d-flex align-items-center">
+                              <div class="img" style="background-image: url(/assets/uploadfile/Borrower/profile/{{$item->imageProfile}});">
+                            </div>
+						      	<div class="pl-3 email">
+						      		<span>{{$item->firstname}} {{$item->lastname}}</span>
+						      		<span>วันที่ส่ง: {{$item->dateRe}} </span>
+						      	</div>
+						      </td>
+						      <td>฿{{$item->Money}}</td>
+						      <td>{{$item->instullment_request}}</td>
+                              <td>ยังไม่ได้ตรวจสอบ</td>
+						      <td>
+                              <a href="#" button class="btn btn-info" type="button"> ตรวจสอบ </a>
+				        	</td>
+						    </tr>
+                            @endforeach
+						  </tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+
+
+	</body>
+
+
 
 @endsection

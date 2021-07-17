@@ -7,6 +7,10 @@ use App\Http\Controllers\WEBAPP\Admin\ManageBorrowerController;
 use App\Http\Controllers\WEBAPP\Loaners\LoanerController;
 use App\Http\Controllers\WEBAPP\Loaners\BorrowlistController;
 use App\Http\Controllers\WEBAPP\Borrowers\BorrowerController;
+
+//loaner
+use App\Http\Controllers\WEBAPP\Loaners\LoanerRequestController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -84,6 +88,9 @@ Route::prefix('loaner')->name('loaner.')->group(function(){
           Route::get('/addborrowlist/{id}', [App\Http\Controllers\WEBAPP\Loaners\BorrowlistController::class, 'create']);
           Route::get('/insertCri/{borrowlistID}', [App\Http\Controllers\WEBAPP\Loaners\BorrowlistController::class, 'insertCri']);
           Route::get('/setborrowlist/{id}', [App\Http\Controllers\WEBAPP\Loaners\LoanerController::class, 'setborrowlist']);
+
+          //menu request
+          Route::get('/requestMenu1/{id}',[LoanerRequestController::class,'request'])->name('requestMenu1');
 
     });
 
