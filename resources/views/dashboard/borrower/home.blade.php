@@ -27,29 +27,35 @@
         <div class=" col ">
           <div class="card">
             <div class="card-header bg-transparent">
-              <h3 class="mb-0 text-center">Dashboard</h3>
+              <h3 class="mb-0 text-center">Dashboard ผู้ให้บริการ</h3>
             </div>
             <div class="card-body">
               <div class="row">
              
-              <?php   $sql="SELECT *  FROM borrowlist 
-             INNER JOIN loaners ON loaners.LoanerID  = borrowlist.LoanerID
-             WHERE  borrowlist.status= '1' ";
-                $dataloaner=DB::select($sql);       
+              <?php   
+              $sql="SELECT *  FROM borrowlist 
+              INNER JOIN loaners ON loaners.LoanerID  = borrowlist.LoanerID
+              WHERE  borrowlist.status= '0' OR '1' ";
+              $dataloaner=DB::select($sql);       
               ?>
 
               @foreach($dataloaner as $show)
 
-
+              <div class="col-xl-4 col-md-6">
               <div class="card" style="width: 18rem;">
-              <img class="card-img-top" src="../../assets/img/theme/img-1-1000x600.jpg" alt="Card image cap">
+              <div class="row justify-content-center">
+              <a href="#">
+              <img class="rounded-circle" src="{{ url('/') }}/assets/uploadfile/Loaner/profile/{{ $show->imageProfile }}" alt="image profile" width='100px' height='100px'>
+              </a>  
+              </div>
               <div class="card-body">
-              <h5 class="card-title">{{ $show->email }}</h5>{{ $show->money_max }}
-              <p class="card-text">{{ $show->bank }}</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <h3 class="card-title">คุณ {{ $show->firstname }} {{ $show->lastname }}</h3>
+              <p class="card-text">วงเงิน : 0 ~ {{ $show->money_max }} บาท</p>
+              <p class="card-text">ดอกเบี้ยรายปี : {{ $show->interest }} %</p>
+              <a href="borrower/viewborrower/{{$show->LoanerID}}" class="btn btn-primary">View</a>
               </div>
               </div>
-
+              </div>
 
 
 
@@ -61,7 +67,7 @@
           </div>
         </div>
       </div>
-
+      </div>
 
 
 

@@ -37,7 +37,7 @@
             <li class="nav-item">
               <a href="{{ route('borrower.home') }}" is class="nav-link {{ (request()->is('borrower/home*')) ? 'active' : ''}}">
                 <i class="ni ni-tv-2 text-primary"></i>
-                <span class="nav-link-text">Dashboard</span>
+                <span class="nav-link-text">หน้าแรก</span>
               </a>
             </li>
             <li class="nav-item">
