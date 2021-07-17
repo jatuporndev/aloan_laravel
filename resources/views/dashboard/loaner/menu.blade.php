@@ -23,7 +23,14 @@
 <link rel="stylesheet" href="assets/css/style.css" type="text/css">
 
 
-
+    <?php
+    $loanerID = Auth::guard('loaner')->user()->LoanerID;
+    $sql="SELECT borrowers.*,request.* FROM request
+        INNER JOIN borrowlist ON borrowlist.borrowlistID = request.borrowlistID
+        INNER JOIN borrowers ON request.BorrowerID  = borrowers.BorrowerID 
+        WHERE (request.status = 0 OR request.status = 1) AND  borrowlist.LoanerID = $loanerID" ;
+        $post=DB::select($sql);   
+    ?>
 
 
 	<body>
@@ -56,11 +63,22 @@
 						      		<span>วันที่ส่ง: {{$item->dateRe}} </span>
 						      	</div>
 						      </td>
-						      <td>฿{{$item->Money}}</td>
+						      
+                              @if($item->status ==0)
+                              <td>฿{{$item->Money}}</td>
 						      <td>{{$item->instullment_request}}</td>
-                              <td>ยังไม่ได้ตรวจสอบ</td>
+                              <td style=" color: green;" >ยังไม่ได้ตรวจสอบ</td>
+                              @elseif($item->status  ==1)
+                              <td>฿{{$item->money_confirm}}</td>
+						      <td>{{$item->instullment_confirm}}</td>
+                              <td style=" color: orange;">รอผู้กู้ยอมรับ</td>
+                              @endif
+
+
 						      <td>
-                              <a href="{{ route('loaner.requestMenu1Detail',['requestID' =>Auth::guard('loaner')->user()->LoanerID]) }}" button class="btn btn-info" type="button"> ตรวจสอบ </a>
+                              @if($item->status ==0)
+                              <a href="{{ route('loaner.requestMenu1Detail',['requestID' =>$item->RequestID]) }}" button class="btn btn-info" type="button"> ตรวจสอบ </a>
+                              @endif
 				        	</td>
 						    </tr>
                             @endforeach

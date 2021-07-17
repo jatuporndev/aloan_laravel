@@ -10,6 +10,7 @@ use App\Http\Controllers\WEBAPP\Borrowers\BorrowerController;
 
 //loaner
 use App\Http\Controllers\WEBAPP\Loaners\LoanerRequestController;
+use App\Http\Controllers\WEBAPP\Loaners\LoanerBorrowDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +82,7 @@ Route::prefix('loaner')->name('loaner.')->group(function(){
     Route::middleware(['auth:loaner','PreventBackHistory'])->group(function(){
           Route::view('/home','dashboard.loaner.home')->name('home');
           Route::view('/menu','dashboard.loaner.menu')->name('menu');
+          Route::view('/menu2','dashboard.loaner.menu2')->name('menu2');
           Route::post('/updateBorrowlist/{id}',[BorrowlistController::class,'update'])->name('updateBorrowlist');
           Route::post('/updateCriterion/{id}',[BorrowlistController::class,'updateCri'])->name('updateCriterion');
           Route::post('/logout',[LoanerController::class,'logout'])->name('logout');
@@ -90,8 +92,15 @@ Route::prefix('loaner')->name('loaner.')->group(function(){
           Route::get('/setborrowlist/{id}', [App\Http\Controllers\WEBAPP\Loaners\LoanerController::class, 'setborrowlist']);
 
           //menu request
-          Route::get('/requestMenu1/{id}',[LoanerRequestController::class,'request'])->name('requestMenu1');
+          Route::get('/requestMenu1',[LoanerRequestController::class,'request'])->name('requestMenu1');
+          Route::get('/requestMenu2',[LoanerRequestController::class,'request2'])->name('requestMenu2');
           Route::get('/requestMenu1Detail/{requestID}',[LoanerRequestController::class,'ViewBorrowerRequest'])->name('requestMenu1Detail');
+          Route::get('/requestMenu2Detail/{requestID}',[LoanerRequestController::class,'ViewBorrowerRequest2'])->name('requestMenu2Detail');
+          Route::post('/updatePass/{id}',[LoanerRequestController::class,'updatePass'])->name('updatePass');
+          Route::post('/updateUnpass/{id}',[LoanerRequestController::class,'updateUnpass'])->name('updateUnpass');
+
+          //borrowdetail
+          Route::post('/addBorrowDetail/{id}',[LoanerBorrowDetailController::class,'add'])->name('addBorrowDetail');
 
     });
 

@@ -20,224 +20,73 @@
     </div>
 </div>
 </div>
+<link rel="stylesheet" href="assets/css/style.css" type="text/css">
 
- <!-- Page content -->
- <div class="container-fluid mt--7">
-      <div class="row justify-content-center">
-                  
-        <div class="col-xl-8 order-xl-1">
-          <div class="card">
-            <div class="card-header">
-              <div class="row align-items-center">
-                <div class="col-8">
-                  <h3 class="mb-0">ข้อมูลผู้กู้ {{$view -> BorrowerID}} </h3>
-                  
-                </div>
-                <div class="col-2 ">
-                  <a href="admin/loanerview/update1/{{$view -> LoanerID}}" class="btn btn-sm btn-success">Approve</a>
-                </div>
-                <div class="col-2 ">
-                  <a href="admin/loanerview/update2/{{$view -> LoanerID}}" class="btn btn-sm btn-danger">Reject</a>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <form>
-                <h6 class="heading-small text-muted mb-4">User information</h6>
-                <div class="col-lg-6">
-                <div class="form-group">
-                <p>
-                <img src="{{ url('/') }}/assets/uploadfile/Borrower/profile/{{ $view->imageProfile }}" width='200px' height='200px'>
-                </p>
-                </div>
-                </div>
-                <div class="pl-lg-4">
-                  <div class="row">
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label" >Firstname</label>
-                       <p>
-                       {{$view -> firstname}}
-                       </p>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                      <label class="form-control-label" >Lastname</label>
-                       <p>
-                       {{$view -> lastname}}
-                       </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label" >Birthday</label>
-                       <p>
-                       {{$view -> birthday}}
-                       </p>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                      <label class="form-control-label" >Gender</label>
-                      <p>
-                       @if ($view->gender == 0)
-                            Man
-                       @else ($view->gender == 1) 
-                            Woman    
-                    @endif
-                       </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                  <div class="col-lg-6">
-                      <div class="form-group">
-                      <label class="form-control-label" >Marry</label>
-                      <p>
-                      @if ($view->married == 0)
-                            Single
-                       @else ($view->married == 1) 
-                            Married    
-                    @endif
-                    </p>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                      <label class="form-control-label" >Register date</label>
-                      <p>
-                      @if ($view->created_at === null)
-                            --
-                      @else 
-                          {{$view -> created_at}}          
-                    @endif
-                    </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                  <div class="col-lg-6">
-                      <div class="form-group">
-                      <label class="form-control-label" >Job</label>
-                       <p>
-                       {{$view -> job}}
-                       </p>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                      <label class="form-control-label" >Verify</label>
-                       <p>
-                       @if ($view->verify === 1)
-                    <span class="viewpass" style>Pass</span>
-                    @elseif ($view->verify === 0)
-                    <span class="viewwait">Waiting Verify</span>
-                    @else ($view->verify === 2)
-                    <span class="viewreject">Reject</span>
-                    @endif
-                       </p>
-                      </div>
-                    
-                    </div>
-                    <div class="col-lg-6">
-                    <div class="form-group">
-                      <label class="form-control-label" >Age</label>
-                      @php
-                            $birthday = $view->birthday;
-                            $age = Carbon\Carbon::parse($birthday)->diff(Carbon\Carbon::now())->format('%y years');
-                      @endphp
-                       
-                       
-                       <p>
-                       {{$age}}
-                       </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <hr class="my-4" />
-                <!-- Address -->
-                <h6 class="heading-small text-muted mb-4">Contact information</h6>
-                <div class="pl-lg-4">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label class="form-control-label" >Address</label>
-                        <p>
-                       {{$view -> address}}
-                       </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <label class="form-control-label" >Phone</label>
-                        <p>{{$view -> phone}}
-                        </p>
-                  
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                      <label class="form-control-label" >Email</label>
-                        <p>{{$view -> email}}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <hr class="my-4" />
-                <!-- Description -->
-                <h6 class="heading-small text-muted mb-4">Inportant information</h6>
-                <div class="pl-lg-4">
-                  <div class="form-group">
-                  <div class="row">
-                  <div class="col-lg-6">
-                      <div class="form-group">
-                      <label class="form-control-label" >ID Card</label>
-                       <p>
-                       {{$view -> IDCard}}
-                       </p>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                      <label class="form-control-label" >ID Card(Back)</label>
-                       <p>
-                       {{$view -> IDCard_back}}
-                       </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                  <div class="col-lg-6">
-                      <div class="form-group">
-                      <label class="form-control-label" >Bank</label>
-                       <p>
-                       {{$view -> bank}}
-                       </p>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                      <label class="form-control-label" >ID Bank</label>
-                       <p>
-                       {{$view -> IDBank}}
-                       </p>
-                      </div>
-                    </div>
-                  </div>
-                  </div>
-                </div>
-            
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      @endsection
+
+    <?php
+    $loanerID = Auth::guard('loaner')->user()->LoanerID;
+     $sql="SELECT borrowers.*,request.* FROM request
+        INNER JOIN borrowlist ON borrowlist.borrowlistID = request.borrowlistID
+        INNER JOIN borrowers ON request.BorrowerID  = borrowers.BorrowerID 
+        WHERE request.status = 2 AND  borrowlist.LoanerID = $loanerID " ;
+        $post=DB::select($sql);   
+    ?>
+
+
+	<body>
+
+		<div class="container">
+		
+			<div class="row">
+				<div class="col-md-12">
+					<div class="table-wrap">
+						<table class="table table-responsive-xl">
+						  <thead>
+						    <tr>
+						
+						    	<th>ผู้ให้กู้</th>
+                                <th>จำนวนเงิน</th>
+						      <th>จำนวนงวด</th>
+						      <th>Status</th>
+						      <th>&nbsp;</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+                          @foreach($post as $item)
+						    <tr class="alert" role="alert">
+                           
+						      <td class="d-flex align-items-center">
+                              <div class="img" style="background-image: url(/assets/uploadfile/Borrower/profile/{{$item->imageProfile}});">
+                            </div>
+						      	<div class="pl-3 email">
+						      		<span>{{$item->firstname}} {{$item->lastname}}</span>
+						      		<span>วันที่ยืนยัน: {{$item->dateAccept}} </span>
+						      	</div>
+						      </td>
+						      
+                              <td  style="color: green; ">฿{{$item->money_confirm}}</td>
+						      <td>{{$item->instullment_confirm}}</td>
+                              <td style="color: green;">รอโอนเงิน</td>
+
+
+						      <td>
+                           
+                              <a href="{{ route('loaner.requestMenu2Detail',['requestID' =>$item->RequestID]) }}" button class="btn btn-info" type="button"> ตรวจสอบ </a>
+                            
+				        	</td>
+						    </tr>
+                            @endforeach
+						  </tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+
+
+	</body>
+
+
+
+@endsection
