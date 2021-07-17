@@ -115,3 +115,7 @@ Route::post('updateStatusHistory/{BorrowDetailID}', 'API\Borrower\Borrowdetailco
 
 //Borrower -History
 Route::get('historybill/{borrowdetailID}', 'API\Borrower\Historycontroller@historybill');
+
+//Borrower -article
+Route::get('article/', 'API\Borrower\ArticleController@index');
+Route::get('articledetail/{ArticleID}', 'API\Borrower\ArticleController@articledetail');

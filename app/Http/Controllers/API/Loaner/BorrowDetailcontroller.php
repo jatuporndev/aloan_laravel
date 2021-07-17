@@ -84,10 +84,13 @@ class BorrowDetailcontroller extends Controller
 
     public function index($LoanerID){
 
-        $sql="SELECT *,ROUND(( (borrowdetail.Principle+(borrowdetail.Principle*(borrowdetail.Interest/100)))/borrowdetail.instullment_total ),2) as perints FROM borrowdetail 
+        $sql="SELECT *,ROUND(( (borrowdetail.Principle+(borrowdetail.Principle*(borrowdetail.Interest/100)))/borrowdetail.instullment_total ),2) as perints,
+        (SELECT settlement_date FROM history  WHERE BorrowDetailID = borrowdetail.BorrowDetailID AND status =0 LIMIT 1) as settlement_date,
+        (SELECT CASE WHEN HistoryID  IS NULL THEN 'False' ELSE 'True' END  FROM history WHERE BorrowDetailID =  borrowdetail.BorrowDetailID  AND status = 1) AS checkpay
+         FROM borrowdetail 
         INNER JOIN Borrowers ON borrowdetail.BorrowerID = Borrowers.BorrowerID
         INNER JOIN borrowlist ON borrowdetail.borrowlistID = borrowlist.borrowlistID
-        WHERE 1 AND borrowlist.LoanerID = $LoanerID";
+        WHERE 1 AND borrowlist.LoanerID = $LoanerID AND borrowdetail.status =0";
         $data = DB::select($sql);
         
         return response()->json($data);

@@ -117,8 +117,10 @@ class RequestController extends Controller
 
     public function cancleRequest($BorrowerID)
     { 
+        date_default_timezone_set('Asia/Bangkok');
+        $dateCheck =date('Y-m-d');
         $sql="UPDATE request
-        SET status = 4 , comment = 'ยกเลิก'
+        SET status = 4 , comment = 'ยกเลิก', dateCheck =  '$dateCheck'
         WHERE status = 1 OR status = 0 AND BorrowerID =$BorrowerID ;";
         $recount=DB::select($sql);         
         return response()->json($recount);
