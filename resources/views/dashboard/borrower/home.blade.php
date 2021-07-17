@@ -1,7 +1,7 @@
 @extends('dashboard.borrower.dashboardlayout')
 
 @section('content')
-<div class="header bg-primary pb-4">
+<div class="header pb-4"  style="background: linear-gradient(90deg, rgba(252,176,69,1) 0%, rgba(253,29,29,1) 71%, rgba(131,58,180,1) 100%);"> 
       <div class="container-fluid">
         <div class="header-body">
           <div class="row align-items-center py-4">
@@ -22,7 +22,7 @@
 </div>
 
         <!-- Page content -->
-    <div class="container-fluid mt--6">
+    <div class="container-fluid mt--5">
       <div class="row justify-content-center">
         <div class=" col ">
           <div class="card">
@@ -30,7 +30,7 @@
               <h3 class="mb-0 text-center">Dashboard</h3>
             </div>
             <div class="card-body">
-              <div class="row icon-examples">
+              <div class="row">
              
               <?php $sql="SELECT *  FROM loaners";
                 $dataloaner=DB::select($sql);       

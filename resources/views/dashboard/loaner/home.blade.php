@@ -1,7 +1,7 @@
 @extends('dashboard.loaner.dashboardlayout')
 
 @section('content')
-<div class="header pb-4"  style="background-image: linear-gradient( 135deg, #81FBB8 10%, #28C76F 100%);">
+<div class="header pb-4"  style="background-image: linear-gradient( 135deg, #81FBB8 10%, #28C76F 100%);"> 
       <div class="container-fluid">
         <div class="header-body">
           <div class="row align-items-center py-4">
