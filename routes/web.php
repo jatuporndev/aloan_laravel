@@ -91,6 +91,7 @@ Route::prefix('loaner')->name('loaner.')->group(function(){
 
           //menu request
           Route::get('/requestMenu1/{id}',[LoanerRequestController::class,'request'])->name('requestMenu1');
+          Route::get('/requestMenu1Detail/{requestID}',[LoanerRequestController::class,'ViewBorrowerRequest'])->name('requestMenu1Detail');
 
     });
 

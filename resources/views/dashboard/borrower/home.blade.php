@@ -32,7 +32,9 @@
             <div class="card-body">
               <div class="row">
              
-              <?php $sql="SELECT *  FROM loaners";
+              <?php   $sql="SELECT *  FROM borrowlist 
+             INNER JOIN loaners ON loaners.LoanerID  = borrowlist.LoanerID
+             WHERE  borrowlist.status= '1' ";
                 $dataloaner=DB::select($sql);       
               ?>
 
@@ -42,7 +44,7 @@
               <div class="card" style="width: 18rem;">
               <img class="card-img-top" src="../../assets/img/theme/img-1-1000x600.jpg" alt="Card image cap">
               <div class="card-body">
-              <h5 class="card-title">{{ $show->email }}</h5>
+              <h5 class="card-title">{{ $show->email }}</h5>{{ $show->money_max }}
               <p class="card-text">{{ $show->bank }}</p>
               <a href="#" class="btn btn-primary">Go somewhere</a>
               </div>
@@ -52,8 +54,7 @@
 
 
 
-              
-
+          
               @endforeach
               </div>
             </div>

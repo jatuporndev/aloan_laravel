@@ -21,4 +21,15 @@ class LoanerRequestController extends Controller
               
         return view('dashboard.loaner.menu', ['post'=> $post]);
     }
+
+    public function ViewBorrowerRequest($requestID)
+    { 
+        $sql="SELECT * FROM request
+        INNER JOIN borrowlist ON borrowlist.borrowlistID = request.borrowlistID
+        INNER JOIN borrowers ON request.BorrowerID  = borrowers.BorrowerID 
+        WHERE request.RequestID= $requestID " ;
+        $post=DB::select($sql)[0];      
+           
+        return view('dashboard.loaner.menu2', ['view'=> $post]);
+    }
 }

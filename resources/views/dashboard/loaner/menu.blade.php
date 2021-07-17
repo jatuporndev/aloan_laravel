@@ -60,7 +60,7 @@
 						      <td>{{$item->instullment_request}}</td>
                               <td>ยังไม่ได้ตรวจสอบ</td>
 						      <td>
-                              <a href="#" button class="btn btn-info" type="button"> ตรวจสอบ </a>
+                              <a href="{{ route('loaner.requestMenu1Detail',['requestID' =>Auth::guard('loaner')->user()->LoanerID]) }}" button class="btn btn-info" type="button"> ตรวจสอบ </a>
 				        	</td>
 						    </tr>
                             @endforeach
