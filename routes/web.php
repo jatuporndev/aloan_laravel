@@ -76,6 +76,7 @@ Route::prefix('loaner')->name('loaner.')->group(function(){
 
     Route::middleware(['auth:loaner','PreventBackHistory'])->group(function(){
           Route::view('/home','dashboard.loaner.home')->name('home');
+          Route::view('/menu','dashboard.loaner.menu')->name('menu');
           Route::post('/updateBorrowlist/{id}',[BorrowlistController::class,'update'])->name('updateBorrowlist');
           Route::post('/updateCriterion/{id}',[BorrowlistController::class,'updateCri'])->name('updateCriterion');
           Route::post('/logout',[LoanerController::class,'logout'])->name('logout');

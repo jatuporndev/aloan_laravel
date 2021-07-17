@@ -38,14 +38,22 @@
             <li class="nav-item">
               <a href="{{ route('loaner.home') }}" is class="nav-link {{ (request()->is('loaner/home*')) ? 'active' : ''}}">
                 <i class="ni ni-tv-2 text-primary"></i>
-                <span class="nav-link-text">Dashboard</span>
+                <span class="nav-link-text">หน้าแรก</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="#" is class="nav-link {{ (request()->is('admin/loanermanage*')) ? 'active' : ''}}">
-                <i class="ni ni-planet text-orange"></i>
-                <span class="nav-link-text">My Borrower</span>
-              </a>
+  
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="ni ni-planet text-orange"></i>  
+             รายการ</a>
+            
+            <div class="dropdown-menu" aria-labelledby="dropdown04">
+            <a class="dropdown-item"  href="{{ route('loaner.menu') }}" is class="nav-link {{ (request()->is('loaner/menu*')) ? 'active' : ''}}"> <i class="ni ni-planet text-orange"></i>  คำขอ</a>
+            <a class="dropdown-item"  href="{{ route('loaner.menu') }}" is class="nav-link {{ (request()->is('loaner/menu*')) ? 'active' : ''}}"> <i class="ni ni-planet text-orange"></i>  รอโอนเงิน</a>
+            <a class="dropdown-item"  href="{{ route('loaner.menu') }}" is class="nav-link {{ (request()->is('loaner/menu*')) ? 'active' : ''}}"> <i class="ni ni-planet text-orange"></i>  รอชำระ</a>
+            <a class="dropdown-item"  href="{{ route('loaner.menu') }}" is class="nav-link {{ (request()->is('loaner/menu*')) ? 'active' : ''}}"> <i class="ni ni-planet text-orange"></i>  สำเร็จ</a>
+            <a class="dropdown-item"  href="{{ route('loaner.menu') }}" is class="nav-link {{ (request()->is('loaner/menu*')) ? 'active' : ''}}"> <i class="ni ni-planet text-orange"></i>  ไม่สำเร็จ</a>
+            </div>
             </li>
             <li class="nav-item">
             <a href="#" is class="nav-link {{ (request()->is('admin/borrowermanage*')) ? 'active' : ''}}">
