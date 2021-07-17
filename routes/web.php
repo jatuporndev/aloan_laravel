@@ -7,6 +7,7 @@ use App\Http\Controllers\WEBAPP\Admin\ManageBorrowerController;
 use App\Http\Controllers\WEBAPP\Loaners\LoanerController;
 use App\Http\Controllers\WEBAPP\Loaners\BorrowlistController;
 use App\Http\Controllers\WEBAPP\Borrowers\BorrowerController;
+use App\Http\Controllers\WEBAPP\Borrowers\ListController;
 
 //loaner
 use App\Http\Controllers\WEBAPP\Loaners\LoanerRequestController;
@@ -120,6 +121,8 @@ Route::prefix('borrower')->name('borrower.')->group(function(){
      Route::middleware(['auth:borrower','PreventBackHistory'])->group(function(){
             Route::view('/home','dashboard.borrower.home')->name('home');
             Route::post('logout',[BorrowerController::class,'logout'])->name('logout');
+
+            Route::get('/viewborrower/{id}',[ListController::class,'viewborrower'])->name('viewborrower');
 
         });
 

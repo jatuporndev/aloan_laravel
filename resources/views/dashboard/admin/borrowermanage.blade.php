@@ -42,8 +42,6 @@
                     <th scope="col" class="sort" >Lastname</th>
                     <th scope="col" class="sort" >Status</th>
                     <th scope="col">Users</th>
-                    <th scope="col" class="sort" data-sort="completion">Completion</th>
-                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody class="list">
@@ -75,18 +73,7 @@
                     <td>
                      <a href="admin/borrowerview/view/{{$item->BorrowerID}}" button class="btn btn-info" type="button"> view </a>
                     </td>
-                    <td class="text-right">
-                      <div class="dropdown">
-                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="fas fa-ellipsis-v"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                      </div>
-                    </td>
+                 
                   </tr>
                   @endforeach
                   </tbody>
