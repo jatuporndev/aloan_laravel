@@ -53,14 +53,17 @@
                             <div class="row align-items-center">
                                   <div class="col-9 text-center">
                                     <h2 class="mb-0">วงเงินและอัตราดอกเบี้ยของคุณ </h2>
-                                    
                                   </div>
+                                  <label class="custom-toggle">
+                                    <input type="checkbox" checked>
+                                      <span class="custom-toggle-slider rounded-circle" data-label-off="ปิด" data-label-on="เปิด"></span>
+                                  </label>
                              </div>
                    
-                             @if( $databorrowlist -> status==0 )
+                             <!-- @if( $databorrowlist -> status==0 )
                              <a class="text-right"  href="{{ route('loaner.setpublic',['id' =>$id,'status'=>1]) }}"> <i class="ni ni-planet text-orange"></i>  ปิดอยู่</a>
                              @elseif($databorrowlist -> status==1)
-                             <a class="text-right"   href="{{ route('loaner.setpublic',['id' =>$id,'status'=>0]) }}"> <i class="ni ni-planet text-orange"></i>  เปิดอยู่</a>
+                             <a class="text-right"   href="{{ route('loaner.setpublic',['id' =>$id,'status'=>0]) }}"> <i class="ni ni-planet text-orange"></i>  เปิดอยู่</a> -->
      
                              @endif
                          </div>
