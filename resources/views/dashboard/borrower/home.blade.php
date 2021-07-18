@@ -35,7 +35,7 @@
               <?php   
               $sql="SELECT *  FROM borrowlist 
               INNER JOIN loaners ON loaners.LoanerID  = borrowlist.LoanerID
-              WHERE  borrowlist.status= '0' OR '1' ";
+              WHERE  borrowlist.status= '1'";
               $dataloaner=DB::select($sql);       
               ?>
 

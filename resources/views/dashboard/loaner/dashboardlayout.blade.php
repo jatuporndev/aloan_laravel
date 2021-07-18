@@ -134,20 +134,18 @@
               </a>
             </li>
           </ul>
-          <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
-            <li class="nav-item dropdown">
-              <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         
+              
                 <div class="media align-items-center">
-                  <!-- <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src="assets/img/theme/team-4.jpg">
-                  </span> -->
+                  <span class="avatar avatar-sm rounded-circle">
+                  <img alt="Image placeholder" src="{{ url('/') }}/assets/uploadfile/Loaner/profile/{{ Auth::guard('loaner')->user()->imageProfile }}">
+                  </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
-                    <span class="mb-0 text-sm  font-weight-bold">{{ Auth::guard('loaner')->user()->firstname }}</span>
+                    <span class="mb-0 text-sm font-weight-bold" style="color:white">{{ Auth::guard('loaner')->user()->firstname }}</span>
                   </div>
                 </div>
-              </a>
-            </li>
-          </ul>
+              
+           
         </div>
       </div>
     </nav>
