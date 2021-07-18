@@ -50,9 +50,9 @@
             <div class="dropdown-menu" aria-labelledby="dropdown04">
             <a class="dropdown-item"  href="{{ route('loaner.requestMenu1')}}"> <i class="ni ni-planet text-orange"></i>  คำขอ</a>
             <a class="dropdown-item"  href="{{ route('loaner.menu2') }}"> <i class="ni ni-planet text-orange"></i>  รอโอนเงิน</a>
-            <a class="dropdown-item"  href="{{ route('loaner.menu') }}" is class="nav-link {{ (request()->is('loaner/menu*')) ? 'active' : ''}}"> <i class="ni ni-planet text-orange"></i>  รอชำระ</a>
-            <a class="dropdown-item"  href="{{ route('loaner.menu') }}" is class="nav-link {{ (request()->is('loaner/menu*')) ? 'active' : ''}}"> <i class="ni ni-planet text-orange"></i>  สำเร็จ</a>
-            <a class="dropdown-item"  href="{{ route('loaner.menu') }}" is class="nav-link {{ (request()->is('loaner/menu*')) ? 'active' : ''}}"> <i class="ni ni-planet text-orange"></i>  ไม่สำเร็จ</a>
+            <a class="dropdown-item"  href="{{ route('loaner.menu3') }}" is class="nav-link {{ (request()->is('loaner/menu*')) ? 'active' : ''}}"> <i class="ni ni-planet text-orange"></i>  รอชำระ</a>
+            <a class="dropdown-item"  href="{{ route('loaner.menu4') }}" is class="nav-link {{ (request()->is('loaner/menu*')) ? 'active' : ''}}"> <i class="ni ni-planet text-orange"></i>  สำเร็จ</a>
+            <a class="dropdown-item"  href="{{ route('loaner.menu5') }}" is class="nav-link {{ (request()->is('loaner/menu*')) ? 'active' : ''}}"> <i class="ni ni-planet text-orange"></i>  ไม่สำเร็จ</a>
             </div>
             </li>
             <li class="nav-item">

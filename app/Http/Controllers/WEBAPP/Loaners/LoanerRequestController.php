@@ -52,7 +52,7 @@ class LoanerRequestController extends Controller
         if($request->get('comment') =="" ){
         $user->comment = "ไม่ได้ระบุ.";
         }else{
-        $user->comme2nt = $request->get('comment');  
+        $user->comment = $request->get('comment');  
         }
         
         $user->save();

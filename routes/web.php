@@ -12,6 +12,7 @@ use App\Http\Controllers\WEBAPP\Borrowers\ListController;
 //loaner
 use App\Http\Controllers\WEBAPP\Loaners\LoanerRequestController;
 use App\Http\Controllers\WEBAPP\Loaners\LoanerBorrowDetailController;
+use App\Http\Controllers\WEBAPP\Loaners\LoanerHistoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,6 +85,9 @@ Route::prefix('loaner')->name('loaner.')->group(function(){
           Route::view('/home','dashboard.loaner.home')->name('home');
           Route::view('/menu','dashboard.loaner.menu')->name('menu');
           Route::view('/menu2','dashboard.loaner.menu2')->name('menu2');
+          Route::view('/menu3','dashboard.loaner.menu3')->name('menu3');
+          Route::view('/menu4','dashboard.loaner.menu4')->name('menu4');
+          Route::view('/menu5','dashboard.loaner.menu5')->name('menu5');
           Route::post('/updateBorrowlist/{id}',[BorrowlistController::class,'update'])->name('updateBorrowlist');
           Route::post('/updateCriterion/{id}',[BorrowlistController::class,'updateCri'])->name('updateCriterion');
           Route::get('/setpublic/{id},{status}',[BorrowlistController::class,'setpublic'])->name('setpublic');
@@ -103,7 +107,11 @@ Route::prefix('loaner')->name('loaner.')->group(function(){
 
           //borrowdetail
           Route::post('/addBorrowDetail/{id}',[LoanerBorrowDetailController::class,'add'])->name('addBorrowDetail');
+          Route::get('/Manu3detail/{BorrowDetailID}',[LoanerBorrowDetailController::class,'ManuGetMoneydetail'])->name('Manu3detail');
 
+          //history
+          Route::post('/confrimBill/{historyDetailID}',[LoanerHistoryController::class,'confrim'])->name('confrimBill');
+          Route::post('/cancleBill/{historyDetailID}',[LoanerHistoryController::class,'cancle'])->name('cancleBill');
     });
 
  });

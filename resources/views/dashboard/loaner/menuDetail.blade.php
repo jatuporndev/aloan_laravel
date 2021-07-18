@@ -229,9 +229,9 @@
                       </div>
                     </div>
                     <div class="col-lg-6">
-                    
+              
                       <div class="form-group">
-                      <input type="button" data-toggle="modal" data-target="#exampleModal" style="border-radius: 8px; background-color: #f44336;  color: white; padding: 15px 32px;"  value="ไม่ผ่าน">
+                      <input type="button" data-toggle="modal" data-target="#unpass{{$view->RequestID}}" style="border-radius: 8px; background-color: #f44336;  color: white; padding: 15px 32px;"  value="ไม่ผ่าน">
                       <input type="submit"  style="border-radius: 8px; background-color: #4CAF50; color: white; padding: 15px 32px;" value="ผ่าน">
                       </div>
                       
@@ -248,30 +248,7 @@
       </div>
 
 
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                              <div class="modal-dialog modal-dialog-centered" role="document">
-                                      <div class="modal-content">
-                                              <div class="modal-header">
-                                                  <h5 class="modal-title " id="exampleModalLabel">เหตุผล</h5>
-                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                  <span aria-hidden="true">&times;</span>
-                                                  </button>
-                                              </div>
-                                              <div class="modal-body">
-                                                <form  action="{{ route('loaner.updateUnpass',['id' => $view->RequestID]) }}" method="POST" enctype="multipart/form-data" id="Update">
-                                                @csrf
-                                                <textarea style="width:250px;height:150px;" name="comment"></textarea>
-                                    
-                                                <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-                                            <button type="submit" class="btn btn-primary">ยืนยัน</button>
-                                                </div>
-                                                </form>
-                                            </div>
-                                </div>
-                          </div>
-                    </div>
-                     
+ 
                   </div>
                </div>
             </div>
@@ -286,7 +263,7 @@
       $datahis = DB::select($sql); 
     ?>
 
-
+  
 
       <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog modal-dialog-centered" role="document">
@@ -332,7 +309,7 @@
                                                         </td>
                                                         
                                                         </tr>
-                                                      
+                                                        @endforeach
                                                       </table>
                                                     </div>
 
@@ -341,7 +318,7 @@
 
                                                 
                                                 
-                                                @endforeach
+                                                
                                                 <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
                                             
@@ -358,7 +335,31 @@
       </div>
 
 
-     
+      <div class="modal fade" id="unpass{{$view->RequestID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                      <div class="modal-content">
+                                              <div class="modal-header">
+                                                  <h5 class="modal-title " id="exampleModalLabel">เหตุผล</h5>
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                              </div>
+                                              <div class="modal-body">
+                                                <form  action="{{route('loaner.updateUnpass',['id' => $view->RequestID])}}" method="POST" enctype="multipart/form-data" id="Update">
+                                                @csrf
+                                                <textarea style="width:250px;height:150px;" name="comment"></textarea>
+                                    
+                                                <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                                            <button type="submit" class="btn btn-primary">ยืนยัน</button>
+                                                </div>
+                                                
+                                                </form>
+                                            </div>
+                                </div>
+                          </div>
+                    </div>
+                     
 
 
 
