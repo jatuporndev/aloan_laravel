@@ -13,7 +13,8 @@ class Borrowdetailcontroller extends Controller
 {
     public function index($borrowerID){
 
-        $sql="SELECT borrowdetail.*,loaners.*,ROUND(( (borrowdetail.Principle+(borrowdetail.Principle*(borrowdetail.Interest/100)))/borrowdetail.instullment_total ),2) as perints FROM borrowdetail 
+        $sql="SELECT borrowdetail.*,loaners.*,ROUND(( (borrowdetail.Principle+(borrowdetail.Principle*(borrowdetail.Interest/100)))/borrowdetail.instullment_total ),2) as perints,
+        (SELECT settlement_date FROM history  WHERE BorrowDetailID = borrowdetail.BorrowDetailID AND status =0 LIMIT 1) as settlement_date FROM borrowdetail 
               INNER JOIN borrowlist ON borrowdetail.borrowlistID = borrowlist.borrowlistID
               INNER JOIN loaners ON borrowlist.LoanerID = loaners.LoanerID
               WHERE 1 AND  BorrowerID = $borrowerID";
