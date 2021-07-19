@@ -232,6 +232,14 @@
                        </p>
                       </div>
                     </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                      <label class="form-control-label" >ยอดทั้งหมด</label>
+                       <p>
+                       ฿{{$view -> total}}
+                       </p>
+                      </div>
+                    </div>
                   </div>
                 
                   <div class="form-group">

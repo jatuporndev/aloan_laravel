@@ -70,6 +70,7 @@ class CriterionController extends Controller
         $Criterion = Criterion::find($id);     
         $Criterion->instullment_max = $request->get('instullment_max');    
         $Criterion->money_max = $request->get('money_max');
+        $Criterion->interest = $request->get('interest');
         $Criterion->edit = 1;
       
    
@@ -86,43 +87,44 @@ class CriterionController extends Controller
         $dataBorrowlist=DB::select($sql)[0];  
         $money_max = $dataBorrowlist->money_max;
         $instullment_max = $dataBorrowlist->instullment_max;
+        $interest = $dataBorrowlist->interest;
 
         $sql="INSERT INTO criterion
-             ( Age_range, Saraly_range, Married,borrowlistID,money_max,instullment_max)
+             ( Age_range, Saraly_range, Married,borrowlistID,money_max,instullment_max,interest)
         VALUES
-          (0, 0, 0,$borrowlistID,$money_max,$instullment_max), 
-          (1, 0, 0,$borrowlistID,$money_max,$instullment_max), 
-          (2, 0, 0,$borrowlistID,$money_max,$instullment_max),
-          (3, 0, 0,$borrowlistID,$money_max,$instullment_max),
-          (0, 1, 0,$borrowlistID,$money_max,$instullment_max),
-          (1, 1, 0,$borrowlistID,$money_max,$instullment_max),
-          (2, 1, 0,$borrowlistID,$money_max,$instullment_max),
-          (3, 1, 0,$borrowlistID,$money_max,$instullment_max),
-          (0, 2, 0,$borrowlistID,$money_max,$instullment_max),
-          (1, 2, 0,$borrowlistID,$money_max,$instullment_max),
-          (2, 2, 0,$borrowlistID,$money_max,$instullment_max),
-          (3, 2, 0,$borrowlistID,$money_max,$instullment_max),
-          (0, 3, 0,$borrowlistID,$money_max,$instullment_max),
-          (1, 3, 0,$borrowlistID,$money_max,$instullment_max),
-          (2, 3, 0,$borrowlistID,$money_max,$instullment_max),
-          (3, 3, 0,$borrowlistID,$money_max,$instullment_max),
+          (0, 0, 0,$borrowlistID,$money_max,$instullment_max,$interest), 
+          (2, 0, 0,$borrowlistID,$money_max,$instullment_max,$interest),
+          (1, 0, 0,$borrowlistID,$money_max,$instullment_max,$interest), 
+          (3, 0, 0,$borrowlistID,$money_max,$instullment_max,$interest),
+          (0, 1, 0,$borrowlistID,$money_max,$instullment_max,$interest),
+          (1, 1, 0,$borrowlistID,$money_max,$instullment_max,$interest),
+          (2, 1, 0,$borrowlistID,$money_max,$instullment_max,$interest),
+          (3, 1, 0,$borrowlistID,$money_max,$instullment_max,$interest),
+          (0, 2, 0,$borrowlistID,$money_max,$instullment_max,$interest),
+          (1, 2, 0,$borrowlistID,$money_max,$instullment_max,$interest),
+          (2, 2, 0,$borrowlistID,$money_max,$instullment_max,$interest),
+          (3, 2, 0,$borrowlistID,$money_max,$instullment_max,$interest),
+          (0, 3, 0,$borrowlistID,$money_max,$instullment_max,$interest),
+          (1, 3, 0,$borrowlistID,$money_max,$instullment_max,$interest),
+          (2, 3, 0,$borrowlistID,$money_max,$instullment_max,$interest),
+          (3, 3, 0,$borrowlistID,$money_max,$instullment_max,$interest),
 
-          (0, 0, 1,$borrowlistID,$money_max,$instullment_max), 
-          (1, 0, 1,$borrowlistID,$money_max,$instullment_max), 
-          (2, 0, 1,$borrowlistID,$money_max,$instullment_max),
-          (3, 0, 1,$borrowlistID,$money_max,$instullment_max),
-          (0, 1, 1,$borrowlistID,$money_max,$instullment_max),
-          (1, 1, 1,$borrowlistID,$money_max,$instullment_max),
-          (2, 1, 1,$borrowlistID,$money_max,$instullment_max),
-          (3, 1, 1,$borrowlistID,$money_max,$instullment_max),
-          (0, 2, 1,$borrowlistID,$money_max,$instullment_max),
-          (1, 2, 1,$borrowlistID,$money_max,$instullment_max),
-          (2, 2, 1,$borrowlistID,$money_max,$instullment_max),
-          (3, 2, 1,$borrowlistID,$money_max,$instullment_max),
-          (0, 3, 1,$borrowlistID,$money_max,$instullment_max),
-          (1, 3, 1,$borrowlistID,$money_max,$instullment_max),
-          (2, 3, 1,$borrowlistID,$money_max,$instullment_max),
-          (3, 3, 1,$borrowlistID,$money_max,$instullment_max)";
+          (0, 0, 1,$borrowlistID,$money_max,$instullment_max,$interest), 
+          (1, 0, 1,$borrowlistID,$money_max,$instullment_max,$interest), 
+          (2, 0, 1,$borrowlistID,$money_max,$instullment_max,$interest),
+          (3, 0, 1,$borrowlistID,$money_max,$instullment_max,$interest),
+          (0, 1, 1,$borrowlistID,$money_max,$instullment_max,$interest),
+          (1, 1, 1,$borrowlistID,$money_max,$instullment_max,$interest),
+          (2, 1, 1,$borrowlistID,$money_max,$instullment_max,$interest),
+          (3, 1, 1,$borrowlistID,$money_max,$instullment_max,$interest),
+          (0, 2, 1,$borrowlistID,$money_max,$instullment_max,$interest),
+          (1, 2, 1,$borrowlistID,$money_max,$instullment_max,$interest),
+          (2, 2, 1,$borrowlistID,$money_max,$instullment_max,$interest),
+          (3, 2, 1,$borrowlistID,$money_max,$instullment_max,$interest),
+          (0, 3, 1,$borrowlistID,$money_max,$instullment_max,$interest),
+          (1, 3, 1,$borrowlistID,$money_max,$instullment_max,$interest),
+          (2, 3, 1,$borrowlistID,$money_max,$instullment_max,$interest),
+          (3, 3, 1,$borrowlistID,$money_max,$instullment_max,$interest)";
 
        // $sql="SELECT *  FROM criterion WHERE borrowlistID =$id";
         $recount=DB::select($sql);         

@@ -14,7 +14,7 @@ class BorrowerlistController extends Controller
         WHERE loaners.LoanerID=$id";
         $recount=DB::select($sql)[0];         
         return response()->json($recount);
-    }
+    } 
     public function create($id)
     {
         //add user data into users table
