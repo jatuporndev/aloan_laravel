@@ -1,4 +1,3 @@
-
 @extends('dashboard.loaner.dashboardlayout')
 
 @section('content')
@@ -14,8 +13,8 @@
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{ route('loaner.home') }}"><i class="fas fa-home"></i></a></li>
-                  <li class="breadcrumb-item"><a href="{{ route('loaner.home') }}">Dashboards</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Default</li>
+                  <li class="breadcrumb-item"><a href="{{ route('loaner.menu3') }}">รอชำระ</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">ตรวจสอบ</li>
                 </ol>
               </nav>
             </div>
@@ -24,30 +23,28 @@
     </div>
 </div>
 </div>
-<?php
-$data = $view -> bank;
- $sql="SELECT * FROM banklist 
- WHERE bankname ='$data'";
-  
- $bank=DB::select($sql)[0];     
-?>
+
+          <?php
+              $data = $view -> bank;
+              $sql="SELECT * FROM banklist 
+              WHERE bankname ='$data'";
+              $bank=DB::select($sql)[0];     
+          ?>
 
  <!-- Page content -->
- <div class="container-fluid mt--6">
+ <div class="container-fluid mt--7">
       <div class="row justify-content-center">
-       
         <div class="col-xl-8 order-xl-1">
           <div class="card">
             <div class="card-header">
               <div class="row align-items-center">
                 <div class="col-8">
-                  <h3 class="mb-0">Profile Borrower# {{$view -> BorrowerID}} </h3>
+                  <h2 class="mb-0">#{{$view -> BorrowerID}} ตรวจสอบข้อมูลผู้กู้ คุณ {{$view -> firstname}} {{$view -> lastname}} </h2>
                 </div>
-               
               </div>
             </div>
             <div class="card-body">
-            
+      
                 <h6 class="heading-small text-muted mb-4">User information</h6>
                 <p>
                 <img src="{{ url('/') }}/assets/uploadfile/Borrower/profile/{{ $view->imageProfile }}" width='200px' height='200px'>
@@ -106,12 +103,7 @@ $data = $view -> bank;
                     </p>
                       </div>
                     </div>
-             
-                  </div>
-
-                  
-                  <div class="row">
-                  <div class="col-lg-6">
+                    <div class="col-lg-6">
                       <div class="form-group">
                       <label class="form-control-label" >Job</label>
                        <p>
@@ -119,7 +111,6 @@ $data = $view -> bank;
                        </p>
                       </div>
                     </div>
-                   
                   </div>
           
                   <div class="row">
@@ -127,7 +118,7 @@ $data = $view -> bank;
                     <div class="form-group">
                       <label class="form-control-label" >Salary</label>
                        <p>
-                       {{$view -> salary}}
+                       {{$view -> salary}} บาท
                        </p>
                       </div>
                     </div>
@@ -163,7 +154,11 @@ $data = $view -> bank;
                     <div class="col-md-12">
                       <div class="form-group">
                       <label class="form-control-label" >LineID</label>
-                        <p>{{$view -> LineID}}
+                        <p>
+                        @if ($view->LineID == null)
+                           --
+                       @else   
+                    @endif
                         </p>
                       </div>
                     </div>

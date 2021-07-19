@@ -11,7 +11,7 @@
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{ route('loaner.home') }}"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="{{ route('loaner.home') }}">Dashboards</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Default</li>
+                  <li class="breadcrumb-item active" aria-current="page">รอชำระ</li>
                 </ol>
               </nav>
             </div>
@@ -35,32 +35,26 @@
         $post = DB::select($sql); 
     ?>
 
-
-	<body>
-
 		<div class="container-fluid mt--7">
-		
 			<div class="row">
 				<div class="col-md-12">
 					<div class="table-wrap">
 						<table class="table table-responsive-xl">
 						  <thead>
 						    <tr>
-						
 						    	<th>ผู้ให้กู้</th>
-                                <th>จำนวนเงิน</th>
+                  <th>จำนวนเงิน</th>
 						      <th>รายการ</th>
 						      <th>Status</th>
-						      <th>&nbsp;</th>
+						      <th>Action</th>
 						    </tr>
 						  </thead>
 						  <tbody>
                           @foreach($post as $item)
-						    <tr class="alert" role="alert">
-                           
+						    <tr class="alert" role="alert">         
 						      <td class="d-flex align-items-center">
-                              <div class="img" style="background-image: url(/assets/uploadfile/Borrower/profile/{{$item->imageProfile}});">
-                            </div>
+                        <div class="img" style="background-image: url(/assets/uploadfile/Borrower/profile/{{$item->imageProfile}});">
+                        </div>
 						      	<div class="pl-3 email">
 						      		<span>{{$item->firstname}} {{$item->lastname}}</span>
 						      		<span>วันที่เริ่ม: {{$item->date_start}} </span>
@@ -96,9 +90,6 @@
 			</div>
 		</div>
 	
-
-
-	</body>
 
 
 
