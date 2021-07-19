@@ -23,6 +23,8 @@
 
     <!-- Page content -->
     <div class="container-fluid mt--1">
+    <form  action="{{ route('borrower.addRequest',['borrowlistID' =>$view->borrowlistID]) }}" method="POST" enctype="multipart/form-data" id="request">
+              @csrf
       <div class="row justify-content-center">
         <div class="col-xl-7 order-xl-6">
           <div class="card card-profile">
@@ -119,6 +121,7 @@
                            </div>
                            <div class="col-6 col-md-4 ">
                                       <h3 class="card-title text-center" >{{ $view->money_max}} บาท</h3>
+                                      <input type='hidden' name='money_max' value='{{$view->money_max}}' />
                                   </div>
                            </div>
                            <div class="row">
@@ -130,6 +133,7 @@
                            </div>
                            <div class="col-6 col-md-4 ">
                                       <h3 class="card-title text-center">{{ $view->instullment_max}} เดือน</h3>
+                                    
                                   </div>
                            </div>
 
@@ -152,7 +156,8 @@
                               <p class="font-weight-bold text-center" ></p>   
                            </div>
                            <div class="col-6 col-md-4 ">
-                                      <h3 class="card-title text-center">{{ $view->Interest_penalty}}%</h3>
+                                      <h3 class="card-title text-center" >{{ $view->Interest_penalty}}%</h3>
+                                      <input type='hidden' name='Interest_penalty' value='{{$view->Interest_penalty}}' />
                                   </div>
                            </div>
                           
@@ -260,6 +265,18 @@
 
                            <div class="row">
                               <div class="col-6 col-md-4">
+                                      <h3 class="card-title">ดอกเบี้ย</h3>
+                              </div>
+                              <div class="col-6 col-md-4">
+                              <p class="font-weight-bold  text-center" ></p>   
+                           </div>
+                           <div class="col-6 col-md-4 ">
+                                      <h3 class="card-title text-center" >{{$checkCri->interest}} %</h3>
+                                      <input type='hidden' name='Interest' value='{{$checkCri->interest}}' />
+                                  </div>
+                           </div>
+                           <div class="row">
+                              <div class="col-6 col-md-4">
                                       <h3 class="card-title">จำนวนงวดสูงสุด</h3>
                               </div>
                               <div class="col-6 col-md-4">
@@ -267,9 +284,9 @@
                            </div>
                            <div class="col-6 col-md-4 ">
                                       <h3 class="card-title text-center">{{$checkCri->instullment_max}} เดือน</h3>
+                                      <input type='hidden' name='instullment_max' value='{{$checkCri->instullment_max}}' />
                                   </div>
                            </div>
-
                            <div class="row">
                               <div class="col-6 col-md-4">
                                       <h3 class="card-title"> วงเงินสูงสุดที่ให้กู้</h3>
@@ -292,7 +309,7 @@
       
               <!-- Request -->
               <div class="container-fluid mt--0">
-              <form  action="#" method="POST" enctype="multipart/form-data" id="request">
+              
           <div class="row justify-content-center">
               <div class="col-xl-7 order-xl-2">
                   <div class="card">
@@ -313,14 +330,14 @@
                                         </div>
                                     <div class="col-md-6">
                                          <div class="input-group">
-                                             <input class="form-control  text-center" name="money_max" type="number" min="1"  value=""> 
+                                             <input class="form-control  text-center" name="Money" type="number" min="1"  value=""> 
                                                 <div class="input-group-append">
                                                  <span class="input-group-text">บาท</span>
                                                  </div>
                                                   <span class="text-danger error-text money_max_error"></span> 
                                                </div>   
                                  </div>    
-                      </div>
+                      </div> 
                       <div class="row">
                                 <div class="col-lg-5">
                                    <div class="form-group">
@@ -329,7 +346,7 @@
                                         </div>
                                     <div class="col-md-6">
                                          <div class="input-group">
-                                             <input class="form-control  text-center" name="money_max" type="number" min="1"  value=""> 
+                                             <input class="form-control  text-center" name="instullment" type="number" min="1"  value=""> 
                                                 <div class="input-group-append">
                                                  <span class="input-group-text">เดือน</span>
                                                  </div>

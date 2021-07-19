@@ -135,7 +135,7 @@ Route::prefix('borrower')->name('borrower.')->group(function(){
 
             //request
             Route::get('/viewborrower/{id}',[ListController::class,'viewborrower'])->name('viewborrower');
-            Route::get('/addRequest/{id}',[ListController::class,'addRequest'])->name('addRequest');
+            Route::post('/addRequest/{borrowlistID}',[BorrowerRequestController::class,'addRequest'])->name('addRequest');
 
         });
 
