@@ -12,8 +12,10 @@ class ListController extends Controller
 {
     public function viewborrower($LoanerID){
 
-        $sql = "SELECT * FROM loaners WHERE LoanerID =$LoanerID";
-        $views = DB::select($sql)[0];
+        $sql="SELECT *  FROM borrowlist 
+        INNER JOIN loaners ON loaners.LoanerID  = borrowlist.LoanerID 
+        WHERE loaners.LoanerID=$LoanerID";
+        $views=DB::select($sql)[0];   
 
         return view('dashboard.borrower.request', ['view'=> $views]);
     }

@@ -93,7 +93,7 @@
                         <div class="card-header">
                             <div class="row align-items-center">
                                   <div class="col-9 col-md-11 text-center">
-                                    <h2 class="mb-1 text-center">วงเงินสูงสุด </h2>
+                                    <h2 class="mb-1 text-center">รายการ </h2>
                                     <h2 class="mb-0 text-center"> </h2>
                                   </div>
                              </div>
@@ -107,10 +107,20 @@
                               <p class="font-weight-bold text-center" ></p>    
                            </div>
                            <div class="col-6 col-md-4 ">
-                                      <h3 class="card-title text-center" >บาท</h3>
+                                      <h3 class="card-title text-center" >{{ $view->money_min}} บาท</h3>
                                   </div>
                            </div>
-
+                           <div class="row">
+                              <div class="col-6 col-md-4">
+                                      <h3 class="card-title" >วงเงินสูงสุด</h3>
+                              </div>
+                              <div class="col-6 col-md-4">
+                              <p class="font-weight-bold text-center" ></p>    
+                           </div>
+                           <div class="col-6 col-md-4 ">
+                                      <h3 class="card-title text-center" >{{ $view->money_max}} บาท</h3>
+                                  </div>
+                           </div>
                            <div class="row">
                               <div class="col-6 col-md-4">
                                       <h3 class="card-title">จำนวนงวด</h3>
@@ -119,7 +129,7 @@
                               <p class="font-weight-bold  text-center" ></p>   
                            </div>
                            <div class="col-6 col-md-4 ">
-                                      <h3 class="card-title text-center">เดือน</h3>
+                                      <h3 class="card-title text-center">{{ $view->instullment_max}} เดือน</h3>
                                   </div>
                            </div>
 
@@ -131,7 +141,7 @@
                               <p class="font-weight-bold  text-center" ></p>  
                            </div>
                            <div class="col-6 col-md-4 ">
-                                      <h3 class="card-title text-center">%</h3>
+                                      <h3 class="card-title text-center">{{ $view->interest}}%</h3>
                                   </div>
                            </div>
                            <div class="row">
@@ -142,7 +152,7 @@
                               <p class="font-weight-bold text-center" ></p>   
                            </div>
                            <div class="col-6 col-md-4 ">
-                                      <h3 class="card-title text-center">%</h3>
+                                      <h3 class="card-title text-center">{{ $view->Interest_penalty}}%</h3>
                                   </div>
                            </div>
                           
@@ -152,7 +162,53 @@
       </div>
       </div>
       <!-- EndBorrowlist -->
+                      @php
+                            $birthday = $view->birthday;
+                            $age = Carbon\Carbon::parse($birthday)->diff(Carbon\Carbon::now())->format('%y');
+                     @endphp
 
+                     <?php
+                        $arrayAge=["18-28 ปี","29-39 ปี","40-50 ปี","51ปีขึ้นไป"];
+                        $arrayMarri=["โสด","แต่งงานแล้ว"];
+                        $arraySalary=["0-9000","9000-15000","15000-50000","มากกว่า5หมื่น"];
+
+                        $borrowerID =  Auth::guard('borrower')->user()->BorrowerID ;
+                        $sqlborrower="SELECT * FROM borrowers WHERE BorrowerID = borrowerID";
+                        $borrower=DB::select($sqlborrower)[0];  
+
+                        $Married = $borrower->married;
+                        $saraly =$borrower->salary;
+
+                        if($age >=18 && $age <=28){
+                          $Age_range = 0;
+                        }else if($age >=29 && $age <=39){
+                          $Age_range = 1;
+                        }else if($age >=40 && $age <=50){
+                          $Age_range = 2;
+                        }else if($age >51){
+                          $Age_range = 3;
+                        }else{
+                          $Age_range = 0;
+                        }
+                        
+                        if($saraly >=0 && $saraly <=9000){
+                          $Saraly_range = 0;
+                        }else if($saraly >=9001 && $saraly <=15000){
+                          $Saraly_range = 1;
+                        }else if($saraly >=15001 && $saraly <=50000){
+                          $Saraly_range = 2;
+                        }else if($saraly >50001){
+                          $Saraly_range = 3;
+                        }else{
+                          $Saraly_range = 0;
+                        }
+
+                        $sql="SELECT * FROM criterion WHERE borrowlistID =$view->borrowlistID AND
+                        Age_range =$Age_range AND Saraly_range=$Saraly_range AND Married=$Married";
+
+                        $checkCri=DB::select($sql)[0];  
+                     ?>
+   
               <!-- Criterion -->
               <div class="container-fluid mt--0">
           <div class="row justify-content-center">
@@ -168,25 +224,25 @@
                       <div class="card-body">
                           <div class="row">
                               <div class="col-6 col-md-4">
-                                      <h3 class="card-title" >ช่วงอายุ : </h3>
+                                      <h3 class="card-title" >ช่วงอายุ :</h3>
                               </div>
                               <div class="col-6 col-md-4">
                               <p class="font-weight-bold text-center" ></p>    
                            </div>
                            <div class="col-6 col-md-4 ">
-                                      <h3 class="card-title text-center" ></h3>
+                                      <h3 class="card-title text-center" >{{$arrayAge[$checkCri->Age_range]}} </h3>
                                   </div>
                            </div>
 
                            <div class="row">
                               <div class="col-6 col-md-4">
-                                      <h3 class="card-title" >สถานภาพ : </h3>
+                                      <h3 class="card-title" >สถานภาพ :</h3>
                               </div>
                               <div class="col-6 col-md-4">
                               <p class="font-weight-bold text-center" ></p>    
                            </div>
                            <div class="col-6 col-md-4 ">
-                                      <h3 class="card-title text-center" ></h3>
+                                      <h3 class="card-title text-center" > {{$arrayMarri[$checkCri->	Married]}}</h3>
                                   </div>
                            </div>
 
@@ -198,7 +254,7 @@
                               <p class="font-weight-bold  text-center" ></p>  
                            </div>
                            <div class="col-6 col-md-4 ">
-                                      <h3 class="card-title text-center">บาท</h3>
+                                      <h3 class="card-title text-center">{{$arraySalary[$checkCri->Saraly_range]}} บาท</h3>
                                   </div>
                            </div>
 
@@ -210,19 +266,19 @@
                               <p class="font-weight-bold  text-center" ></p>   
                            </div>
                            <div class="col-6 col-md-4 ">
-                                      <h3 class="card-title text-center">เดือน</h3>
+                                      <h3 class="card-title text-center">{{$checkCri->instullment_max}} เดือน</h3>
                                   </div>
                            </div>
 
                            <div class="row">
                               <div class="col-6 col-md-4">
-                                      <h3 class="card-title">วงเงินสูงสุดที่ให้กู้</h3>
+                                      <h3 class="card-title"> วงเงินสูงสุดที่ให้กู้</h3>
                               </div>
                               <div class="col-6 col-md-4">
                               <p class="font-weight-bold text-center" ></p>   
                            </div>
                            <div class="col-6 col-md-4 ">
-                                      <h3 class="card-title text-center">บาท</h3>
+                                      <h3 class="card-title text-center">{{$checkCri->money_max}} บาท</h3>
                                   </div>
                            </div>
                           
@@ -236,6 +292,7 @@
       
               <!-- Request -->
               <div class="container-fluid mt--0">
+              <form  action="#" method="POST" enctype="multipart/form-data" id="request">
           <div class="row justify-content-center">
               <div class="col-xl-7 order-xl-2">
                   <div class="card">
@@ -281,7 +338,7 @@
                                           </div>    
                       </div>
                       <div class="text-center">
-                      <button type="button" class="btn btn-warning" style="background-color:#f05837">
+                      <button type="submit" class="btn btn-warning" style="background-color:#f05837">
                             ส่งคำขอ
                       </button>
                       </div>
@@ -289,6 +346,7 @@
                   </div>
                </div>
             </div>
+                      </form>
       </div>
       </div>
       <!-- EndCriterion -->

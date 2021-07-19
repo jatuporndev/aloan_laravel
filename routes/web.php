@@ -9,6 +9,8 @@ use App\Http\Controllers\WEBAPP\Loaners\BorrowlistController;
 use App\Http\Controllers\WEBAPP\Borrowers\BorrowerController;
 use App\Http\Controllers\WEBAPP\Borrowers\ListController;
 
+//borrowers
+use App\Http\Controllers\WEBAPP\Borrowers\BorrowerRequestController;
 //loaner
 use App\Http\Controllers\WEBAPP\Loaners\LoanerRequestController;
 use App\Http\Controllers\WEBAPP\Loaners\LoanerBorrowDetailController;
@@ -131,7 +133,9 @@ Route::prefix('borrower')->name('borrower.')->group(function(){
             Route::view('/home','dashboard.borrower.home')->name('home');
             Route::post('logout',[BorrowerController::class,'logout'])->name('logout');
 
+            //request
             Route::get('/viewborrower/{id}',[ListController::class,'viewborrower'])->name('viewborrower');
+            Route::get('/addRequest/{id}',[ListController::class,'addRequest'])->name('addRequest');
 
         });
 

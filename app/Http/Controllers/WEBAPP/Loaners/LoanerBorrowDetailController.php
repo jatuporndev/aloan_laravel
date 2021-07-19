@@ -86,10 +86,10 @@ class LoanerBorrowDetailController extends Controller
 
     public function ManuGetMoneydetail($BorrowDetailID){
 
-    $sql="SELECT borrowdetail.*,Borrowers.* FROM borrowdetail 
-    INNER JOIN borrowlist ON borrowdetail.borrowlistID = borrowlist.borrowlistID
-    INNER JOIN Borrowers ON Borrowers.BorrowerID  = borrowdetail.BorrowerID 
-    WHERE 1 AND  BorrowDetailID = $BorrowDetailID";
+        $sql="SELECT borrowdetail.*,Borrowers.*,(borrowdetail.Principle+(borrowdetail.Principle*(borrowdetail.Interest/100))) as total FROM borrowdetail 
+        INNER JOIN borrowlist ON borrowdetail.borrowlistID = borrowlist.borrowlistID
+        INNER JOIN Borrowers ON Borrowers.BorrowerID  = borrowdetail.BorrowerID 
+        WHERE 1 AND  BorrowDetailID = $BorrowDetailID";
 
         $data = DB::select($sql)[0];
         return view('dashboard.loaner.menu3Detail', ['view'=> $data]);

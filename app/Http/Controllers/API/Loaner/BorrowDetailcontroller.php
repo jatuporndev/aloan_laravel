@@ -86,7 +86,9 @@ class BorrowDetailcontroller extends Controller
 
         $sql="SELECT *,ROUND(( (borrowdetail.Principle+(borrowdetail.Principle*(borrowdetail.Interest/100)))/borrowdetail.instullment_total ),2) as perints,
         (SELECT settlement_date FROM history  WHERE BorrowDetailID = borrowdetail.BorrowDetailID AND status =0 LIMIT 1) as settlement_date,
-        (SELECT CASE WHEN HistoryID  IS NULL THEN 'False' ELSE 'True' END  FROM history WHERE BorrowDetailID =  borrowdetail.BorrowDetailID  AND status = 1) AS checkpay
+        (SELECT 'True' FROM history WHERE BorrowDetailID = borrowdetail.BorrowDetailID  AND status = 1 LIMIT 1) as checkpay
+        
+      
          FROM borrowdetail 
         INNER JOIN Borrowers ON borrowdetail.BorrowerID = Borrowers.BorrowerID
         INNER JOIN borrowlist ON borrowdetail.borrowlistID = borrowlist.borrowlistID
@@ -106,7 +108,7 @@ class BorrowDetailcontroller extends Controller
 
     public function ManuGetMoneydetail($BorrowDetailID){
 
-        $sql="SELECT borrowdetail.*,Borrowers.* FROM borrowdetail 
+        $sql="SELECT borrowdetail.*,Borrowers.*,(borrowdetail.Principle+(borrowdetail.Principle*(borrowdetail.Interest/100))) as total FROM borrowdetail 
               INNER JOIN borrowlist ON borrowdetail.borrowlistID = borrowlist.borrowlistID
               INNER JOIN Borrowers ON Borrowers.BorrowerID  = borrowdetail.BorrowerID 
               WHERE 1 AND  BorrowDetailID = $BorrowDetailID";
