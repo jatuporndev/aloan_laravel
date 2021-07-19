@@ -119,12 +119,9 @@
                               <p class="font-weight-bold text-center" >{{ $view->money_max}}</p>    
                            </div>
                            <div class="col-6 col-md-4 ">
-<<<<<<< HEAD
                                       <h3 class="card-title text-center" >{{ $view->money_max}} บาท</h3>
                                       <input type='hidden' name='money_max' value='{{$view->money_max}}' />
-=======
                                       <h3 class="card-title text-center" >บาท</h3>
->>>>>>> 17be240f506d727dc35c32ca40f36c7e4c1d6c03
                                   </div>
                            </div>
                            <div class="row">
@@ -135,12 +132,9 @@
                               <p class="font-weight-bold  text-center" >{{ $view->instullment_max}}</p>   
                            </div>
                            <div class="col-6 col-md-4 ">
-<<<<<<< HEAD
                                       <h3 class="card-title text-center">{{ $view->instullment_max}} เดือน</h3>
                                     
-=======
                                       <h3 class="card-title text-center">เดือน</h3>
->>>>>>> 17be240f506d727dc35c32ca40f36c7e4c1d6c03
                                   </div>
                            </div>
 
@@ -163,12 +157,9 @@
                               <p class="font-weight-bold text-center" >{{ $view->Interest_penalty}}</p>   
                            </div>
                            <div class="col-6 col-md-4 ">
-<<<<<<< HEAD
                                       <h3 class="card-title text-center" >{{ $view->Interest_penalty}}%</h3>
                                       <input type='hidden' name='Interest_penalty' value='{{$view->Interest_penalty}}' />
-=======
                                       <h3 class="card-title text-center">%</h3>
->>>>>>> 17be240f506d727dc35c32ca40f36c7e4c1d6c03
                                   </div>
                            </div>
                           
