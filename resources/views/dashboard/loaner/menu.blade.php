@@ -11,7 +11,7 @@
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{ route('loaner.home') }}"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="{{ route('loaner.home') }}">Dashboards</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Default</li>
+                  <li class="breadcrumb-item active" aria-current="page">คำขอกู้</li>
                 </ol>
               </nav>
             </div>
@@ -22,7 +22,7 @@
 </div>
 <link rel="stylesheet" href="assets/css/style.css" type="text/css">
 
-
+<!------ Code PHP ---->
     <?php
     $loanerID = Auth::guard('loaner')->user()->LoanerID;
     $sql="SELECT borrowers.*,request.* FROM request
@@ -31,36 +31,32 @@
         WHERE (request.status = 0 OR request.status = 1) AND  borrowlist.LoanerID = $loanerID" ;
         $post=DB::select($sql);   
     ?>
-
-
-	<body>
+<!------ End Code PHP ---->
 
 		<div class="container-fluid mt--7">
-		
 			<div class="row">
 				<div class="col-md-12">
 					<div class="table-wrap">
 						<table class="table table-responsive-xl">
 						  <thead>
 						    <tr>
-						
-						    	<th>ผู้ให้กู้</th>
-                                <th>จำนวนเงิน</th>
+						    	<th>ผู้กู้ที่ส่งคำขอ</th>
+                  <th>จำนวนเงิน</th>
 						      <th>จำนวนงวด</th>
 						      <th>Status</th>
-						      <th>&nbsp;</th>
+						      <th>Action</th>
 						    </tr>
 						  </thead>
 						  <tbody>
+
                           @foreach($post as $item)
-						    <tr class="alert" role="alert">
-                           
+						    <tr class="alert" role="alert">          
 						      <td class="d-flex align-items-center">
-                              <div class="img" style="background-image: url(/assets/uploadfile/Borrower/profile/{{$item->imageProfile}});">
-                            </div>
+                      <div class="img" style="background-image: url(/assets/uploadfile/Borrower/profile/{{$item->imageProfile}});">
+                      </div>
 						      	<div class="pl-3 email">
 						      		<span>{{$item->firstname}} {{$item->lastname}}</span>
-						      		<span>วันที่ส่ง: {{$item->dateRe}} </span>
+						      		<span>วันที่ส่งคำขอกู้ : {{$item->dateRe}} </span>
 						      	</div>
 						      </td>
 						      
@@ -77,7 +73,7 @@
 
 						      <td>
                               @if($item->status ==0)
-                              <a href="{{ route('loaner.requestMenu1Detail',['requestID' =>$item->RequestID]) }}" button class="btn btn-info" type="button"> ตรวจสอบ </a>
+                              <a href="{{ route('loaner.requestMenu1Detail',['requestID' =>$item->RequestID]) }}" button class="btn btn-info" type="button">ตรวจสอบ</a>
                               @endif
 				        	</td>
 						    </tr>
@@ -91,7 +87,7 @@
 	
 
 
-	</body>
+
 
 
 

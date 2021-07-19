@@ -11,7 +11,7 @@
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{ route('loaner.home') }}"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="{{ route('loaner.home') }}">Dashboards</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Default</li>
+                  <li class="breadcrumb-item active" aria-current="page">รอโอนเงิน</li>
                 </ol>
               </nav>
             </div>
@@ -33,7 +33,7 @@
     ?>
 
 
-	<body>
+
 
 		<div class="container-fluid mt--7">
 		
@@ -71,7 +71,7 @@
 
 						      <td>
                            
-                              <a href="{{ route('loaner.requestMenu2Detail',['requestID' =>$item->RequestID]) }}" button class="btn btn-info" type="button"> ตรวจสอบ </a>
+                              <a href="{{ route('loaner.requestMenu2Detail',['requestID' =>$item->RequestID]) }}" button class="btn btn-info" type="button">ตรวจสอบ</a>
                             
 				        	</td>
 						    </tr>
@@ -85,7 +85,7 @@
 	
 
 
-	</body>
+
 
 
 

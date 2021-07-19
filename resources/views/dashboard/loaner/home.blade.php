@@ -54,18 +54,15 @@
                                   <div class="col-9 text-center">
                                     <h2 class="mb-0">วงเงินและอัตราดอกเบี้ยของคุณ </h2>
                                   </div>
-                                  <label class="custom-toggle">
-                                    <input type="checkbox" checked>
-                                      <span class="custom-toggle-slider rounded-circle" data-label-off="ปิด" data-label-on="เปิด"></span>
-                                  </label>
-                             </div>
-                   
-                             <!-- @if( $databorrowlist -> status==0 )
+                                  @if( $databorrowlist -> status==0 )
                              <a class="text-right"  href="{{ route('loaner.setpublic',['id' =>$id,'status'=>1]) }}"> <i class="ni ni-planet text-orange"></i>  ปิดอยู่</a>
                              @elseif($databorrowlist -> status==1)
-                             <a class="text-right"   href="{{ route('loaner.setpublic',['id' =>$id,'status'=>0]) }}"> <i class="ni ni-planet text-orange"></i>  เปิดอยู่</a> -->
+                             <a class="text-right"   href="{{ route('loaner.setpublic',['id' =>$id,'status'=>0]) }}"> <i class="ni ni-planet text-orange"></i>  เปิดอยู่</a> 
      
                              @endif
+                             </div>
+                   
+                             
                          </div>
                       <div class="card-body">
                           <div class="row">
@@ -261,6 +258,7 @@
                     <th scope="col" class="sort" >สถานภาพ</th>
                     <th scope="col" class="sort" >ช่วงเงินเดือน</th>
                     <th scope="col" class="sort" >วงเงินสูงสุดที่ให้กู้</th>
+                    <th scope="col" class="sort" >ดอกเบี้ย</th>
                     <th scope="col" class="sort" >งวดสูงสุด</th>
                     <th scope="col" class="sort" data-sort="completion">Action</th>
             
@@ -291,6 +289,11 @@
                   
                     </td>
                     <td>
+                  
+                   {{$item->interest}}
+                
+                   </td>
+                   <td>
                   
                    {{$item->instullment_max}}
                 
@@ -358,6 +361,20 @@
                                                                 <span class="input-group-text">บาท</span>
                                                               </div>
                                                               <span class="text-danger error-text money_max_error"></span> 
+                                                              </div>   
+                                                            </div>    
+                                                      </div>
+                                                      <div class="row">
+                                                          <div class="col-lg-5">
+                                                          <h3><label class="card-title col-md-12 col-form-label text-md-center">ดอกเบี้ย</label></h3>   
+                                                          </div>
+                                                          <div class="col-md-6">
+                                                            <div class="input-group">
+                                                              <input class="form-control  text-center" name="interest" type="number" min="1" max="{{$databorrowlist -> interest}}" value="{{$item->interest}}"> 
+                                                              <div class="input-group-append">
+                                                                <span class="input-group-text">%</span>
+                                                              </div>
+                                                              <span class="text-danger error-text interest_error"></span> 
                                                               </div>   
                                                             </div>    
                                                       </div>
