@@ -25,7 +25,7 @@ class LoanerRequestController extends Controller
         WHERE request.RequestID= $requestID " ;
         $post=DB::select($sql)[0];      
            
-        return view('dashboard.loaner.menuDetail', ['view'=> $post]);
+        return view('dashboard.loaner.menu1Detail', ['view'=> $post]);
     }
 
     

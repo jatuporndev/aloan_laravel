@@ -81,7 +81,7 @@ class LoanerBorrowDetailController extends Controller
         });
         */
         
-        return redirect()->route('loaner.menu2');
+        return redirect()->route('loaner.menu2')->with('success','บันทึกข้อมูลสำเร็จ');;
     }
 
     public function ManuGetMoneydetail($BorrowDetailID){

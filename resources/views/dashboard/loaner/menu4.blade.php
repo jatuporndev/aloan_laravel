@@ -32,11 +32,7 @@
         $post = DB::select($sql); 
     ?>
 
-
-	<body>
-
 		<div class="container-fluid mt--7">
-		
 			<div class="row">
 				<div class="col-md-12">
 					<div class="table-wrap">
@@ -45,9 +41,9 @@
 						    <tr>
 						
 						    	<th>ผู้ให้กู้</th>
-                                <th>จำนวนเงิน</th>
+                  <th>จำนวนเงิน</th>
 						      <th>รายการ</th>
-                              <th>&nbsp;</th>
+                  <th>Action</th>
 						      <th>สถานะ</th>
 						
 						    </tr>
@@ -98,10 +94,6 @@
 			</div>
 		</div>
 	
-
-
-	</body>
-
 
 
 @endsection

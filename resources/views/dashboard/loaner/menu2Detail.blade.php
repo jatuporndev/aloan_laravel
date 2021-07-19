@@ -3,8 +3,6 @@
 
 @section('content')
 
- 
-
 <div class="header pb-4"  style="background-image: linear-gradient( 135deg, #81FBB8 10%, #28C76F 100%);">
       <div class="container-fluid">
         <div class="header-body">
@@ -41,7 +39,7 @@ $data = $view -> bank;
             <div class="card-header">
               <div class="row align-items-center">
                 <div class="col-8">
-                  <h3 class="mb-0">Profile Borrower# {{$view -> BorrowerID}} </h3>
+                  <h3 class="mb-0">กกกกwer# {{$view -> BorrowerID}} </h3>
                 </div>
                
               </div>

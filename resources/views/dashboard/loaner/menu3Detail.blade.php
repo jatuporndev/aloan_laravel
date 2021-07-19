@@ -2,8 +2,6 @@
 
 @section('content')
 
- 
-
 <div class="header pb-4"  style="background-image: linear-gradient( 135deg, #81FBB8 10%, #28C76F 100%);">
       <div class="container-fluid">
         <div class="header-body">
@@ -182,25 +180,18 @@
                   </div>
                   
                 </div>
-                <div class="col-2 ">
-               
-                </div>
+                
                 <hr class="my-4" />
                 <!-- Description -->
-                
-                <h6 class="heading-small text-muted mb-4">คำขอกู้ วันที่ยอมรับ:{{$view -> date_start}}
-                    
-                </h6>
-                
-                <div class="pl-lg-4">
-                    
+                <h6 class="heading-small text-muted mb-4">คำขอกู้ วันที่ยอมรับ:{{$view -> date_start}}</h6>
+                <div class="pl-lg-4">  
                   <div class="form-group">
                   <div class="row">
                   <div class="col-lg-6">
                       <div class="form-group">
-                      <label class="form-control-label" >เงินต้น</label>
+                      <label class="form-control-label">เงินต้น</label>
                        <p>
-                       ฿{{$view -> Principle}}
+                       ฿ {{$view -> Principle}}
                        </p>
                       </div>
                     </div>
@@ -220,7 +211,7 @@
                       <div class="form-group">
                       <label class="form-control-label" >ดอกเบี้ย</label>
                        <p>
-                       {{$view -> Interest}}
+                       {{$view -> Interest}} %
                        </p>
                       </div>
                     </div>
@@ -228,15 +219,15 @@
                       <div class="form-group">
                       <label class="form-control-label" >ดอกเบี้ยค่าปรับ</label>
                        <p>
-                       {{$view -> Interest_penalty}}
+                       {{$view -> Interest_penalty}} %
                        </p>
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
-                      <label class="form-control-label" >ยอดทั้งหมด</label>
+                      <label class="form-control-label">ยอดทั้งหมด</label>
                        <p>
-                       ฿{{$view -> total}}
+                       ฿ {{$view -> total}}
                        </p>
                       </div>
                     </div>
@@ -246,9 +237,9 @@
                   <div class="row">
                   <div class="col-lg-6">
                       <div class="form-group">
-                      <label class="form-control-label" >เงินคงเหลือชำระ</label>
+                      <label class="form-control-label">เงินคงเหลือชำระ</label>
                        <p style="color:orange;">
-                      ฿{{$view -> remain}}
+                      ฿ {{$view -> remain}}
                        </p>
                       </div>
                     </div>
@@ -256,39 +247,43 @@
                       <div class="form-group">
                       <label class="form-control-label" >จำนวนงวดคงเหลือ</label>
                        <p style="color:orange;">
-                       {{$view -> instullment_Amount}}
+                       {{$view -> instullment_Amount}} เดือน
                        </p>
                       </div>
                     </div>
                   </div>
-
-                  <?php
-                  $BorrowDetailID = $view->BorrowDetailID;
-                  $sql="SELECT * FROM historydetailbill 
-                  WHERE 1 AND  BorrowDetailID = $BorrowDetailID";
-
-                 $dataBill = DB::select($sql);
+                  </div>
+                  </div>
+                  </div>
+                  </div>
                   
+                  <hr class="my-4" />
+                  <!-- Code PHP-->
+                  <?php
+                      $BorrowDetailID = $view->BorrowDetailID;
+                      $sql="SELECT * FROM historydetailbill 
+                      WHERE 1 AND  BorrowDetailID = $BorrowDetailID";
+                      $dataBill = DB::select($sql);
                   ?>
-
+                  <!-- End Code PHP-->
                   
                   <div class="form-group">
-                  <div class="row">
-                  <div class="col-lg-6">
-                  <div class="card-header border-0">
-              <h3 class="mb-0">รายการชำระ: </h3>
-            </div> 
+                    <div class="row">
+                      <div class="col-lg-6">
+                          <div class="card-header border-0">
+                              <h3 class="mb-0">รายการชำระ: </h3>
+                          </div> 
                     </div>
                     
                     <table class="table align-items-center table-flush">
-                <thead class="thead-light">
+                      <thead class="thead-light">
                
                   <tr>
                     <th scope="col" class="sort" >รหัส</th>
                     <th scope="col" class="sort" >ยอดทั้งหมด</th>
                     <th scope="col" class="sort" >วันที่</th>
                     <th scope="col" class="sort" >สถานะ</th>
-                    <th scope="col"></th>
+                    <th scope="col">Action</th>
                   </tr>
                 </thead>
                 <tbody class="list">
@@ -319,22 +314,23 @@
                     </td>
                     <td>
                     @if($bill-> status == 2)
-                                                            @else
+                    @else
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#aa{{$bill->historyDetailID}}">
                             ตรวจสอบ
                       </button>
                       @endif
                     </td>
                     <div class="modal fade" id="aa{{$bill->historyDetailID}}" tabindex="-1" role="dialog" aria-labelledby="criModalLabel" aria-hidden="true">
-               <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                           <div class="modal-header">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
                               <h5 class="modal-title " id="criModalLabel">ใบเสร็จยืนยัน</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                                 </div>
-
+                                
+                                <!-- Code PHP-->
                                 <?php
                                  $sql="SELECT * FROM historydetailbill WHERE historyDetailID = $bill->historyDetailID";
                                  $data1 = DB::Select($sql)[0];
@@ -342,60 +338,55 @@
                                  date_default_timezone_set('Asia/Bangkok');
                                  $datenow = date($data1->datepaying);
                                  $sql="SELECT history.*, IF(settlement_date < '$datenow', '1', '0') as dateset_status,
-                                ROUND(( (borrowdetail.Principle+(borrowdetail.Principle*(borrowdetail.Interest/100)))/borrowdetail.instullment_total ),2) as moneySet,
-                                  ROUND(( ((borrowdetail.Principle+(borrowdetail.Principle*(borrowdetail.Interest/100)))/borrowdetail.instullment_total*(borrowdetail.Interest_penalty/100)) ),2) as interest_penalty_money
+                                 ROUND(( (borrowdetail.Principle+(borrowdetail.Principle*(borrowdetail.Interest/100)))/borrowdetail.instullment_total ),2) as moneySet,
+                                 ROUND(( ((borrowdetail.Principle+(borrowdetail.Principle*(borrowdetail.Interest/100)))/borrowdetail.instullment_total*(borrowdetail.Interest_penalty/100)) ),2) as interest_penalty_money
                                  FROM history 
                                  INNER JOIN borrowdetail ON borrowdetail.BorrowDetailID = history.BorrowDetailID 
                                  WHERE  history.historyDetailID = $bill->historyDetailID ";
                                  $datahistory = DB::select($sql);
                                  $i =1;
                                 ?>
+                                <!-- End Code PHP-->
+
                                               <div class="modal-body">
-                                                <form  action="{{ route('loaner.confrimBill',['historyDetailID' => $bill->historyDetailID]) }}" method="POST" enctype="multipart/form-data" id="UpdateCri">
+                                                <form  action="{{ route('loaner.confrimBill',['historyDetailID' => $bill->historyDetailID]) }}" method="POST" enctype="multipart/form-data">
                                                 @csrf
                                                 
                                                 @foreach($datahistory as $itembill)
                                                 
                                                 <div class="row">
                                                           <div class="col-lg-5">
-                                                                    <h3><label class="card-title col-md-11 col-form-label text-md-center">งวดชำระที่ {{$i}}</label></h3> 
+                                                              <h3><label class="card-title col-md-11 col-form-label text-md-center">งวดชำระที่ {{$i}}</label></h3> 
                                                           </div>
-                                                          
                                                           <div class="col-md-6">
-                                                            <div class="input-group">
-                                                              
+                                                            <div class="input-group"> 
                                                               <div class="form-control text-center">
-                                                              <span>รหัส {{$itembill-> HistoryID}}</span>
-                                                              <span>งวดที่ {{$itembill-> settlement_date}}</span>
-                                                              
-                                                            </div>
-                                                           
-                                                   
-                                                               </div>     
-                                                            </div>   
-                                                      </div>
+                                                                <span>รหัส {{$itembill-> HistoryID}}</span>
+                                                                <span>งวดที่ {{$itembill-> settlement_date}}</span> 
+                                                              </div>
+                                                            </div>     
+                                                          </div>   
+                                                  </div>
                                                           <?php $i=$i+1; ?>
-                                                      @endforeach
-                                                       
-
-                                                
+                                                @endforeach
+                        
                                                       <div class="row">
                                                           <div class="col-lg-5">
-                                                                    <h3><label class="card-title col-md-11 col-form-label text-md-center">วันที่ชำระ</label></h3> 
+                                                             <h3><label class="card-title col-md-11 col-form-label text-md-center">วันที่ชำระ</label></h3> 
                                                           </div>
                                                           <div class="col-md-6">
                                                             <div class="input-group">
-                                                              <span class="form-control text-center" type="text" > {{$bill-> datepaying}}</span>
+                                                              <span class="form-control text-center" type="text" >{{$bill-> datepaying}}</span>
                                                                </div>     
                                                             </div>   
                                                       </div>
                                                       <div class="row">
                                                           <div class="col-lg-5">
-                                                                    <h3><label class="card-title col-md-11 col-form-label text-md-center">ยอดชำระ</label></h3> 
+                                                             <h3><label class="card-title col-md-11 col-form-label text-md-center">ยอดชำระ</label></h3> 
                                                           </div>
                                                           <div class="col-md-6">
                                                             <div class="input-group">
-                                                            <span class="form-control text-center" type="text" >฿{{$bill-> money}}</span>
+                                                            <span class="form-control text-center" type="text" >฿ {{$bill-> money}}</span>
                                                                </div>     
                                                             </div>   
                                                       </div>
@@ -405,7 +396,7 @@
                                                           </div>
                                                           <div class="col-md-6">
                                                             <div class="input-group">
-                                                            <span class="form-control text-center" type="text" > ฿{{($bill-> money_total) - ($bill-> money)}}</span>
+                                                            <span class="form-control text-center" type="text" >฿ {{($bill-> money_total) - ($bill-> money)}}</span>
                                 
                                                               </div>   
                                                             </div>    
@@ -416,8 +407,7 @@
                                                           </div>
                                                           <div class="col-md-6">
                                                             <div class="input-group">
-                                                            <span class="form-control text-center" type="text" > ฿{{$bill-> money_total}}</span>
-                                                         
+                                                            <span class="form-control text-center" type="text" >฿ {{$bill-> money_total}}</span>
                                                               </div>   
                                                             </div>     
                                                       </div>
@@ -427,15 +417,13 @@
                                                           </div>
                                                           <div class="col-md-6">
                                                             <div class="input-group">
-                                            
                                                             <img src="{{ url('/') }}/assets/uploadfile/Borrower/payment/{{$bill-> imageBill}}" width='250px' height='400px'>
                                                               </div>   
                                                             </div>    
                                                       </div>
                                                   
-                                    
                                                 <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
                                             @if($bill -> status ==0)
                                             <button type="submit" formaction="{{ route('loaner.cancleBill',['historyDetailID' => $bill->historyDetailID]) }}" class="btn btn-danger">ยกเลิก</button>
                                             <button type="submit"  class="btn btn-primary">ยืนยัน</button>
@@ -446,68 +434,18 @@
                                 </div>
                           </div>
                     </div>
-
-      
-
                   </tr>
                 @endforeach
                   </tbody>
               </table>
                     </div>
                   </div>
-           
                   </div>
-                </div>
-            
-                
-              
+                </div>   
             </div>
           </div>
         </div>
-      </div>
-
-
-
-     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      
 
 
 @endsection
