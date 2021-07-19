@@ -42,7 +42,7 @@
 						<table class="table table-responsive-xl">
 						  <thead>
 						    <tr>
-						    	<th>ผู้ให้กู้</th>
+						    	<th>ผู้กู้ที่รอชำระ</th>
                   <th>จำนวนเงิน</th>
 						      <th>รายการ</th>
 						      <th>Status</th>
@@ -53,8 +53,7 @@
                           @foreach($post as $item)
 						    <tr class="alert" role="alert">         
 						      <td class="d-flex align-items-center">
-                        <div class="img" style="background-image: url(/assets/uploadfile/Borrower/profile/{{$item->imageProfile}});">
-                        </div>
+                        <div class="img" style="background-image: url(/assets/uploadfile/Borrower/profile/{{$item->imageProfile}});"></div>
 						      	<div class="pl-3 email">
 						      		<span>{{$item->firstname}} {{$item->lastname}}</span>
 						      		<span>วันที่เริ่ม: {{$item->date_start}} </span>
@@ -68,18 +67,14 @@
 						      	</div>  
                             </td>
 						      <td>
-                              <div class="pl-3 email">
-						      		<span>ยอดที่ต้องชำระต่องวด: ฿{{$item->perints}}</span>
-						      		<span>กำหนดชำระ: {{$item->settlement_date}} </span>
-						      	</div>  
-                              </td>
+                      <div class="pl-3 email">
+						      		  <span>ยอดที่ต้องชำระต่องวด: ฿{{$item->perints}}</span>
+						      		  <span>กำหนดชำระ: {{$item->settlement_date}} </span>
+						      	  </div>  
+                   </td>
                               <td style="color: green;">รอชำระ</td>
-
-
 						      <td>
-                           
-                              <a href="{{ route('loaner.Manu3detail',['BorrowDetailID' =>$item->BorrowDetailID]) }}" button class="btn btn-info" type="button"> ตรวจสอบ </a>
-                            
+                     <a href="{{ route('loaner.Manu3detail',['BorrowDetailID' =>$item->BorrowDetailID]) }}" button class="btn btn-info" type="button">ตรวจสอบ</a>          
 				        	</td>
 						    </tr>
                             @endforeach
@@ -90,7 +85,5 @@
 			</div>
 		</div>
 	
-
-
 
 @endsection

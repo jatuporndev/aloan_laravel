@@ -123,6 +123,7 @@ class BorrowlistController extends Controller
         $validator = \Validator::make($request->all(),[
             'money_max'=>'required|integer|min:1',
             'instullment_max'=>'required|integer|min:1',
+            'interest'=>'required|integer|min:1',
             
         ]);
 
@@ -133,6 +134,7 @@ class BorrowlistController extends Controller
                 $criterionlist = Criterion::find($id);                
                 $criterionlist->money_max =$request->get('money_max');      
                 $criterionlist->instullment_max =$request->get('instullment_max');  
+                $criterionlist->interest =$request->get('interest');  
                 $criterionlist->edit = 1;
                 $save = $criterionlist->save();
 

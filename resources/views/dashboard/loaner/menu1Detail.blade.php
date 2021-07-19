@@ -1,6 +1,8 @@
+
 @extends('dashboard.loaner.dashboardlayout')
 
 @section('content')
+
 <div class="header pb-4"  style="background-image: linear-gradient( 135deg, #81FBB8 10%, #28C76F 100%);">
       <div class="container-fluid">
         <div class="header-body">
@@ -10,8 +12,8 @@
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{ route('loaner.home') }}"><i class="fas fa-home"></i></a></li>
-                  <li class="breadcrumb-item"><a href="{{ route('loaner.home') }}">Dashboards</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Default</li>
+                  <li class="breadcrumb-item"><a href="{{ route('loaner.home') }}">คำขอกู้</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">ตรวจสอบ</li>
                 </ol>
               </nav>
             </div>
@@ -22,7 +24,7 @@
 </div>
 
  <!-- Page content -->
- <div class="container-fluid mt--6">
+ <div class="container-fluid mt--7">
       <div class="row justify-content-center">
        
         <div class="col-xl-8 order-xl-1">
@@ -30,13 +32,13 @@
             <div class="card-header">
               <div class="row align-items-center">
                 <div class="col-8">
-                  <h3 class="mb-0">Profile Borrower# {{$view -> BorrowerID}} </h3>
+                  <h3 class="mb-0">#{{$view -> BorrowerID}} ตรวจสอบข้อมูลผู้กู้ คุณ{{$view -> firstname}} {{$view -> lastname}}</h3>
                 </div>
-               
+  
               </div>
             </div>
             <div class="card-body">
-            <form  action="{{ route('loaner.updatePass',['id' => $view->RequestID]) }}" method="POST" enctype="multipart/form-data" >
+            <form  action="{{ route('loaner.updatePass',['id' => $view->RequestID]) }}" method="POST" enctype="multipart/form-data">
                      @csrf
                 <h6 class="heading-small text-muted mb-4">User information</h6>
                 <p>
@@ -356,43 +358,6 @@
                           </div>
                     </div>
                      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
