@@ -79,7 +79,7 @@ class RequestController extends Controller
         INNER JOIN borrowers ON request.BorrowerID = borrowers.BorrowerID
         INNER JOIN borrowlist ON request.borrowlistID = borrowlist.borrowlistID
         WHERE 1  AND  borrowlist.LoanerID  =$loanerID AND 
-        request.status = 4 OR request.status =14 ";
+        (request.status = 4 OR request.status =14) ";
      
         $recount=DB::select($sql);         
         return response()->json($recount);

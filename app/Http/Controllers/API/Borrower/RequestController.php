@@ -55,11 +55,11 @@ class RequestController extends Controller
         $sql="SELECT request.*,loaners.*  FROM request
         INNER JOIN borrowlist ON borrowlist.borrowlistID =request.borrowlistID
         INNER JOIN loaners ON loaners.LoanerID  =borrowlist.LoanerID 
-        WHERE 1  AND request.status = 4 OR request.status = 14 ";
+        WHERE 1  AND (request.status = 4 OR request.status = 14) ";
         if($borrowlistID!=""){
             $sql.=" AND borrowlist.borrowlistID =$borrowlistID ";      
         }if($BorrowerID!=""){
-            $sql.=" AND request.BorrowerID =$BorrowerID ";      
+            $sql.=" AND request.BorrowerID ='$BorrowerID' ";      
         }
      
         $recount=DB::select($sql);         

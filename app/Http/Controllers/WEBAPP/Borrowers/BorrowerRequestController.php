@@ -38,10 +38,28 @@ class BorrowerRequestController extends Controller
         $re->borrowlistID = $borrowlistID;
         $re->save();
 
-        return redirect()->route('borrower.home'); //ผ่าน
+        return redirect()->route('borrower.menu1')->with('success','ส่งคำขอสำเร็จ');; //ผ่าน
 
             }
 
         }
     }
+
+    public function updateUnpass($id)
+    {       
+        date_default_timezone_set('Asia/Bangkok');
+        $user = RequestM::find($id);
+        $user->status = 4;     
+        $user->dateCheck = date('Y-m-d');     
+      
+        $user->comment = "ยกเลิก"; 
+        
+        
+        $user->save();
+
+        return redirect()->route('borrower.home');
+    }
+
+
+
 }
