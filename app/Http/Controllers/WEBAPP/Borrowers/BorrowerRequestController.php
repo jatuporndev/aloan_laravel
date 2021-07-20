@@ -20,10 +20,10 @@ class BorrowerRequestController extends Controller
      
         if($request->get('Money') > $request->get('money_max') || $request->get('instullment') > $request->get('instullment_max') ){
 
-            return redirect()->back();    //ถ้าเงินที่ขอหรืองวดที่ขอ เกินเกณฑ์
+            return redirect()->back()->with('fail','ไม่สำเร็จ');;    //ถ้าเงินที่ขอหรืองวดที่ขอ เกินเกณฑ์
         }else{
             if($data->check2 =='True'){
-                return redirect()->back(); //ถ้ามีคำขออยู่แล้ว
+                return redirect()->back()->with('success','บันทึกข้อมูลสำเร็จ');; //ถ้ามีคำขออยู่แล้ว
             }else{
 
         date_default_timezone_set('Asia/Bangkok');

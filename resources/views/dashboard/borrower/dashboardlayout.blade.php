@@ -161,6 +161,21 @@
   <script src="assets/vendor/chart.js/dist/Chart.extension.js"></script>
   <!-- Argon JS -->
   <script src="assets/js/argon.js?v=1.2.0"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  @if (Session::has('success'))
+      <script>
+          swal("Success!","{!! Session::get('success') !!}","success",{
+          button:"OK",
+          });             
+      </script>
+  @endif
+  @if (Session::has('fail'))
+      <script>
+        swal("Success!","{!! Session::get('fail') !!}","warning",{
+        button:"OK",
+        });             
+      </script>
+  @endif
 </body>
 
 </html>
