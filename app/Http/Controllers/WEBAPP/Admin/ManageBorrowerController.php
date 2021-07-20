@@ -13,9 +13,10 @@ class ManageBorrowerController extends Controller
     public function show(){
         
          
-        $sql = "SELECT * FROM borrowers";
-        $post = DB::select($sql);
-        $post = Borrower::paginate(10);
+      //  $sql = "SELECT * FROM borrowers WHERE verify = 0";
+       // $post = DB::select($sql);
+      //  $post = Borrower::paginate(10);
+      $post = Borrower::where('verify', '=', 0)->paginate(05);
         
         return view('dashboard.admin.borrowermanage', ['post'=> $post]);
     }

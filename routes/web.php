@@ -11,6 +11,8 @@ use App\Http\Controllers\WEBAPP\Borrowers\ListController;
 
 //borrowers
 use App\Http\Controllers\WEBAPP\Borrowers\BorrowerRequestController;
+use App\Http\Controllers\WEBAPP\Borrowers\BorrowerBorrowDetailController;
+
 //loaner
 use App\Http\Controllers\WEBAPP\Loaners\LoanerRequestController;
 use App\Http\Controllers\WEBAPP\Loaners\LoanerBorrowDetailController;
@@ -38,6 +40,8 @@ Route::get('/multi', function () {
 Route::get('/cookie', function () {
     return view('cookie');
 });
+
+
 
 
 Auth::routes();
@@ -132,12 +136,19 @@ Route::prefix('borrower')->name('borrower.')->group(function(){
      Route::middleware(['auth:borrower','PreventBackHistory'])->group(function(){
             Route::view('/home','dashboard.borrower.home')->name('home');
             Route::view('/menu1','dashboard.borrower.menu1')->name('menu1');
+            Route::view('/menu2','dashboard.borrower.menu2')->name('menu2');
+            Route::view('/menu3','dashboard.borrower.menu3')->name('menu3');
+            Route::view('/menu4','dashboard.borrower.menu4')->name('menu4');
+            Route::view('/menu5','dashboard.borrower.menu5')->name('menu5');
             Route::post('logout',[BorrowerController::class,'logout'])->name('logout');
 
             //request
             Route::get('/viewborrower/{id}',[ListController::class,'viewborrower'])->name('viewborrower');
             Route::post('/addRequest/{borrowlistID}',[BorrowerRequestController::class,'addRequest'])->name('addRequest');
             Route::get('/updateUnpass/{id}',[BorrowerRequestController::class,'updateUnpass'])->name('updateUnpass');
+            Route::get('/menu2Detail/{RequestID}',[BorrowerRequestController::class,'viewConfirmedDetail'])->name('menu2Detail');
+            Route::post('/updateAccept/{id}',[BorrowerRequestController::class,'updateAccept'])->name('updateAccept');
+            Route::get('/menu3Detail/{BorrowDetailID}',[BorrowerBorrowDetailController::class,'ManuPaydetail'])->name('menu3Detail');
 
         });
 

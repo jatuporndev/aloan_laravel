@@ -45,11 +45,11 @@
              รายการ</a>
             
             <div class="dropdown-menu" aria-labelledby="dropdown">
-            <a class="dropdown-item"  href="{{ route('borrower.menu1') }}" is class="nav-link {{ (request()->is('borrower.menu1')) ? 'active' : ''}}"> <i class="ni ni-send text-default"></i> คำขอ</a>
-            <a class="dropdown-item"  href="{{ route('loaner.menu2') }}" is class="nav-link {{ (request()->is('loaner/menu2*')) ? 'active' : ''}}"> <i class="ni ni-ui-04 text-danger"></i>  รอโอนเงิน</a>
-            <a class="dropdown-item"  href="{{ route('loaner.menu3') }}" is class="nav-link {{ (request()->is('loaner/menu3*')) ? 'active' : ''}}"> <i class="ni ni-time-alarm text-yellow"></i>  รอชำระ</a>
-            <a class="dropdown-item"  href="{{ route('loaner.menu4') }}" is class="nav-link {{ (request()->is('loaner/menu4*')) ? 'active' : ''}}"> <i class="ni ni-check-bold text-success"></i>  สำเร็จ</a>
-            <a class="dropdown-item"  href="{{ route('loaner.menu5') }}" is class="nav-link {{ (request()->is('loaner/menu5*')) ? 'active' : ''}}"> <i class="ni ni-fat-remove text-red"></i>  ไม่สำเร็จ</a>
+            <a class="dropdown-item"  href="{{ route('borrower.menu1') }}" is class="nav-link {{ (request()->is('borrower.menu1')) ? 'active' : ''}}"> <i class="ni ni-send text-default"></i> รอยืนยัน</a>
+            <a class="dropdown-item"  href="{{ route('borrower.menu2') }}" is class="nav-link {{ (request()->is('borrower/menu2*')) ? 'active' : ''}}"> <i class="ni ni-ui-04 text-danger"></i>  ที่ยืนยันแล้ว</a>
+            <a class="dropdown-item"  href="{{ route('borrower.menu3') }}" is class="nav-link {{ (request()->is('borrower/menu3*')) ? 'active' : ''}}"> <i class="ni ni-time-alarm text-yellow"></i>  ที่ต้องชำระ</a>
+            <a class="dropdown-item"  href="{{ route('borrower.menu4') }}" is class="nav-link {{ (request()->is('borrower/menu4*')) ? 'active' : ''}}"> <i class="ni ni-check-bold text-success"></i>  สำเร็จ</a>
+            <a class="dropdown-item"  href="{{ route('borrower.menu5') }}" is class="nav-link {{ (request()->is('borrower/menu5*')) ? 'active' : ''}}"> <i class="ni ni-fat-remove text-red"></i>  ไม่สำเร็จ</a>
             </div>
             </li>
             <li class="nav-item">

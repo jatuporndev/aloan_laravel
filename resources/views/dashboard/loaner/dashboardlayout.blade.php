@@ -48,7 +48,7 @@
              รายการ</a>
             
             <div class="dropdown-menu" aria-labelledby="dropdown">
-            <a class="dropdown-item"  href="{{ route('loaner.requestMenu1')}}" is class="nav-link {{ (request()->is('loaner/requestMenu1*')) ? 'active' : ''}}"> <i class="ni ni-send text-default"></i>คำขอ</a>
+            <a class="dropdown-item"  href="{{ route('loaner.requestMenu1')}}" is class="nav-link {{ (request()->is('loaner/requestMenu1*')) ? 'active' : ''}}"> <i class="ni ni-send text-default"></i> คำขอ</a>
             <a class="dropdown-item"  href="{{ route('loaner.menu2') }}" is class="nav-link {{ (request()->is('loaner/menu2*')) ? 'active' : ''}}"> <i class="ni ni-ui-04 text-danger"></i>  รอโอนเงิน</a>
             <a class="dropdown-item"  href="{{ route('loaner.menu3') }}" is class="nav-link {{ (request()->is('loaner/menu3*')) ? 'active' : ''}}"> <i class="ni ni-time-alarm text-yellow"></i>  รอชำระ</a>
             <a class="dropdown-item"  href="{{ route('loaner.menu4') }}" is class="nav-link {{ (request()->is('loaner/menu4*')) ? 'active' : ''}}"> <i class="ni ni-check-bold text-success"></i>  สำเร็จ</a>

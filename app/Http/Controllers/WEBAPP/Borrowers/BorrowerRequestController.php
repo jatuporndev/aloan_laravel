@@ -20,10 +20,10 @@ class BorrowerRequestController extends Controller
      
         if($request->get('Money') > $request->get('money_max') || $request->get('instullment') > $request->get('instullment_max') ){
 
-            return redirect()->back()->with('fail','ไม่สำเร็จ');;    //ถ้าเงินที่ขอหรืองวดที่ขอ เกินเกณฑ์
+            return redirect()->back()->with('fail','คำขอไม่ตรงเงื่อนไข');    //ถ้าเงินที่ขอหรืองวดที่ขอ เกินเกณฑ์
         }else{
             if($data->check2 =='True'){
-                return redirect()->back()->with('success','บันทึกข้อมูลสำเร็จ');; //ถ้ามีคำขออยู่แล้ว
+                return redirect()->back()->with('fail','มีคำขออยู่แล้ว'); //ถ้ามีคำขออยู่แล้ว
             }else{
 
         date_default_timezone_set('Asia/Bangkok');
@@ -59,6 +59,55 @@ class BorrowerRequestController extends Controller
 
         return redirect()->route('borrower.home');
     }
+
+
+    public function viewConfirmedDetail($RequestID){
+        $sql="SELECT request.*,loaners.* FROM request
+        INNER JOIN borrowlist ON borrowlist.borrowlistID =request.borrowlistID
+        INNER JOIN loaners ON loaners.LoanerID  =borrowlist.LoanerID 
+        WHERE 1 AND request.RequestID = $RequestID";
+
+        $post=DB::select($sql)[0];
+        return view('dashboard.borrower.menu2Detail', ['view'=> $post]);
+    }
+
+    public function updateAccept($id)
+    {          
+        $sql="SELECT * FROM request WHERE requestID = $id";
+        $data = DB::select($sql)[0];
+     
+
+        if (isset($_POST['Accept'])) {
+            date_default_timezone_set('Asia/Bangkok');
+            $user = RequestM::find($id);
+            $user->dateAccept =  date('Y-m-d');
+            $user->status = 2;      
+            $user->save();
+
+            $dateCheck =date('Y-m-d');
+            $sql="UPDATE request
+            SET status = 4 , comment = 'ยกเลิก', dateCheck =  '$dateCheck'
+            WHERE (status = 1 OR status = 0 )AND BorrowerID =$data->BorrowerID ;";
+            $recount=DB::select($sql);    
+
+            return redirect()->route('borrower.menu1')->with('success','สำเร็จ');
+            
+        } else if (isset($_POST['UnAccept'])) {
+
+            date_default_timezone_set('Asia/Bangkok');
+            $user = RequestM::find($id);
+            $user->status = 4;     
+            $user->dateCheck = date('Y-m-d');     
+            $user->comment = "ยกเลิก";
+            $user->save();
+
+
+            return redirect()->route('borrower.home')->with('success','ยกเลิกแล้ว');
+        } 
+
+    }
+
+    
 
 
 
