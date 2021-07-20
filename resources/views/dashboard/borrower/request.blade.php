@@ -121,7 +121,7 @@
                            </div>
                            <div class="col-6 col-md-4 ">
                                       <h3 class="card-title text-center" >{{ $view->money_max}} บาท</h3>
-                                      <input type='hidden' name='money_max' value='{{$view->money_max}}' />
+                                   
                                   </div>
                            </div>
                            <div class="row">
@@ -296,6 +296,7 @@
                            </div>
                            <div class="col-6 col-md-4 ">
                                       <h3 class="card-title text-center">{{$checkCri->money_max}} บาท</h3>
+                                      <input type='hidden' name='money_max' value='{{$checkCri->money_max}}' />
                                   </div>
                            </div>
                           

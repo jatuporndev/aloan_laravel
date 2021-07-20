@@ -39,12 +39,18 @@
                 <i class="ni ni-tv-2 text-primary"></i>
                 <span class="nav-link-text">หน้าแรก</span>
               </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" is class="nav-link {{ (request()->is('borrower/loanermanage*')) ? 'active' : ''}}">
-                <i class="ni ni-planet text-orange"></i>
-                <span class="nav-link-text">My Loaner</span>
-              </a>
+              <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="ni ni-planet text-orange"></i>  
+             รายการ</a>
+            
+            <div class="dropdown-menu" aria-labelledby="dropdown">
+            <a class="dropdown-item"  href="{{ route('borrower.menu1') }}" is class="nav-link {{ (request()->is('borrower.menu1')) ? 'active' : ''}}"> <i class="ni ni-send text-default"></i> คำขอ</a>
+            <a class="dropdown-item"  href="{{ route('loaner.menu2') }}" is class="nav-link {{ (request()->is('loaner/menu2*')) ? 'active' : ''}}"> <i class="ni ni-ui-04 text-danger"></i>  รอโอนเงิน</a>
+            <a class="dropdown-item"  href="{{ route('loaner.menu3') }}" is class="nav-link {{ (request()->is('loaner/menu3*')) ? 'active' : ''}}"> <i class="ni ni-time-alarm text-yellow"></i>  รอชำระ</a>
+            <a class="dropdown-item"  href="{{ route('loaner.menu4') }}" is class="nav-link {{ (request()->is('loaner/menu4*')) ? 'active' : ''}}"> <i class="ni ni-check-bold text-success"></i>  สำเร็จ</a>
+            <a class="dropdown-item"  href="{{ route('loaner.menu5') }}" is class="nav-link {{ (request()->is('loaner/menu5*')) ? 'active' : ''}}"> <i class="ni ni-fat-remove text-red"></i>  ไม่สำเร็จ</a>
+            </div>
             </li>
             <li class="nav-item">
             <a href="#" is class="nav-link {{ (request()->is('admin/borrowermanage*')) ? 'active' : ''}}">
@@ -150,6 +156,7 @@
     </div>
   </div>
   <!-- Argon Scripts -->
+  
   <!-- Core -->
   <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
   <script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -160,7 +167,24 @@
   <script src="assets/vendor/chart.js/dist/Chart.min.js"></script>
   <script src="assets/vendor/chart.js/dist/Chart.extension.js"></script>
   <!-- Argon JS -->
+  
   <script src="assets/js/argon.js?v=1.2.0"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js%22%3E"> </script>
+  @if (Session::has('success'))
+      <script>
+          swal("Success!","{!! Session::get('success') !!}","success",{
+          button:"OK",
+          });
+      </script>
+  @endif
+  @if (Session::has('fail'))
+      <script>
+        swal("Success!","{!! Session::get('fail') !!}","warning",{
+        button:"OK",
+        });
+      </script>
+  @endif
 </body>
 
 </html>
+

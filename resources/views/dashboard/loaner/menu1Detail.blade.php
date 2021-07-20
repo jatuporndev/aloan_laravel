@@ -293,6 +293,8 @@
                                                             <span>จำนวนเงิน: {{$item->Principle}}</span>
                                                             <span>จำนวนงวด: {{$item->instullment_total}} </span>
                                                             <p>เริ่มเมื่อ{{$item->date_start}}</p>
+                                                            <span>ยอดคงเหลือ: {{$item->remain}} </span>
+                                                            <span>งวดคงเหลือ: {{$item->instullment_Amount}} </span>
                                                           </p>
                                                         
                                                           </div>
