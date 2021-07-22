@@ -120,7 +120,7 @@
                         <label for="bank">ธนาคาร</label>
                         <select id="comboA" onchange="getComboA(this)" type="text"  class="form-control" name="bank" placeholder="Enter Bank" value="{{ old('bank') }}">
                         @foreach($post as $item)
-                        <option value="{{$item -> bankname}} "   >{{$item -> bankname}}</option>
+                        <option value="{{$item -> bankname}}">{{$item -> bankname}}</option>
                         @endforeach
                         </select>
                         <span class="text-danger">@error('bank'){{ $message }} @enderror</span>
