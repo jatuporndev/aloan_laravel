@@ -121,7 +121,7 @@ class RequestController extends Controller
         $dateCheck =date('Y-m-d');
         $sql="UPDATE request
         SET status = 4 , comment = 'ยกเลิก', dateCheck =  '$dateCheck'
-        WHERE status = 1 OR status = 0 AND BorrowerID =$BorrowerID ;";
+        WHERE (status = 1 OR status = 0) AND BorrowerID =$BorrowerID ;";
         $recount=DB::select($sql);         
         return response()->json($recount);
     }

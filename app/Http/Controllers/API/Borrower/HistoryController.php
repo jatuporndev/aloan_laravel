@@ -14,4 +14,6 @@ class HistoryController extends Controller
 
         return response()->json($data);
     }
+
+    
 }

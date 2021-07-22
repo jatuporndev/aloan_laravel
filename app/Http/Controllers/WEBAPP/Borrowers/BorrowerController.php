@@ -185,5 +185,9 @@ class BorrowerController extends Controller
             }
         }
     }
+        public function gomulti(){
+
+            return  redirect('/multi');
+        }
            
 }

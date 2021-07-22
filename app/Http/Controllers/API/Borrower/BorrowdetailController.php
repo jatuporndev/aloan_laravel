@@ -74,6 +74,7 @@ class Borrowdetailcontroller extends Controller
             'status' => 'true'));
 
     }
+    
     public function update($historyID){//loop in android
 
         $sql="SELECT `historyDetailID` FROM `historydetailbill` WHERE 1 ORDER by `historyDetailID` DESC";

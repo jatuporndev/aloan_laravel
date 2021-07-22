@@ -11,6 +11,8 @@ use App\Http\Controllers\WEBAPP\Borrowers\ListController;
 
 //borrowers
 use App\Http\Controllers\WEBAPP\Borrowers\BorrowerRequestController;
+use App\Http\Controllers\WEBAPP\Borrowers\BorrowerBorrowDetailController;
+
 //loaner
 use App\Http\Controllers\WEBAPP\Loaners\LoanerRequestController;
 use App\Http\Controllers\WEBAPP\Loaners\LoanerBorrowDetailController;
@@ -38,6 +40,8 @@ Route::get('/multi', function () {
 Route::get('/cookie', function () {
     return view('cookie');
 });
+
+
 
 
 Auth::routes();
@@ -77,7 +81,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
 Route::prefix('loaner')->name('loaner.')->group(function(){
        
    Route::middleware(['guest:loaner','PreventBackHistory'])->group(function(){
-          Route::view('/login','dashboard.loaner.login')->name('login');
+          Route::get('/login',[BorrowerController::class,'gomulti'])->name('login');
           Route::view('/register','dashboard.loaner.register')->name('register');
           Route::post('/create',[LoanerController::class,'create'])->name('create');
           Route::post('/check',[LoanerController::class,'check'])->name('check');
@@ -126,7 +130,7 @@ Route::prefix('loaner')->name('loaner.')->group(function(){
 Route::prefix('borrower')->name('borrower.')->group(function(){
 
     Route::middleware(['guest:borrower','PreventBackHistory'])->group(function(){
-            Route::view('/login','dashboard.borrower.login')->name('login');
+            Route::get('/login',[BorrowerController::class,'gomulti'])->name('login');
             Route::view('/register','dashboard.borrower.register')->name('register');
             Route::post('/create',[BorrowerController::class,'create'])->name('create');
             Route::post('/check',[BorrowerController::class,'check'])->name('check');
@@ -138,12 +142,21 @@ Route::prefix('borrower')->name('borrower.')->group(function(){
             Route::post('update-profile-info',[BorrowerController::class,'updateInfo'])->name('borrowerUpdateInfo');
             Route::post('change-profile-picture',[BorrowerController::class,'updatePicture'])->name('borrowerUpdatePicture');
             Route::view('/menu1','dashboard.borrower.menu1')->name('menu1');
+            Route::view('/menu2','dashboard.borrower.menu2')->name('menu2');
+            Route::view('/menu3','dashboard.borrower.menu3')->name('menu3');
+            Route::view('/menu4','dashboard.borrower.menu4')->name('menu4');
+            Route::view('/menu5','dashboard.borrower.menu5')->name('menu5');
             Route::post('logout',[BorrowerController::class,'logout'])->name('logout');
 
             //request
             Route::get('/viewborrower/{id}',[ListController::class,'viewborrower'])->name('viewborrower');
             Route::post('/addRequest/{borrowlistID}',[BorrowerRequestController::class,'addRequest'])->name('addRequest');
             Route::get('/updateUnpass/{id}',[BorrowerRequestController::class,'updateUnpass'])->name('updateUnpass');
+            Route::get('/menu2Detail/{RequestID}',[BorrowerRequestController::class,'viewConfirmedDetail'])->name('menu2Detail');
+            Route::post('/updateAccept/{id}',[BorrowerRequestController::class,'updateAccept'])->name('updateAccept');
+            Route::get('/menu3Detail/{BorrowDetailID}',[BorrowerBorrowDetailController::class,'ManuPaydetail'])->name('menu3Detail');
+            Route::post('/payment/{BorrowDetailID}',[BorrowerBorrowDetailController::class,'payment'])->name('payment');
+            Route::post('/crateHistoryBill/{BorrowDetailID}',[BorrowerBorrowDetailController::class,'crateHistoryBill'])->name('crateHistoryBill');
 
         });
 
