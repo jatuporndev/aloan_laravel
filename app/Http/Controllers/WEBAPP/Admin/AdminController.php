@@ -13,12 +13,12 @@ class AdminController extends Controller
     function create(Request $request){
         //* Validate Input
         $request->validate([
-            'firstname' => ['required', 'string', 'max:255'],
-            'lastname' => ['required', 'string', 'max:255'],
-            'address' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:admins'],
-            'password' => ['required', 'string', 'min:5', 'confirmed'],
+            'firstname' => ['required'],
+            'lastname' => ['required' ],
+            'address' => ['required'],
+            'phone' => ['required' ],
+            'email' => ['required' ],
+            'password' => ['required'],
             
         ]);
 

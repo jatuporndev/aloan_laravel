@@ -54,12 +54,14 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::middleware(['guest:admins','PreventBackHistory'])->group(function(){
           Route::view('/login','dashboard.admin.login')->name('login');
           Route::view('/register','dashboard.admin.register')->name('register');
-          Route::post('/create',[AdminController::class,'create'])->name('create');
+         // Route::post('/create',[AdminController::class,'create'])->name('create');
           Route::post('/check',[AdminController::class,'check'])->name('check');
     });
 
     Route::middleware(['auth:admins','PreventBackHistory'])->group(function(){
           Route::view('/home','dashboard.admin.home')->name('home');
+          Route::view('/adminmanage','dashboard.admin.adminmanage')->name('adminmanage');
+          Route::post('/create',[AdminController::class,'create'])->name('create');
           Route::post('/logout',[AdminController::class,'logout'])->name('logout');
           Route::get('/add-new',[AdminController::class,'add'])->name('add');
           Route::get('/loanermanage', [App\Http\Controllers\WEBAPP\Admin\ManageLoanerController::class, 'show'])->name('loanermanage');
