@@ -13,8 +13,12 @@ class BorrowerRequestController extends Controller
 {
     public function addRequest(Request $request,$borrowlistID)
     {   $borrowerID = \Auth::guard('borrower')->user()->BorrowerID;
+
+        if($request->get('Money') =="" || $request->get('instullment') == ""){
+            return redirect()->back()->with('fail','โปรดใส่คำขอ');
+        }
         
-        $sql=" SELECT IFNULL((SELECT 'True' FROM request WHERE borrowlistID = $borrowlistID AND BorrowerID = $borrowerID LIMIT 1), 'False') as check2";
+        $sql=" SELECT IFNULL((SELECT 'True' FROM request WHERE borrowlistID = $borrowlistID AND BorrowerID = $borrowerID AND (request.status = 0 OR request.status = 1 OR request.status = 2 OR request.status = 3 ) LIMIT 1), 'False') as check2";
         $data = DB::select($sql)[0];
         
      

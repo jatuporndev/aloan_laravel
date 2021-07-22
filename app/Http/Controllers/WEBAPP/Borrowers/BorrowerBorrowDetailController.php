@@ -25,6 +25,11 @@ class BorrowerBorrowDetailController extends Controller
     }
         
     public function payment(Request $request,$BorrowDetailID){
+
+        if($request->get('totalMoney') ==0){
+            return redirect()->back()->with('fail','โปรดเลือกใบเสร็จ');;
+        }else{
+
         $data =$request->get('totalMoney');
         $HisIDArray = $request->get('aryhistoryID');
         $Moneybase = $request->get('Moneybase');
@@ -36,12 +41,14 @@ class BorrowerBorrowDetailController extends Controller
                                                    'arrayHistorID'=>$HisIDArray,
                                                    'loanerID'=>$loanerID,
                                                    'Moneybase'=>$Moneybase]);
+        }
       
     }    
 
 
     public function crateHistoryBill(Request $request,$BorrowDetailID)
     {       
+        
 
         date_default_timezone_set('Asia/Bangkok');
         $data = new HistoryBill();
@@ -82,7 +89,7 @@ class BorrowerBorrowDetailController extends Controller
         WHERE 1 AND  BorrowDetailID = $BorrowDetailID";
        
         $datab = DB::select($sqlb)[0];
-        return redirect()->route('borrower.menu3Detail',['BorrowDetailID' =>$BorrowDetailID]);
+        return redirect()->route('borrower.menu3Detail',['BorrowDetailID' =>$BorrowDetailID])->with('success','สำเร็จแล้ว');;
     }
 
 }
