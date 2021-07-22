@@ -108,5 +108,10 @@ class BorrowerController extends Controller
         Auth::guard('borrower')->logout();
         return redirect('/');
         }
+
+        public function gomulti(){
+
+            return  redirect('/multi');
+        }
            
 }

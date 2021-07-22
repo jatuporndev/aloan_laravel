@@ -52,7 +52,7 @@
                      <h3 class="card-title">ชื่อ-นามสกุล</h3>
                    </div>
                     <div class="col-6 col-md-7">
-                       <p class="font-weight-bold money_minn text-center" style="margin-left: 20em;">{{ $view->firstname}} {{ $view->lastname}}</p>    
+                       <p class="font-weight-bold money_minn text-center" style=" text-align: right;" >{{ $view->firstname}} {{ $view->lastname}}</p>    
                      </div>      
                </div>
                <div class="row">
@@ -60,7 +60,7 @@
                      <h3 class="card-title">อีเมล</h3>
                    </div>
                     <div class="col-6 col-md-7">
-                       <p class="font-weight-bold money_minn text-center"  style="margin-left: 20em;">{{ $view->email}}</p>    
+                       <p class="font-weight-bold money_minn text-center"  >{{ $view->email}}</p>    
                      </div>       
                </div>
                <div class="row">
@@ -68,7 +68,7 @@
                      <h3 class="card-title">เบอร์โทรศัพท์</h3>
                    </div>
                     <div class="col-6 col-md-7">
-                       <p class="font-weight-bold money_minn text-center"  style="margin-left: 20em;">{{ $view->phone}}</p>    
+                       <p class="font-weight-bold money_minn text-center" >{{ $view->phone}}</p>    
                      </div>        
                </div>
                <div class="row">
@@ -76,7 +76,7 @@
                      <h3 class="card-title">LineID</h3>
                    </div>
                     <div class="col-6 col-md-7">
-                       <p class="font-weight-bold money_minn text-center"  style="margin-left: 20em;">{{ $view->LineID}}</p>    
+                       <p class="font-weight-bold money_minn text-center"  >{{ $view->LineID}}</p>    
                      </div>
                          
                </div>

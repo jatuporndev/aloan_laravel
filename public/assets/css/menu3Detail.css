@@ -1,0 +1,60 @@
+table {
+    width: 100%;
+}
+
+tr {
+    border-collapse: collapse;
+    border: 3px solid orange;
+}
+
+input[type="checkbox"] {
+    width: 30px;
+    height: 30px;
+}
+
+td {
+    padding: 20px 30px;
+}
+
+fieldset {
+    font-size: 1em;
+    padding: 0.5em;
+    border-radius: 1em;
+    font-family: sans-serif;
+    border-width: 0;
+}
+
+label,
+.money,
+.bath {
+    font-size: inherit;
+    padding: 0.2em;
+    margin: 0.1em 0.2em;
+    /* the following ensures they're all using the same box-model for rendering */
+    -moz-box-sizing: content-box;
+    /* or `border-box` */
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+.money {
+    margin-right: 0;
+    border-collapse: collapse;
+    border: 3px solid orange;
+    display: inline;
+    width: 100px;
+    height: 100px;
+    padding: 5px;
+    font-size: 21px;
+    border-radius: 0.6em 0 0 0.6em;
+}
+
+.bath {
+    margin-left: 0;
+    border-radius: 0 0.6em 0.6em 0;
+    border-collapse: collapse;
+    border: 3px solid orange;
+    background-color: orange;
+    color: #FFFFFF;
+    font-size: 21px;
+}

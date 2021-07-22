@@ -21,9 +21,10 @@
 </div>
 </div>
 <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+<link rel="stylesheet" href="assets/css/menu3Detail.css" type="text/css">
 <!-- Page content -->
 <div class="container-fluid mt--1">
-  <form action="{{ route('borrower.updateAccept',['id' =>$view->RequestID]) }}" method="POST" enctype="multipart/form-data" id="request">
+  <form action="{{ route('borrower.payment',['BorrowDetailID' =>$view->BorrowDetailID]) }}" method="POST" enctype="multipart/form-data" id="request">
     @csrf
     <div class="row justify-content-center">
       <div class="col-xl-7 order-xl-6">
@@ -52,7 +53,7 @@
                 <h3 class="card-title">ชื่อ-นามสกุล</h3>
               </div>
               <div class="col-6 col-md-7">
-                <p class="font-weight-bold money_minn text-center" style="margin-left: 20em;">{{ $view->firstname}} {{ $view->lastname}}</p>
+                <p class="font-weight-bold money_minn text-center" >{{ $view->firstname}} {{ $view->lastname}}</p>
               </div>
             </div>
             <div class="row">
@@ -60,7 +61,7 @@
                 <h3 class="card-title">อีเมล</h3>
               </div>
               <div class="col-6 col-md-7">
-                <p class="font-weight-bold money_minn text-center" style="margin-left: 20em;">{{ $view->email}}</p>
+                <p class="font-weight-bold money_minn text-center">{{ $view->email}}</p>
               </div>
             </div>
             <div class="row">
@@ -68,7 +69,7 @@
                 <h3 class="card-title">เบอร์โทรศัพท์</h3>
               </div>
               <div class="col-6 col-md-7">
-                <p class="font-weight-bold money_minn text-center" style="margin-left: 20em;">{{ $view->phone}}</p>
+                <p class="font-weight-bold money_minn text-center" >{{ $view->phone}}</p>
               </div>
             </div>
             <div class="row">
@@ -76,7 +77,7 @@
                 <h3 class="card-title">LineID</h3>
               </div>
               <div class="col-6 col-md-7">
-                <p class="font-weight-bold money_minn text-center" style="margin-left: 20em;">{{ $view->LineID}}</p>
+                <p class="font-weight-bold money_minn text-center" >{{ $view->LineID}}</p>
               </div>
 
             </div>
@@ -152,9 +153,6 @@
 
 
 
-
-
-
         </div>
       </div>
     </div>
@@ -183,7 +181,7 @@
               <p class="font-weight-bold text-center"></p>
             </div>
             <div class="col-6 col-md-4 ">
-              <h3 class="card-title text-center">{{ $view->remain}} บาท</h3>
+              <h3 class="card-title text-center">{{ $view->total}} บาท</h3>
             </div>
           </div>
           <div class="row">
@@ -218,71 +216,330 @@
               <p class="font-weight-bold  text-center"></p>
             </div>
             <div class="col-6 col-md-4 ">
-           
+            <a class="font-weight-bold  text-center" style="text-decoration: underline; color:blue" data-toggle="modal" data-target="#his" type="button">ประวัติการชำระเงิน</a>
 
             </div>
           </div>
 
-          <style>
-table {
-  width: 100%;
-  border-collapse: collapse;
-  border: 3px solid orange ;
-}
-td{
-  padding: 20px 30px;
-}
+  <style>
+
+
 </style>
 
+<?php
+         date_default_timezone_set('Asia/Bangkok');
+         $datenow = date('Y-m-d');
+         $Date = date('Y-m-d');
+         $Date = strtotime("+1 months", strtotime($Date));
+         $Date = date('Y-m-d',$Date); 
+        $sql="SELECT history.*, IF(settlement_date < '$datenow', '1', '0') as dateset_status,
+        ROUND(( (borrowdetail.Principle+(borrowdetail.Principle*(borrowdetail.Interest/100)))/borrowdetail.instullment_total ),2) as moneySet,
+        ROUND(( ((borrowdetail.Principle+(borrowdetail.Principle*(borrowdetail.Interest/100)))/borrowdetail.instullment_total*(borrowdetail.Interest_penalty/100)) ),2) as interest_penalty_money
+        FROM history 
+        INNER JOIN borrowdetail ON borrowdetail.BorrowDetailID = history.BorrowDetailID 
+        WHERE history.BorrowDetailID = $view->BorrowDetailID ";
+        $sql.=" AND  settlement_date <= '$Date' AND history.status = 0 ";
+        $data1 = DB::select($sql);
+?>
+
    <table>
+
+
+     <script>
+    var perfEntries = performance.getEntriesByType("navigation");
+    if (perfEntries[0].type === "back_forward") {
+    location.reload(true);
+    }     
+
+    let money=0;
+    let moneyBase=0;
+    let arrayHistoryID =[];
+    function doFire(moneyset,moneybase,hisID) {
+    money+=parseFloat(moneyset);
+    moneyBase+=parseFloat(moneybase);
+    arrayHistoryID.push(hisID);
+}
+
+
+    </script>
+
+  @foreach($data1 as $bill)
   
   <tr>
-    <td><input type="checkbox" name="vehicle1" style="width: 30px; height: 30px;"></td>
+     @if($bill->dateset_status ==0)
+    <td><input type="checkbox" id="myCheck" name="vehicle1" onclick="doAlert(this,{{$bill -> moneySet}},{{$bill -> HistoryID}})" ></td>
+    @elseif($bill->dateset_status ==1)
+    <td><input type="checkbox" id="myCheck" name="vehicle1" value="{{$bill -> moneySet+ $bill -> interest_penalty_money }}"  checked disabled></td>
+    @php
+    $moneysum =$bill -> moneySet + $bill -> interest_penalty_money;
+    @endphp
+    
+    <script type='text/javascript'> doFire(<?php echo $moneysum ?>,<?php echo $bill -> moneySet ?>,<?php echo $bill -> HistoryID ?>); </script>
+    @endif
     <td>
-    <span class="name">รหัส</span>  <br/>
-    <span class="name">กำหนดชำระ</span>  <br/>
-    <span class="subtext">2562-5-60&emsp;&emsp;&emsp;&emsp;</span>
+    <span class="name">รหัส {{$bill -> HistoryID}}</span>  <br/>
+    <span class="name">กำหนดชำระ </span>  <br/>
+    <span class="subtext">{{$bill -> settlement_date}}&emsp;&emsp;&emsp;&emsp;</span>
   </td>
-    <td><h3 class="mb-1 text-center">จำนวนที่ตองชำระ 50000 </h3></td>
+    @if($bill->dateset_status ==0)
+    <td><h3 class="mb-1 text-center">{{$bill -> moneySet}} บาท </h3></td>
+    @elseif($bill->dateset_status ==1)
+    <td>
+    <span class="name">เลยวันกำหนด </span>  <br/>
+    <span class="name"><h3>รหัส {{$bill -> moneySet}} บาท</span><br/></h3>
+    <span class="name" style="color:red;">ค่าปรับ {{$bill -> interest_penalty_money}}</span>  <br/>
+    </td>
+    @endif
   </tr>
-  
+
+  @endforeach
 </table>
-
-
-
-          <p>&emsp;</p>
-          <div class="text-center">
-          <div class="row align-items-center">
-            <div class="col-9 col-md-11 text-center">
-              <h2 class="mb-1 text-center">จำนวนที่ต้องชำระ 50000 </h2>
-              <h2 class="mb-0 text-center"> </h2>
-              <p>&emsp;</p>
+  <p>&emsp;</p>
+  <div style="text-align: center;">
+  <div class="form-group"  >
+ 
+    <fieldset>
+  
+    
+        <span type="text" class="money" name="something" id="totalMoney">  ss</span>
+        <input type='hidden' id="total_Money" name='totalMoney' value='test' />
+        <input type='hidden' id="Moneybase" name='Moneybase' value='test' />
+        <input type='hidden' id="aryhistoryID" name='aryhistoryID' value='test' />
+        <input type='hidden'  name='loanerID' value='{{$view->LoanerID}}' />
+        
+        <span class="bath">บาท</span>
+    </fieldset>
+  
+             
+  </div>
+  <p>&emsp;</p>
               <button type="submit" class="btn btn-warning" name="Accept" style="background-color:#33BC40">
-                            ยอมรับ
+                            ชำระเงิน
                       </button>
-            </div>
-          </div>
+
+          
                       
                       </div>
-
-
-             
-
-
         </div>
       </div>
     </div>
   </div>
   </from>
 </div>
+<script>
+
+function doAlert(checkboxElem,moneyset,hisID) {
+  
+    if (checkboxElem.checked) {
+        money += moneyset;
+        moneyBase+=moneyset;
+        arrayHistoryID.push(hisID);
+    } else {
+      money -= moneyset;
+      moneyBase-=moneyset;
+      const index = arrayHistoryID.indexOf(hisID);
+      if (index > -1) {
+        arrayHistoryID.splice(index, 1);
+}
+    }
+    document.getElementById("totalMoney").innerHTML ="ยอดที่ต้องชำระ : "+ money;
+    document.getElementById("total_Money").value = money;
+    document.getElementById("Moneybase").value = moneyBase;
+    document.getElementById("aryhistoryID").value = arrayHistoryID;
+    console.log(arrayHistoryID);
+}
+    
+    document.getElementById("totalMoney").innerHTML ="ยอดที่ต้องชำระ : "+ money ;
+    document.getElementById("total_Money").value = money;
+    document.getElementById("Moneybase").value = moneyBase;
+    document.getElementById("aryhistoryID").value = arrayHistoryID;
+
+</script>
+
+<?php 
+$sql="SELECT * FROM historydetailbill WHERE BorrowDetailID = $view->BorrowDetailID";
+$datahis = DB::select($sql);
+?>
 
 
-<!-- EndBorrowlist -->
 
-<!-- EndCriterion -->
+<div class="modal fade" id="his" tabindex="-1" role="dialog" aria-labelledby="criModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title " id="criModalLabel">สาเหตุ</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="w3-container">
+                                                      <h2>&emsp; ประวัติการกู้</h2>
+                                                      <table class="w3-table w3-striped">
+                                                @foreach($datahis as $item)
+                                              
+                                                      
+                                                        <tr>
+                                                          <td style="padding: 5px 5px;" >
+                                                          <div class="pl-3 email">
+                                                           
+                                                          <div>รหัส{{$item->historyDetailID}}</div>
+                                                      
+                                                            <div>วันที่: {{$item->datepaying}}</div>
+                                                            <div>ยอดชำระ: ฿{{$item->money_total}} </div>
+                                   
+                                                      
+                                                          
+                                                          </div>
+                                                          </td>
+                                                       
+                                                          <td>
+                                                            @if($item->status==0)
+                                                            <div style="color : orange;"> รอยืนยัน</div>
+                                                            @elseif($item->status==1)
+                                                            <div style="color : green;"> ยืนยันแล้ว</div>
+                                                            @elseif($item->status==2)
+                                                            <div style="color : red;"> ยกเลิกแล้ว</div>
+                                                            @endif
+                                                            
+                                                        </td>
+                                                        <td> 
+                                                        @if($item->status==0)
+                                                        
+                                                            <div><button  style="background-color: #008CBA;color:#FFFFFF;" data-toggle="modal" data-target="#hisDetailna{{$item->historyDetailID}}" type="button" >ตรวจสอบ</button></div>
+                                                            @elseif($item->status==1)
+                                                          
+                                                            <div><button  style="background-color: #008CBA;color:#FFFFFF;" data-toggle="modal" data-target="#hisDetailna{{$item->historyDetailID}}" type="button" >ตรวจสอบ</button></div>
+                                                            @elseif($item->status==2)
+                                                  
+                                                            @endif
+                                                        </td>
+                                                        </tr>
+  
+<!-- model -->
+<div class="modal fade" id="hisDetailna{{$item->historyDetailID}}" tabindex="-1" role="dialog" aria-labelledby="criModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title " id="criModalLabel">ใบเสร็จยืนยัน</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                
+                                <!-- Code PHP-->
+                                <?php
+                                 $sql="SELECT * FROM historydetailbill WHERE historyDetailID = $item->historyDetailID";
+                                 $data1 = DB::Select($sql)[0];
+                         
+                                 date_default_timezone_set('Asia/Bangkok');
+                                 $datenow = date($data1->datepaying);
+                                 $sql="SELECT history.*, IF(settlement_date < '$datenow', '1', '0') as dateset_status,
+                                 ROUND(( (borrowdetail.Principle+(borrowdetail.Principle*(borrowdetail.Interest/100)))/borrowdetail.instullment_total ),2) as moneySet,
+                                 ROUND(( ((borrowdetail.Principle+(borrowdetail.Principle*(borrowdetail.Interest/100)))/borrowdetail.instullment_total*(borrowdetail.Interest_penalty/100)) ),2) as interest_penalty_money
+                                 FROM history 
+                                 INNER JOIN borrowdetail ON borrowdetail.BorrowDetailID = history.BorrowDetailID 
+                                 WHERE  history.historyDetailID = $item->historyDetailID ";
+                                 $datahistory = DB::select($sql);
+                                 $i =1;
+                                ?>
+                                <!-- End Code PHP-->
+
+                                              <div class="modal-body">
+                                            
+                                                
+                                                @foreach($datahistory as $itembill)
+                                                
+                                                <div class="row">
+                                                          <div class="col-lg-5">
+                                                              <h3><label class="card-title col-md-11 col-form-label text-md-center">งวดชำระที่ {{$i}}</label></h3> 
+                                                          </div>
+                                                          <div class="col-md-6">
+                                                            <div class="input-group"> 
+                                                              <div class="form-control text-center">
+                                                                <span>รหัส {{$itembill-> HistoryID}}</span>
+                                                                <span>งวดที่ {{$itembill-> settlement_date}}</span> 
+                                                              </div>
+                                                            </div>     
+                                                          </div>   
+                                                  </div>
+                                                          <?php $i=$i+1; ?>
+                                                @endforeach
+                        
+                                                      <div class="row">
+                                                          <div class="col-lg-5">
+                                                             <h3><label class="card-title col-md-11 col-form-label text-md-center">วันที่ชำระ</label></h3> 
+                                                          </div>
+                                                          <div class="col-md-6">
+                                                            <div class="input-group">
+                                                              <span class="form-control text-center" type="text" >{{$item-> datepaying}}</span>
+                                                               </div>     
+                                                            </div>   
+                                                      </div>
+                                                      <div class="row">
+                                                          <div class="col-lg-5">
+                                                             <h3><label class="card-title col-md-11 col-form-label text-md-center">ยอดชำระ</label></h3> 
+                                                          </div>
+                                                          <div class="col-md-6">
+                                                            <div class="input-group">
+                                                            <span class="form-control text-center" type="text" >฿ {{$item-> money}}</span>
+                                                               </div>     
+                                                            </div>   
+                                                      </div>
+                                                      <div class="row">
+                                                          <div class="col-lg-5">
+                                                          <h3><label class="card-title col-md-11 col-form-label text-md-center">ค่าปรับ</label></h3>   
+                                                          </div>
+                                                          <div class="col-md-6">
+                                                            <div class="input-group">
+                                                            <span class="form-control text-center" type="text" >฿ {{($item-> money_total) - ($item-> money)}}</span>
+                                
+                                                              </div>   
+                                                            </div>    
+                                                      </div>
+                                                      <div class="row">
+                                                          <div class="col-lg-5">
+                                                          <h3><label class="card-title col-md-12 col-form-label text-md-center">ยอดชำระรวม</label></h3>   
+                                                          </div>
+                                                          <div class="col-md-6">
+                                                            <div class="input-group">
+                                                            <span class="form-control text-center" type="text" >฿ {{$item-> money_total}}</span>
+                                                              </div>   
+                                                            </div>     
+                                                      </div>
+                                                      <div class="row">
+                                                          <div class="col-lg-5">
+                                                          <h3><label class="card-title col-md-11 col-form-label text-md-center">ใบเสร็จยืนยัน</label></h3>   
+                                                          </div>
+                                                          <div class="col-md-6">
+                                                            <div class="input-group">
+                                                            <img src="{{ url('/') }}/assets/uploadfile/Borrower/payment/{{$item-> imageBill}}" width='250px' height='400px'>
+                                                              </div>   
+                                                            </div>    
+                                                      </div>
+                                                  
+                                               
+                                                
+                                            </div>
+                                </div>
+                          </div>
+                    </div>
+<!-- model -->
+                                                        @endforeach
+                                                      </table>
+                                                    </div>
+                                                    </form>
+                                </div>
+                          </div>
+                    </div>
 
 
-<!-- Request -->
 
-<!-- EndCriterion -->
+
+
+
+
+
+
+
+
 @endsection

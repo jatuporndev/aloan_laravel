@@ -81,7 +81,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
 Route::prefix('loaner')->name('loaner.')->group(function(){
        
    Route::middleware(['guest:loaner','PreventBackHistory'])->group(function(){
-          Route::view('/login','dashboard.loaner.login')->name('login');
+          Route::get('/login',[BorrowerController::class,'gomulti'])->name('login');
           Route::view('/register','dashboard.loaner.register')->name('register');
           Route::post('/create',[LoanerController::class,'create'])->name('create');
           Route::post('/check',[LoanerController::class,'check'])->name('check');
@@ -127,7 +127,7 @@ Route::prefix('loaner')->name('loaner.')->group(function(){
 Route::prefix('borrower')->name('borrower.')->group(function(){
 
     Route::middleware(['guest:borrower','PreventBackHistory'])->group(function(){
-            Route::view('/login','dashboard.borrower.login')->name('login');
+            Route::get('/login',[BorrowerController::class,'gomulti'])->name('login');
             Route::view('/register','dashboard.borrower.register')->name('register');
             Route::post('/create',[BorrowerController::class,'create'])->name('create');
             Route::post('/check',[BorrowerController::class,'check'])->name('check');
@@ -149,6 +149,8 @@ Route::prefix('borrower')->name('borrower.')->group(function(){
             Route::get('/menu2Detail/{RequestID}',[BorrowerRequestController::class,'viewConfirmedDetail'])->name('menu2Detail');
             Route::post('/updateAccept/{id}',[BorrowerRequestController::class,'updateAccept'])->name('updateAccept');
             Route::get('/menu3Detail/{BorrowDetailID}',[BorrowerBorrowDetailController::class,'ManuPaydetail'])->name('menu3Detail');
+            Route::post('/payment/{BorrowDetailID}',[BorrowerBorrowDetailController::class,'payment'])->name('payment');
+            Route::post('/crateHistoryBill/{BorrowDetailID}',[BorrowerBorrowDetailController::class,'crateHistoryBill'])->name('crateHistoryBill');
 
         });
 
