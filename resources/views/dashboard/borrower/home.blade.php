@@ -42,9 +42,9 @@
               @foreach($dataloaner as $show)
 
               <div class="col-xl-4 col-md-6">
-              <div class="card" style="width: 18rem;">
+              <div class="card">
               <div class="row justify-content-center">
-              <a href="#">
+              <a href="borrower/viewborrower/{{$show->LoanerID}}">
               <img class="rounded-circle" src="{{ url('/') }}/assets/uploadfile/Loaner/profile/{{ $show->imageProfile }}" alt="image profile" width='100px' height='100px'>
               </a>  
               </div>

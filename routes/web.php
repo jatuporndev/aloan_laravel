@@ -85,6 +85,9 @@ Route::prefix('loaner')->name('loaner.')->group(function(){
 
     Route::middleware(['auth:loaner','PreventBackHistory'])->group(function(){
           Route::view('/home','dashboard.loaner.home')->name('home');
+          Route::get('/profile',[LoanerController::class,'profile'])->name('profile');
+          Route::post('update-profile-info',[LoanerController::class,'updateInfo'])->name('loanerUpdateInfo');
+          Route::post('change-profile-picture',[LoanerController::class,'updatePicture'])->name('loanerUpdatePicture');
           Route::view('/menu','dashboard.loaner.menu')->name('menu');
           Route::view('/menu2','dashboard.loaner.menu2')->name('menu2');
           Route::view('/menu3','dashboard.loaner.menu3')->name('menu3');
@@ -131,6 +134,9 @@ Route::prefix('borrower')->name('borrower.')->group(function(){
 
      Route::middleware(['auth:borrower','PreventBackHistory'])->group(function(){
             Route::view('/home','dashboard.borrower.home')->name('home');
+            Route::get('/profile',[BorrowerController::class,'profile'])->name('profile');
+            Route::post('update-profile-info',[BorrowerController::class,'updateInfo'])->name('borrowerUpdateInfo');
+            Route::post('change-profile-picture',[BorrowerController::class,'updatePicture'])->name('borrowerUpdatePicture');
             Route::view('/menu1','dashboard.borrower.menu1')->name('menu1');
             Route::post('logout',[BorrowerController::class,'logout'])->name('logout');
 

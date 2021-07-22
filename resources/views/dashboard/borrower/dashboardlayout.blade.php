@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Borrower Dashboard</title>
   <base href="{{ \URL::to('/')}}">
   <!-- Favicon -->
@@ -16,6 +17,7 @@
   <!-- Page plugins -->
   <!-- Argon CSS -->
   <link rel="stylesheet" href="assets/css/argon.css?v=1.2.0" type="text/css">
+  <link rel="stylesheet" href="assets/ijaboCroptool/ijaboCropTool.min.css" type="text/css">
 </head>
 
 <body>
@@ -39,35 +41,36 @@
                 <i class="ni ni-tv-2 text-primary"></i>
                 <span class="nav-link-text">หน้าแรก</span>
               </a>
+            </li>
               <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="ni ni-planet text-orange"></i>  
              รายการ</a>
             
             <div class="dropdown-menu" aria-labelledby="dropdown">
-            <a class="dropdown-item"  href="{{ route('borrower.menu1') }}" is class="nav-link {{ (request()->is('borrower.menu1')) ? 'active' : ''}}"> <i class="ni ni-send text-default"></i> คำขอ</a>
-            <a class="dropdown-item"  href="{{ route('loaner.menu2') }}" is class="nav-link {{ (request()->is('loaner/menu2*')) ? 'active' : ''}}"> <i class="ni ni-ui-04 text-danger"></i>  รอโอนเงิน</a>
-            <a class="dropdown-item"  href="{{ route('loaner.menu3') }}" is class="nav-link {{ (request()->is('loaner/menu3*')) ? 'active' : ''}}"> <i class="ni ni-time-alarm text-yellow"></i>  รอชำระ</a>
-            <a class="dropdown-item"  href="{{ route('loaner.menu4') }}" is class="nav-link {{ (request()->is('loaner/menu4*')) ? 'active' : ''}}"> <i class="ni ni-check-bold text-success"></i>  สำเร็จ</a>
-            <a class="dropdown-item"  href="{{ route('loaner.menu5') }}" is class="nav-link {{ (request()->is('loaner/menu5*')) ? 'active' : ''}}"> <i class="ni ni-fat-remove text-red"></i>  ไม่สำเร็จ</a>
+            <a class="dropdown-item"  href="{{ route('borrower.menu1') }}" is class="nav-link {{ (request()->is('borrower.menu1')) ? 'active' : ''}}"> <i class="ni ni-send text-default"></i>รอยืนยัน</a>
+            <a class="dropdown-item"  href="{{ route('loaner.menu2') }}" is class="nav-link {{ (request()->is('loaner/menu2*')) ? 'active' : ''}}"> <i class="ni ni-ui-04 text-danger"></i>ที่ยืนยันแล้ว</a>
+            <a class="dropdown-item"  href="{{ route('loaner.menu3') }}" is class="nav-link {{ (request()->is('loaner/menu3*')) ? 'active' : ''}}"> <i class="ni ni-time-alarm text-yellow"></i>ที่ต้องชำระ</a>
+            <a class="dropdown-item"  href="{{ route('loaner.menu4') }}" is class="nav-link {{ (request()->is('loaner/menu4*')) ? 'active' : ''}}"> <i class="ni ni-check-bold text-success"></i>สำเร็จ</a>
+            <a class="dropdown-item"  href="{{ route('loaner.menu5') }}" is class="nav-link {{ (request()->is('loaner/menu5*')) ? 'active' : ''}}"> <i class="ni ni-fat-remove text-red"></i>ไม่สำเร็จ</a>
             </div>
             </li>
             <li class="nav-item">
             <a href="#" is class="nav-link {{ (request()->is('admin/borrowermanage*')) ? 'active' : ''}}">
                 <i class="ni ni-pin-3 text-primary"></i>
-                <span class="nav-link-text">Something</span>
+                <span class="nav-link-text">รายการโปรด</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="examples/profile.html">
+            <a href="{{ route('borrower.profile') }}" is class="nav-link {{ (request()->is('borrower/profile*')) ? 'active' : ''}}">
                 <i class="ni ni-single-02 text-yellow"></i>
-                <span class="nav-link-text">Profile</span>
+                <span class="nav-link-text">ข้อมูลโปรไฟล์</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ route('borrower.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                 <i class="ni ni-bullet-list-67 text-default"></i>
-                <span class="nav-link-text">Logout</span>
+                <span class="nav-link-text">ออกจากระบบ</span>
               </a>
               <form action="{{ route('borrower.logout') }}" method="post" class="d-none" id="logout-form">@csrf</form>
             </li>
@@ -134,7 +137,7 @@
          
                 <div class="media align-items-center">
                    <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src="{{ url('/') }}/assets/uploadfile/Borrower/profile/{{ Auth::guard('borrower')->user()->imageProfile }}">
+                    <img alt="Image placeholder" src="{{ url('/') }}/assets/uploadfile/Borrower/profile/{{ Auth::guard('borrower')->user()->imageProfile }}" class="borrower_picture">
                   </span> 
                   <div class="media-body  ml-2  d-none d-lg-block">
                     <span class="mb-0 text-sm  font-weight-bold" style="color:white">{{ Auth::guard('borrower')->user()->firstname }}</span>
@@ -170,6 +173,7 @@
   
   <script src="assets/js/argon.js?v=1.2.0"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="assets/ijaboCroptool/ijaboCropTool.min.js"></script>
   @if (Session::has('success'))
       <script>
           swal("Success!","{!! Session::get('success') !!}","success",{
@@ -184,6 +188,74 @@
         });             
       </script>
   @endif
+
+  <script>
+  $.ajaxSetup({
+     headers:{
+       'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+     }
+  });
+  
+  $(function(){
+    
+      $('#UpdateInfo').on('submit', function(e){
+          e.preventDefault();
+
+          $.ajax({
+                      url:$(this).attr('action'),
+                      method:$(this).attr('method'),
+                      data:new FormData(this),
+                      processData:false,
+                      dataType:'json',
+                      contentType:false,
+                      beforeSend:function(){
+                          $(document).find('span.error-text').text('');
+                      },
+                      success:function(data){
+                          if(data.status == 0){
+                              $.each(data.error, function(prefix, val){
+                                  $('span.'+prefix+'_error').text(val[0]);
+                              });
+                          }else{
+                            $('.phonee').each(function(){
+                              $(this).html( $('#UpdateInfo').find( $('input[name="phone"]') ).val() );
+                            });
+                            $('.LineIDD').each(function(){
+                              $(this).html( $('#UpdateInfo').find( $('input[name="LineID"]') ).val() );
+                            });
+                              swal("Success!",data.msg,"success",{
+                              button:"OK",
+                              });  
+                          }
+                      }
+                  });
+      });
+
+      $(document).on('click','#change_picture_btn', function(){
+          $('#borrower_image').click();
+      });
+
+      $('#borrower_image').ijaboCropTool({
+          preview : '.borrower_picture',
+          setRatio:1,
+          allowedExtensions: ['jpg', 'jpeg','png'],
+          buttonsText:['CROP','QUIT'],
+          buttonsColor:['#30bf7d','#ee5155', -15],
+          processUrl:'{{ route("borrower.borrowerUpdatePicture") }}',
+          // withCSRF:['_token','{{ csrf_token() }}'],
+          onSuccess:function(message, element, status){
+            swal("Success!",message,"success",{
+                  button:"OK",
+                  }); 
+          },
+          onError:function(message, element, status){
+            alert(message);
+          }
+       });
+
+  });
+
+  </script>
 </body>
 
 </html>

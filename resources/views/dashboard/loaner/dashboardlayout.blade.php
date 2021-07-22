@@ -47,7 +47,7 @@
             <i class="ni ni-planet text-orange"></i>  
              รายการ</a>
             
-            <div class="dropdown-menu" aria-labelledby="dropdown">
+            <div class="dropdown-menu">
             <a class="dropdown-item"  href="{{ route('loaner.requestMenu1')}}" is class="nav-link {{ (request()->is('loaner/requestMenu1*')) ? 'active' : ''}}"> <i class="ni ni-send text-default"></i>คำขอ</a>
             <a class="dropdown-item"  href="{{ route('loaner.menu2') }}" is class="nav-link {{ (request()->is('loaner/menu2*')) ? 'active' : ''}}"> <i class="ni ni-ui-04 text-danger"></i>  รอโอนเงิน</a>
             <a class="dropdown-item"  href="{{ route('loaner.menu3') }}" is class="nav-link {{ (request()->is('loaner/menu3*')) ? 'active' : ''}}"> <i class="ni ni-time-alarm text-yellow"></i>  รอชำระ</a>
@@ -245,44 +245,6 @@
                       }
                   });
               });
-
-              // $("#UpdateCri").on('submit', function(e){
-              //     e.preventDefault();
-          
-              //     $.ajax({
-              //         url:$(this).attr('action'),
-              //         method:$(this).attr('method'),
-              //         data:new FormData(this),
-              //         processData:false,
-              //         dataType:'json',
-              //         contentType:false,
-              //         beforeSend:function(){
-              //             $(document).find('span.error-text').text('');
-              //         },
-              //         success:function(data){
-              //             if(data.status == 0){
-              //                 $.each(data.error, function(prefix, val){
-              //                     $('span.'+prefix+'_error').text(val[0]);
-              //                 });
-              //             }else{
-              //               $('.money_maxx').each(function(){
-              //                 $(this).html( $('#UpdateCriTable').find( $('input[name="money_max"]') ).val() );
-              //               });
-              //               $('.instullment_maxx').each(function(){
-              //                 $(this).html( $('#UpdateCriTable').find( $('input[name="instullment_max"]') ).val() );
-              //               });
-              //                 swal("Success!",data.msg,"success",{
-              //                 button:"OK",
-              //                 })
-              //                 .then((value) => {
-              //                   $('#criModal').modal('hide');
-                                
-              //                 }); 
-                              
-              //             }
-              //         }
-              //     });
-              // });
   });
 
 

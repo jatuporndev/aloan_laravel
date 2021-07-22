@@ -108,5 +108,82 @@ class BorrowerController extends Controller
         Auth::guard('borrower')->logout();
         return redirect('/');
         }
+
+    function profile(){
+        
+            return view('dashboard.borrower.profile');
+        }
+
+     function updateInfo(Request $request){
+
+        
+        $validator = \Validator::make($request->all(),[
+            'email'=> 'required|email',
+            'salary'=>'required|integer',
+            'married'=>'required',
+            'job'=>'required',
+            'phone'=>'required',
+            'LineID'=>'required',
+            'address'=>'required',
+            'bank'=>'required',
+            'IDBank'=>'required',
+
+        ]);
+
+        if(!$validator->passes()){
+            return response()->json(['status'=>0, 'error'=>$validator->errors()->toArray()]);
+        }else{
+            
+            $query = Borrowers::find(Auth::guard('borrower')->user()->BorrowerID)->update([
+                  'email'=>$request->email,
+                  'salary'=>$request->salary,
+                  'married'=>$request->married,
+                  'job'=>$request->job,
+                  'phone'=>$request->phone,
+                  'LineID'=>$request->LineID,
+                  'address'=>$request->address,
+                  'IDBank'=>$request->IDBank,
+                
+             ]);
+
+            if(!$query){
+                 return response()->json(['status'=>0,'msg'=>'Something went wrong.']);
+             }else{
+                 return response()->json(['status'=>1,'msg'=>'อัปเดตข้อมูลสำเร็จ']);
+             }
+        
+        }
+     }  
+     
+     function updatePicture(Request $request){
+        $path = 'assets/uploadfile/Borrower/profile/';
+        $file = $request->file('borrower_image');
+        $new_name = 'UIMG_'.date('Ymd').uniqid().'.jpg';
+
+        //Upload new image
+        $upload = $file->move(public_path($path), $new_name);
+        
+        if( !$upload ){
+            return response()->json(['status'=>0,'msg'=>'Something went wrong, upload new picture failed.']);
+        }else{
+            //Get Old picture
+            $oldPicture = Borrowers::find(Auth::guard('borrower')->user()->BorrowerID)->getAttributes()['imageProfile'];
+
+            if( $oldPicture != '' ){
+                if( \File::exists(public_path($path.$oldPicture))){
+                    \File::delete(public_path($path.$oldPicture));
+                }
+            }
+
+            //Update DB
+            $update = Borrowers::find(Auth::guard('borrower')->user()->BorrowerID)->update(['imageProfile'=>$new_name]);
+
+            if( !$upload ){
+                return response()->json(['status'=>0,'msg'=>'Something went wrong, updating picture in db failed.']);
+            }else{
+                return response()->json(['status'=>1,'msg'=>'อัปเดตรูปโปรไฟล์สำเร็จ']);
+            }
+        }
+    }
            
 }
