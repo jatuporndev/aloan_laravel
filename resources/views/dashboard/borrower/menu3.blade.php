@@ -34,10 +34,7 @@
     $data = DB::select($sql);
 ?>
 
-
-	<p style="padding-top: 100px;"></p>
-
-    <div class="container-fluid mt--7">
+   <div class="container-fluid mt--4">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="table-wrap">
@@ -48,7 +45,7 @@
                   <th>&emsp;คำขอ</th>
 						      <th>&emsp;รายละเอียด</th>
 						      <th>&emsp;สถานะ</th>
-						      <th></th>
+						      <th>Action</th>
 						    </tr>
 						  </thead>
 						  <tbody>

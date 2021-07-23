@@ -17,6 +17,7 @@
   <!-- Page plugins -->
   <!-- Argon CSS -->
   <link rel="stylesheet" href="assets/css/argon.css?v=1.2.0" type="text/css">
+  <link rel="stylesheet" href="assets/ijaboCroptool/ijaboCropTool.min.css" type="text/css">
 </head>
 
 <body>
@@ -49,22 +50,16 @@
             
             <div class="dropdown-menu">
             <a class="dropdown-item"  href="{{ route('loaner.requestMenu1')}}" is class="nav-link {{ (request()->is('loaner/requestMenu1*')) ? 'active' : ''}}"> <i class="ni ni-send text-default"></i>คำขอ</a>
-            <a class="dropdown-item"  href="{{ route('loaner.menu2') }}" is class="nav-link {{ (request()->is('loaner/menu2*')) ? 'active' : ''}}"> <i class="ni ni-ui-04 text-danger"></i>  รอโอนเงิน</a>
-            <a class="dropdown-item"  href="{{ route('loaner.menu3') }}" is class="nav-link {{ (request()->is('loaner/menu3*')) ? 'active' : ''}}"> <i class="ni ni-time-alarm text-yellow"></i>  รอชำระ</a>
-            <a class="dropdown-item"  href="{{ route('loaner.menu4') }}" is class="nav-link {{ (request()->is('loaner/menu4*')) ? 'active' : ''}}"> <i class="ni ni-check-bold text-success"></i>  สำเร็จ</a>
-            <a class="dropdown-item"  href="{{ route('loaner.menu5') }}" is class="nav-link {{ (request()->is('loaner/menu5*')) ? 'active' : ''}}"> <i class="ni ni-fat-remove text-red"></i>  ไม่สำเร็จ</a>
+            <a class="dropdown-item"  href="{{ route('loaner.menu2') }}" is class="nav-link {{ (request()->is('loaner/menu2*')) ? 'active' : ''}}"> <i class="ni ni-ui-04 text-danger"></i>รอโอนเงิน</a>
+            <a class="dropdown-item"  href="{{ route('loaner.menu3') }}" is class="nav-link {{ (request()->is('loaner/menu3*')) ? 'active' : ''}}"> <i class="ni ni-time-alarm text-yellow"></i>รอชำระ</a>
+            <a class="dropdown-item"  href="{{ route('loaner.menu4') }}" is class="nav-link {{ (request()->is('loaner/menu4*')) ? 'active' : ''}}"> <i class="ni ni-check-bold text-success"></i>สำเร็จ</a>
+            <a class="dropdown-item"  href="{{ route('loaner.menu5') }}" is class="nav-link {{ (request()->is('loaner/menu5*')) ? 'active' : ''}}"> <i class="ni ni-fat-remove text-red"></i>ไม่สำเร็จ</a>
             </div>
             </li>
             <li class="nav-item">
-            <a href="#" is class="nav-link {{ (request()->is('admin/borrowermanage*')) ? 'active' : ''}}">
-                <i class="ni ni-pin-3 text-primary"></i>
-                <span class="nav-link-text">Borrower Request</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
+            <a href="{{ route('loaner.profile') }}" is class="nav-link {{ (request()->is('loaner/profile*')) ? 'active' : ''}}">
                 <i class="ni ni-single-02 text-yellow"></i>
-                <span class="nav-link-text">Profile</span>
+                <span class="nav-link-text">ข้อมูลโปรไฟล์</span>
               </a>
             </li>
             <li class="nav-item">
@@ -138,7 +133,7 @@
               
                 <div class="media align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="{{ url('/') }}/assets/uploadfile/Loaner/profile/{{ Auth::guard('loaner')->user()->imageProfile }}">
+                  <img alt="Image placeholder" src="{{ url('/') }}/assets/uploadfile/Loaner/profile/{{ Auth::guard('loaner')->user()->imageProfile }}" class="loaner_picture">
                   </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
                     <span class="mb-0 text-sm font-weight-bold" style="color:white">{{ Auth::guard('loaner')->user()->firstname }}</span>
@@ -173,6 +168,7 @@
   <!-- Argon JS -->
   <script src="assets/js/argon.js?v=1.2.0"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="assets/ijaboCroptool/ijaboCropTool.min.js"></script>
   @if (Session::has('success'))
       <script>
           swal("Success!","{!! Session::get('success') !!}","success",{
@@ -245,6 +241,62 @@
                       }
                   });
               });
+
+
+          $('#UpdateInfo').on('submit', function(e){
+          e.preventDefault();
+
+          $.ajax({
+                      url:$(this).attr('action'),
+                      method:$(this).attr('method'),
+                      data:new FormData(this),
+                      processData:false,
+                      dataType:'json',
+                      contentType:false,
+                      beforeSend:function(){
+                          $(document).find('span.error-text').text('');
+                      },
+                      success:function(data){
+                          if(data.status == 0){
+                              $.each(data.error, function(prefix, val){
+                                  $('span.'+prefix+'_error').text(val[0]);
+                              });
+                          }else{
+                            $('.phonee').each(function(){
+                              $(this).html( $('#UpdateInfo').find( $('input[name="phone"]') ).val() );
+                            });
+                            $('.LineIDD').each(function(){
+                              $(this).html( $('#UpdateInfo').find( $('input[name="LineID"]') ).val() );
+                            });
+                              swal("Success!",data.msg,"success",{
+                              button:"OK",
+                              });  
+                          }
+                      }
+                  });
+      });
+
+      $(document).on('click','#change_picture_btn', function(){
+          $('#loaner_image').click();
+      });
+
+      $('#loaner_image').ijaboCropTool({
+          preview : '.loaner_picture',
+          setRatio:1,
+          allowedExtensions: ['jpg', 'jpeg','png'],
+          buttonsText:['CROP','QUIT'],
+          buttonsColor:['#30bf7d','#ee5155', -15],
+          processUrl:'{{ route("loaner.loanerUpdatePicture") }}',
+          // withCSRF:['_token','{{ csrf_token() }}'],
+          onSuccess:function(message, element, status){
+            swal("Success!",message,"success",{
+                  button:"OK",
+                  }); 
+          },
+          onError:function(message, element, status){
+            alert(message);
+          }
+       });
   });
 
 

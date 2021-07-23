@@ -57,5 +57,13 @@ class Loaners extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getPictureAttributes($value){
+        if($value){
+            return asset('assets/uploadfile/Loaner/profile/'.$value);
+        }else{
+            return asset('assets/uploadfile/Loaner/profile/no-image.png');
+        }
+    }
     
 }

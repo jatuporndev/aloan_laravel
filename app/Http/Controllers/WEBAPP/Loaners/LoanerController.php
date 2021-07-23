@@ -155,7 +155,6 @@ class LoanerController extends Controller
     
     $validator = \Validator::make($request->all(),[
         'email'=> 'required|email',
-        'salary'=>'required|integer',
         'married'=>'required',
         'job'=>'required',
         'phone'=>'required',
@@ -170,7 +169,7 @@ class LoanerController extends Controller
         return response()->json(['status'=>0, 'error'=>$validator->errors()->toArray()]);
     }else{
         
-        $query = Borrowers::find(Auth::guard('borrower')->user()->BorrowerID)->update([
+        $query = Loaners::find(Auth::guard('loaner')->user()->LoanerID)->update([
               'email'=>$request->email,
               'salary'=>$request->salary,
               'married'=>$request->married,
@@ -192,8 +191,8 @@ class LoanerController extends Controller
  }  
  
  function updatePicture(Request $request){
-    $path = 'assets/uploadfile/Borrower/profile/';
-    $file = $request->file('borrower_image');
+    $path = 'assets/uploadfile/Loaner/profile/';
+    $file = $request->file('loaner_image');
     $new_name = 'UIMG_'.date('Ymd').uniqid().'.jpg';
 
     //Upload new image
@@ -203,7 +202,7 @@ class LoanerController extends Controller
         return response()->json(['status'=>0,'msg'=>'Something went wrong, upload new picture failed.']);
     }else{
         //Get Old picture
-        $oldPicture = Borrowers::find(Auth::guard('borrower')->user()->BorrowerID)->getAttributes()['imageProfile'];
+        $oldPicture = Loaners::find(Auth::guard('loaner')->user()->LoanerID)->getAttributes()['imageProfile'];
 
         if( $oldPicture != '' ){
             if( \File::exists(public_path($path.$oldPicture))){
@@ -212,7 +211,7 @@ class LoanerController extends Controller
         }
 
         //Update DB
-        $update = Borrowers::find(Auth::guard('borrower')->user()->BorrowerID)->update(['imageProfile'=>$new_name]);
+        $update = Loaners::find(Auth::guard('loaner')->user()->LoanerID)->update(['imageProfile'=>$new_name]);
 
         if( !$upload ){
             return response()->json(['status'=>0,'msg'=>'Something went wrong, updating picture in db failed.']);

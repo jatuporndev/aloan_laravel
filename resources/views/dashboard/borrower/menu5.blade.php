@@ -21,8 +21,6 @@
 </div>
 </div>
 <link rel="stylesheet" href="assets/css/style.css" type="text/css">
-<p style="padding-top: 100px;"></p>
-
 
     <?php
     $BorrowerID = Auth::guard('borrower')->user()->BorrowerID;
@@ -35,7 +33,7 @@
         $post = DB::select($sql); 
     ?>
 
-		<div class="container-fluid mt--7">
+		<div class="container-fluid mt--4">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="table-wrap">

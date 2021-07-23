@@ -56,7 +56,7 @@
             </div>
             </li>
             <li class="nav-item">
-            <a href="#" is class="nav-link {{ (request()->is('admin/borrowermanage*')) ? 'active' : ''}}">
+            <a href="{{ route('borrower.pin') }}" is class="nav-link {{ (request()->is('borrower/pin*')) ? 'active' : ''}}">
                 <i class="ni ni-pin-3 text-primary"></i>
                 <span class="nav-link-text">รายการโปรด</span>
               </a>

@@ -55,9 +55,9 @@
                                     <h2 class="mb-0">วงเงินและอัตราดอกเบี้ยของคุณ </h2>
                                   </div>
                                   @if( $databorrowlist -> status==0 )
-                             <a class="text-right"  href="{{ route('loaner.setpublic',['id' =>$id,'status'=>1]) }}"> <i class="ni ni-planet text-orange"></i>  ปิดอยู่</a>
+                             <a class="text-right"  href="{{ route('loaner.setpublic',['id' =>$id,'status'=>1]) }}"> <i class="ni ni-button-pause text-danger"></i> ปิดอยู่</a>
                              @elseif($databorrowlist -> status==1)
-                             <a class="text-right"   href="{{ route('loaner.setpublic',['id' =>$id,'status'=>0]) }}"> <i class="ni ni-planet text-orange"></i>  เปิดอยู่</a> 
+                             <a class="text-right"   href="{{ route('loaner.setpublic',['id' =>$id,'status'=>0]) }}"> <i class="ni ni-button-play text-success"></i> เปิดอยู่</a> 
      
                              @endif
                              </div>
