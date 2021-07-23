@@ -23,8 +23,8 @@ class ListController extends Controller
             $sql.=" AND borrowlist.interest<=$spinI"; 
         }
         if($search!=""){
-            $sql.="  AND loaners.Firstname LIKE '%$search%' 
-            OR loaners.Lastname LIKE '%$search%' ";
+            $sql.=" AND (loaners.Firstname LIKE '%$search%' 
+            OR loaners.Lastname LIKE '%$search%') ";
         }
        
         $recount=DB::select($sql);         
