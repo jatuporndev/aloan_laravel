@@ -13,6 +13,7 @@ use App\Http\Controllers\WEBAPP\Borrowers\ListController;
 //borrowers
 use App\Http\Controllers\WEBAPP\Borrowers\BorrowerRequestController;
 use App\Http\Controllers\WEBAPP\Borrowers\BorrowerBorrowDetailController;
+use App\Http\Controllers\WEBAPP\Borrowers\ArticleController;
 
 //loaner
 use App\Http\Controllers\WEBAPP\Loaners\LoanerRequestController;
@@ -105,6 +106,7 @@ Route::prefix('loaner')->name('loaner.')->group(function(){
           Route::view('/menu3','dashboard.loaner.menu3')->name('menu3');
           Route::view('/menu4','dashboard.loaner.menu4')->name('menu4');
           Route::view('/menu5','dashboard.loaner.menu5')->name('menu5');
+          Route::view('/article','dashboard.loaner.article')->name('article');
           Route::post('/updateBorrowlist/{id}',[BorrowlistController::class,'update'])->name('updateBorrowlist');
           Route::post('/updateCriterion/{id}',[BorrowlistController::class,'updateCri'])->name('updateCriterion');
           Route::get('/setpublic/{id},{status}',[BorrowlistController::class,'setpublic'])->name('setpublic');
@@ -129,6 +131,9 @@ Route::prefix('loaner')->name('loaner.')->group(function(){
           //history
           Route::post('/confrimBill/{historyDetailID}',[LoanerHistoryController::class,'confrim'])->name('confrimBill');
           Route::post('/cancleBill/{historyDetailID}',[LoanerHistoryController::class,'cancle'])->name('cancleBill');
+
+          //article
+          Route::get('/articledetail/{ArticleID}',[ArticleController::class,'articledetailLoaner'])->name('articledetail');
     });
 
  });
@@ -155,6 +160,7 @@ Route::prefix('borrower')->name('borrower.')->group(function(){
             Route::view('/menu3','dashboard.borrower.menu3')->name('menu3');
             Route::view('/menu4','dashboard.borrower.menu4')->name('menu4');
             Route::view('/menu5','dashboard.borrower.menu5')->name('menu5');
+            Route::view('/article','dashboard.borrower.article')->name('article');
             Route::post('logout',[BorrowerController::class,'logout'])->name('logout');
 
             //request
@@ -166,6 +172,9 @@ Route::prefix('borrower')->name('borrower.')->group(function(){
             Route::get('/menu3Detail/{BorrowDetailID}',[BorrowerBorrowDetailController::class,'ManuPaydetail'])->name('menu3Detail');
             Route::post('/payment/{BorrowDetailID}',[BorrowerBorrowDetailController::class,'payment'])->name('payment');
             Route::post('/crateHistoryBill/{BorrowDetailID}',[BorrowerBorrowDetailController::class,'crateHistoryBill'])->name('crateHistoryBill');
+
+            //article
+            Route::get('/articledetail/{ArticleID}',[ArticleController::class,'articledetail'])->name('articledetail');
 
         });
 
