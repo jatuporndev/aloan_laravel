@@ -75,6 +75,9 @@ Route::prefix('admin')->name('admin.')->group(function(){
           Route::get('/borrowerview/update1/{BorrowerID}', [App\Http\Controllers\WEBAPP\Admin\ManageBorrowerController::class, 'update1']);
           Route::get('/borrowerview/update2/{BorrowerID}', [App\Http\Controllers\WEBAPP\Admin\ManageBorrowerController::class, 'update2']);
           Route::post('/addArticle',[ManageArticleController::class,'add'])->name('addArticle');
+          Route::get('/addArticleDetail/{ArticleID}',[ManageArticleController::class,'articledetail'])->name('addArticleDetail');
+          Route::post('/Deletearticle/{ArticleID}',[ManageArticleController::class,'Deletearticle'])->name('Deletearticle');
+          Route::post('/Updatearticle/{ArticleID}',[ManageArticleController::class,'Update'])->name('Updatearticle');
 
 
           

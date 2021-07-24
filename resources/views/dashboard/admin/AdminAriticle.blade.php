@@ -55,14 +55,14 @@
                    <!-- assets/uploadfile/article/ -->    
                    @foreach($post as $item)           
             <li class="media py-3 px-2" style="border-bottom: solid #DBDBDB;">
-                <a href="/%E2%80%9C%E0%B8%A1%E0%B8%99%E0%B8%B8%E0%B8%A9%E0%B8%A2%E0%B9%8C%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%94%E2%80%9D%20%E0%B9%81%E0%B8%AB%E0%B9%88%E0%B8%87%E0%B8%A8%E0%B8%95%E0%B8%A7%E0%B8%A3%E0%B8%A3%E0%B8%A9%E0%B8%97%E0%B8%B5%E0%B9%88%2021" width="250" height="200">
+                <a href="/admin/addArticleDetail/{{$item->ArticleID}}" width="250" height="200">
                     <img src="{{ url('/') }}/assets/uploadfile/article/{{ $item->image_article}}" width="200" height="170"  data-youtube="" data-no-play="true">
                 </a>
                 <div class="media-body col-9">
                     <h6 class="mt-0 mb-1">
-                        <a  href="/%E2%80%9C%E0%B8%A1%E0%B8%99%E0%B8%B8%E0%B8%A9%E0%B8%A2%E0%B9%8C%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%94%E2%80%9D%20%E0%B9%81%E0%B8%AB%E0%B9%88%E0%B8%87%E0%B8%A8%E0%B8%95%E0%B8%A7%E0%B8%A3%E0%B8%A3%E0%B8%A9%E0%B8%97%E0%B8%B5%E0%B9%88%2021"><h2>{{$item->title}}</h2></a>
+                        <a  href="/admin/addArticleDetail/{{$item->ArticleID}}"><h2>{{$item->title}}</h2></a>
                     </h6>
-                                            <div style= "white-space: pre; width: 100%; height:50px; overflow: hidden; text-overflow: ellipsis; "; >{{$item->detail}}</div>อ่านต่อ...
+                        <div style= "white-space: pre; width: 100%; height:50px; overflow: hidden; text-overflow: ellipsis; " > <?php   $a = strip_tags($item->detail); echo $a ?></div>อ่านต่อ...
                     
         <ul class="posts__meta" style="padding:18px;">
   
