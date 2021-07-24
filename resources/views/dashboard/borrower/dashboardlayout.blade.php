@@ -68,6 +68,12 @@
               </a>
             </li>
             <li class="nav-item">
+            <a href="{{ route('borrower.article') }}" is class="nav-link {{ (request()->is('borrower/article*')) ? 'active' : ''}}">
+                <i class="ni ni-single-02 text-yellow"></i>
+                <span class="nav-link-text">ข่าวสาร</span>
+              </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="{{ route('borrower.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                 <i class="ni ni-bullet-list-67 text-default"></i>
                 <span class="nav-link-text">ออกจากระบบ</span>

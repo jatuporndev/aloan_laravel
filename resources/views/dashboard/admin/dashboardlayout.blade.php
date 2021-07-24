@@ -58,6 +58,13 @@
                 <span class="nav-link-text">Admin</span>
               </a>
             </li>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('admin.AdminAriticle') }}" is class="nav-link {{ (request()->is('admin/AdminAriticle*')) ? 'active' : ''}}">
+              <i class="ni ni-tv-2 text-primary"></i>
+                <span class="nav-link-text">Article</span>
+              </a>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="examples/profile.html">
                 <i class="ni ni-single-02 text-yellow"></i>
