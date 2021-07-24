@@ -27,7 +27,7 @@ class BorrowerRequestController extends Controller
             return redirect()->back()->with('fail','คำขอไม่ตรงเงื่อนไข');    //ถ้าเงินที่ขอหรืองวดที่ขอ เกินเกณฑ์
         }else{
             if($data->check2 =='True'){
-                return redirect()->back()->with('fail','มีคำขออยู่แล้ว'); //ถ้ามีคำขออยู่แล้ว
+                return redirect()->back()->with('fail1','มีคำขออยู่แล้ว'); //ถ้ามีคำขออยู่แล้ว
             }else{
 
         date_default_timezone_set('Asia/Bangkok');

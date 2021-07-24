@@ -7,12 +7,12 @@
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-white d-inline-block mb-0">Borrower</h6>
+              <h6 class="h2 text-white d-inline-block mb-0">Admin</h6>
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{ route('admin.home') }}"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Dashboards</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Borrower</li>
+                  <li class="breadcrumb-item active" aria-current="page">Admin</li>
                 </ol>
               </nav>
             </div>
@@ -33,7 +33,7 @@
           <div class="card">
             <!-- Card header -->
             <div class="card-header border-0">
-              <h3 class="mb-0">Borrower table</h3>
+              <h3 class="mb-0">Admin table</h3>
             </div>
             <div style=" position: absolute;right: 0px;padding: 25px 10px;">   
                  <a data-toggle="modal" data-target="#add" button class="btn btn-info" style="color:#FFFFFF;"  type="button"> +add </a> 

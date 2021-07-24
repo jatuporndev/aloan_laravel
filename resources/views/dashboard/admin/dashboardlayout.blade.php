@@ -53,8 +53,8 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('admin.adminmanage') }}" is class="nav-link {{ (request()->is('admin/adminmanage*')) ? 'active' : ''}}">
-                <i class="ni ni-single-02 text-yellow"></i>
+            <a href="{{ route('admin.adminmanage') }}" is class="nav-link {{ (request()->is('admin/adminmanage*')) ? 'active' : ''}}">
+                <i class="ni ni-circle-08 text-dark"></i>
                 <span class="nav-link-text">Admin</span>
               </a>
             </li>
