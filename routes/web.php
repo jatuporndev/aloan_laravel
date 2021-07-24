@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WEBAPP\Admin\AdminController;
 use App\Http\Controllers\WEBAPP\Admin\ManageLoanerController;
 use App\Http\Controllers\WEBAPP\Admin\ManageBorrowerController;
+use App\Http\Controllers\WEBAPP\Admin\ManageArticleController;
 use App\Http\Controllers\WEBAPP\Loaners\LoanerController;
 use App\Http\Controllers\WEBAPP\Loaners\BorrowlistController;
 use App\Http\Controllers\WEBAPP\Borrowers\BorrowerController;
@@ -60,6 +61,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     Route::middleware(['auth:admins','PreventBackHistory'])->group(function(){
           Route::view('/home','dashboard.admin.home')->name('home');
+          Route::view('/AdminAriticle','dashboard.admin.AdminAriticle')->name('AdminAriticle');
           Route::view('/adminmanage','dashboard.admin.adminmanage')->name('adminmanage');
           Route::post('/create',[AdminController::class,'create'])->name('create');
           Route::post('/logout',[AdminController::class,'logout'])->name('logout');
@@ -72,6 +74,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
           Route::get('/borrowerview/view/{BorrowerID}', [App\Http\Controllers\WEBAPP\Admin\ManageBorrowerController::class, 'view'])->name('borrowerview');
           Route::get('/borrowerview/update1/{BorrowerID}', [App\Http\Controllers\WEBAPP\Admin\ManageBorrowerController::class, 'update1']);
           Route::get('/borrowerview/update2/{BorrowerID}', [App\Http\Controllers\WEBAPP\Admin\ManageBorrowerController::class, 'update2']);
+          Route::post('/addArticle',[ManageArticleController::class,'add'])->name('addArticle');
 
 
           
