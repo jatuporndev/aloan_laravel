@@ -114,6 +114,11 @@ class BorrowerController extends Controller
             return view('dashboard.borrower.profile');
         }
 
+    function pined(){
+        
+        return view('dashboard.borrower.pin');
+        }    
+
      function updateInfo(Request $request){
 
         

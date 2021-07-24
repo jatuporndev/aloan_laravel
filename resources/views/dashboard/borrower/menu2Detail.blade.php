@@ -102,10 +102,10 @@
                          </div>
                       <div class="card-body">
                           <div class="row">
-                              <div class="col-6 col-md-4">
-                                      <h3 class="card-title" >จำนวนเงินที่ส่งคำขอ</h3>
+                              <div class="col-6 col-md-5">
+                                      <h3 class="card-title">จำนวนเงินที่ส่งคำขอ</h3>
                               </div>
-                              <div class="col-6 col-md-4">
+                              <div class="col-6 col-md-3">
                               <p class="font-weight-bold text-center" ></p>    
                            </div>
                            <div class="col-6 col-md-4 ">
@@ -113,10 +113,10 @@
                                   </div>
                            </div>
                            <div class="row">
-                              <div class="col-6 col-md-4">
+                              <div class="col-6 col-md-5">
                                       <h3 class="card-title" >จำนวนงวดที่ส่งคำขอ</h3>
                               </div>
-                              <div class="col-6 col-md-4">
+                              <div class="col-6 col-md-3">
                               <p class="font-weight-bold text-center" ></p>    
                            </div>
                            <div class="col-6 col-md-4 ">
@@ -125,10 +125,10 @@
                                   </div>
                            </div>
                            <div class="row">
-                              <div class="col-6 col-md-4">
+                              <div class="col-6 col-md-5">
                                       <h3 class="card-title">จำนวนเงินที่ผู้กู้ยอมรับ</h3>
                               </div>
-                              <div class="col-6 col-md-4">
+                              <div class="col-6 col-md-3">
                               <p class="font-weight-bold  text-center" ></p>   
                            </div>
                            <div class="col-6 col-md-4 ">
@@ -138,10 +138,10 @@
                            </div>
 
                            <div class="row">
-                              <div class="col-6 col-md-4">
+                              <div class="col-6 col-md-5">
                                       <h3 class="card-title">จำนวนงวดที่ผู้กู้ยอมรับ</h3>
                               </div>
-                              <div class="col-6 col-md-4">
+                              <div class="col-6 col-md-3">
                               <p class="font-weight-bold  text-center" ></p>  
                            </div>
                            <div class="col-6 col-md-4 ">
@@ -157,7 +157,7 @@
                       <button type="submit" class="btn btn-warning" name="UnAccept" style="background-color:#FF0000">
                             ยกเลิก
                       </button>
-                      <button type="submit" class="btn btn-warning" name="Accept" style="background-color:#33BC40">
+                      <button type="submit" class="btn btn-success" name="Accept" style="background-color:#33BC40">
                             ยอมรับ
                       </button>
                       </div>
