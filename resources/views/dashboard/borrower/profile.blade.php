@@ -194,9 +194,12 @@
                       <div class="form-group">
                         <label class="form-control-label">ธนาคาร</label>
                         <select class="form-control" name="bank" id="bank">
-                                <option value="ธนาคารกรุงเทพ"{{ Auth::guard('borrower')->user()->bank =="ธนาคารกรุงเทพ" ? 'selected' : ''}}>ธนาคารกรุงเทพ</option>
-                                <option value="ธนาคารกสิกรไทย"{{ Auth::guard('borrower')->user()->bank =="ธนาคารกสิกรไทย" ? 'selected' : ''}}>ธนาคารกสิกรไทย</option>
+                          <?php   $post = DB::table('banklist')->get(); ?>
+                          @foreach($post as $item)
+                                <option value="{{$item->bankname}}" {{ Auth::guard('borrower')->user()->bank =="$item->bankname" ? 'selected' : ''}}>{{$item->bankname}}</option>
+                          @endforeach
                                 </select>
+                                
                       </div>
                     </div>
                     <div class="col-md-5">

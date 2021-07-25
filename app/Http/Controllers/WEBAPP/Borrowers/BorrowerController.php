@@ -147,6 +147,7 @@ class BorrowerController extends Controller
                   'phone'=>$request->phone,
                   'LineID'=>$request->LineID,
                   'address'=>$request->address,
+                  'bank'=>$request->bank,
                   'IDBank'=>$request->IDBank,
                 
              ]);

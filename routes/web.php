@@ -19,6 +19,7 @@ use App\Http\Controllers\WEBAPP\Borrowers\ArticleController;
 use App\Http\Controllers\WEBAPP\Loaners\LoanerRequestController;
 use App\Http\Controllers\WEBAPP\Loaners\LoanerBorrowDetailController;
 use App\Http\Controllers\WEBAPP\Loaners\LoanerHistoryController;
+use App\Http\Controllers\WEBAPP\Loaners\LoanerBankController;
 
 /*
 |--------------------------------------------------------------------------
@@ -136,6 +137,12 @@ Route::prefix('loaner')->name('loaner.')->group(function(){
 
           //article
           Route::get('/articledetail/{ArticleID}',[ArticleController::class,'articledetailLoaner'])->name('articledetail');
+
+          //bank
+          Route::post('/deleteBank/{bankID}',[LoanerBankController::class,'delete'])->name('deleteBank');
+          Route::post('/addBank/{LoanerID}',[LoanerBankController::class,'create'])->name('addBank');
+
+
     });
 
  });

@@ -196,27 +196,38 @@
                   </tr>
                 </thead>
                 <tbody class="list">
-
+            <?php 
+            $LoanerID =  Auth::guard('loaner')->user()->LoanerID ; 
+            $sql="SELECT * FROM loaner_bank 
+            INNER JOIN banklist ON loaner_bank.banklistID = banklist.banklistID
+            WHERE LoanerID =$LoanerID ORDER BY bankID ";
+         
+            $post=DB::select($sql); 
+              ?>
+              
+              @foreach($post as $item)
                   <tr>
                     <td>
-                    {{ Auth::guard('loaner')->user()->firstname }}         
+                    {{ $item->holderName }}         
                     </td>
 
                     <td>             
-                    {{ Auth::guard('loaner')->user()->IDBank }}                         
+                    {{ $item->bankNumber }}                     
                     </td>
                     
                     <td>
-                    {{ Auth::guard('loaner')->user()->bank }}
-                  </td>
+                    {{ $item->bank }} 
+               
+                    </td>
                     <td>
-                  <a href="" button class="btn btn-danger" type="button"> x </a>
-                    
+                    <form action="{{ route('loaner.deleteBank',['bankID' => $item->bankID]) }}" method="POST">
+                    @csrf
+                    <button   data-method="delete" button class="btn btn-danger" style="color:#FFFFFF;" type="summit">x</button >   
+                    </form>
                     </td>
                     
-                   
                   </tr>
-    
+                @endforeach
                   </tbody>
               </table>
             </div>
@@ -232,7 +243,7 @@
                                                   </button>
                                               </div>
                                               <div class="modal-body">
-                                                <form  action="" method="POST" enctype="multipart/form-data">
+                                                <form  action="{{ route('loaner.addBank',['LoanerID' => Auth::guard('loaner')->user()->LoanerID]) }}" method="POST" enctype="multipart/form-data">
                                                 @csrf
                                                       <div class="row">
                                                           <div class="col-lg-5">
@@ -266,7 +277,7 @@
                                                           </div>
                                                           <div class="col-md-6">
                                                             <div class="input-group">
-                                                              <input class="form-control  text-center" name="" type="text" value=""> 
+                                                              <input class="form-control  text-center" name="bankNumber" type="text" value=""> 
                                                               <span class="text-danger error-text money_max_error"></span> 
                                                               </div>   
                                                             </div>    
@@ -279,7 +290,7 @@
                                                           </div>
                                                           <div class="col-md-6">
                                                             <div class="input-group">
-                                                              <input class="form-control  text-center"  name="" type="text"  value=""> 
+                                                              <input class="form-control  text-center"  name="holderName" type="text"  value=""> 
                                                             
                                                               <span class="text-danger error-text interest_error"></span> 
                                                               </div>   

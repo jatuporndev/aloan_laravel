@@ -6,19 +6,19 @@
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <!-- Search form -->
-          <form class="navbar-search navbar-search-light form-inline mr-sm-3" id="navbar-search-main">
+          <div class="navbar-search navbar-search-light form-inline mr-sm-3" >
             <div class="form-group mb-0">
               <div class="input-group input-group-alternative input-group-merge">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-search"></i></span>
                 </div>
-                <input class="form-control" placeholder="Search" type="text">
+                <input class="form-control" id="Search" onkeyup="myFunction()" placeholder="Search" type="text">
               </div>
             </div>
             <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
-          </form>
+          </div>
           <!-- Navbar links -->
           <ul class="navbar-nav align-items-center  ml-md-auto ">
             <li class="nav-item d-xl-none">
@@ -50,6 +50,7 @@
       </div>
     </nav>
     <!-- Header -->
+ 
     <!-- Header -->
 <div class="header pb-4" style="background: linear-gradient(90deg, rgba(252,176,69,1) 0%, rgba(253,29,29,1) 71%, rgba(131,58,180,1) 100%);"> 
 <div class="header pb-4"  style="background: linear-gradient(90deg, rgba(252,176,69,1) 0%, rgba(253,29,29,1) 71%, rgba(131,58,180,1) 100%);"> 
@@ -71,9 +72,34 @@
     </div>
 </div>
 </div>
+<?php   
+            
+              $sql="SELECT *  FROM borrowlist 
+              INNER JOIN loaners ON loaners.LoanerID  = borrowlist.LoanerID
+              WHERE  borrowlist.status= '1' AND firstname LIKE '%%'";
+              $dataloaner=DB::select($sql);       
+                
+              ?>
+
+           
+<script>
+function myFunction() {
+  var input = document.getElementById("Search");
+  var filter = input.value.toLowerCase();
+  var nodes = document.getElementsByClassName('col-xl-4 col-md-6');
+
+  for (i = 0; i < nodes.length; i++) {
+    if (nodes[i].innerText.toLowerCase().includes(filter)) {
+      nodes[i].style.display = "block";
+    } else {
+      nodes[i].style.display = "none";
+    }
+  }
+}
+</script>
 
         <!-- Page content -->
-    <div class="container-fluid mt--5">
+    <div class="container-fluid mt--5" id="here">
       <div class="row justify-content-center">
         <div class=" col ">
           <div class="card">
@@ -83,23 +109,18 @@
             <div class="card-body">
               <div class="row">
              
-              <?php   
-              $sql="SELECT *  FROM borrowlist 
-              INNER JOIN loaners ON loaners.LoanerID  = borrowlist.LoanerID
-              WHERE  borrowlist.status= '1'";
-              $dataloaner=DB::select($sql);       
-              ?>
+              
 
               @foreach($dataloaner as $show)
 
-              <div class="col-xl-4 col-md-6">
+              <div class="col-xl-4 col-md-6"  >
               <div class="card">
               <div class="row justify-content-center">
               <a href="borrower/viewborrower/{{$show->LoanerID}}">
               <img class="rounded-circle" src="{{ url('/') }}/assets/uploadfile/Loaner/profile/{{ $show->imageProfile }}" alt="image profile" width='100px' height='100px'>
               </a>  
               </div>
-              <div class="card-body">
+              <div class="card-body" >
               <h3 class="card-title">คุณ {{ $show->firstname }} {{ $show->lastname }}</h3>
               <p class="card-text">วงเงิน : 0 ~ {{ $show->money_max }} บาท</p>
               <p class="card-text">ดอกเบี้ยรายปี : {{ $show->interest }} %</p>
