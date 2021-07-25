@@ -58,6 +58,7 @@
       </div>
     </nav>
     <!-- Header -->
+    
     <!-- Header -->
     <div class="header pb-4" style="background: linear-gradient(90deg, rgba(252,176,69,1) 0%, rgba(253,29,29,1) 71%, rgba(131,58,180,1) 100%);">
 <div class="header pb-4"  style="background: linear-gradient(90deg, rgba(252,176,69,1) 0%, rgba(253,29,29,1) 71%, rgba(131,58,180,1) 100%);"> 
@@ -80,11 +81,20 @@
 </div>
 </div>
 
+<?php
+$BorrowerID = Auth::guard('borrower')->user()->BorrowerID;
+    $sql="SELECT IFNULL((SELECT 'True' FROM pined WHERE BorrowerID =$BorrowerID AND borrowlistID =$view->borrowlistID), 'False') as pin";
+    $pin=DB::select($sql)[0];   
+?>
+
+
     <!-- Page content -->
     <div class="container-fluid mt--5">
+     
     <form  action="{{ route('borrower.addRequest',['borrowlistID' =>$view->borrowlistID]) }}" method="POST" enctype="multipart/form-data" id="request">
               @csrf
       <div class="row justify-content-center">
+    
         <div class="col-xl-7 order-xl-6">
           <div class="card card-profile">
             <div class="row justify-content-center">
@@ -94,11 +104,19 @@
                 </div>
               </div>
             </div>
+            <div style=" position: absolute;right: 0px;padding: 25px 50px;">   
+            @if($pin->pin =='False')
+                 <a href="{{ route('borrower.addPin',['borrowerID' =>$BorrowerID , 'BorrowelistID' =>$view->borrowlistID]) }}" button class="btn btn-info" style="color:#FFFFFF;"  type="button"> เพิ่มรายการโปรด </a> 
+            @elseif($pin->pin=='True')
+                 <a  href="{{ route('borrower.removePin',['borrowerID' =>$BorrowerID , 'BorrowelistID' =>$view->borrowlistID]) }}" button class="btn btn-danger" style="color:#FFFFFF;"  type="button"> ลบรายการโปรด </a> 
+            @endif
+                </div>
             <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
               <div class="d-flex justify-content-between">
+              
               </div>
             </div>
-            <div class="card-body pt-0">
+            <div class="card-body pt-4">
               <div class="row">
                 <div class="col">
                   <div class="card-profile-stats d-flex justify-content-center">
@@ -107,7 +125,7 @@
                 </div>
               </div>
               <div class="row">
-                  <div class="col-6 col-md-4">
+                  <div class="col-6 col-md-5">
                      <h3 class="card-title">ชื่อ-นามสกุล</h3>
                    </div>
                     <div class="col-6 col-md-7">
@@ -115,7 +133,7 @@
                      </div>      
                </div>
                <div class="row">
-                  <div class="col-6 col-md-4">
+                  <div class="col-6 col-md-5">
                      <h3 class="card-title">อีเมล</h3>
                    </div>
                     <div class="col-6 col-md-7">
@@ -123,7 +141,7 @@
                      </div>       
                </div>
                <div class="row">
-                  <div class="col-6 col-md-4">
+                  <div class="col-6 col-md-5">
                      <h3 class="card-title">เบอร์โทรศัพท์</h3>
                    </div>
                     <div class="col-6 col-md-7">
@@ -131,7 +149,7 @@
                      </div>        
                </div>
                <div class="row">
-                  <div class="col-6 col-md-4">
+                  <div class="col-6 col-md-5">
                      <h3 class="card-title">LineID</h3>
                    </div>
                     <div class="col-6 col-md-7">

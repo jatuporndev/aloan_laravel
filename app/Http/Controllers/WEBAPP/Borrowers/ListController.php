@@ -19,4 +19,23 @@ class ListController extends Controller
 
         return view('dashboard.borrower.request', ['view'=> $views]);
     }
+
+    public function delete($borrowerID,$BorrowelistID)
+    { 
+        $sql="DELETE FROM pined WHERE borrowerID=$borrowerID AND borrowlistID =$BorrowelistID";
+        $recount=DB::select($sql);   
+
+         return redirect()->back()->with('success','ลบแล้ว');
+    }
+
+    public function addpined($borrowerID,$BorrowelistID)
+    { 
+        $user = new Pined();
+        $user->BorrowerID  = $borrowerID;
+        $user->borrowlistID  = $BorrowelistID;
+        $user->save();
+
+
+        return redirect()->back()->with('success','เพิ่มแล้ว');
+    }
 }

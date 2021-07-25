@@ -185,6 +185,9 @@ Route::prefix('borrower')->name('borrower.')->group(function(){
             //article
             Route::get('/articledetail/{ArticleID}',[ArticleController::class,'articledetail'])->name('articledetail');
 
+            //pin
+            Route::get('/addPin/{borrowerID}/{BorrowelistID}',[ListController::class,'addpined'])->name('addPin');
+            Route::get('/removePin/{borrowerID}/{BorrowelistID}',[ListController::class,'delete'])->name('removePin');
         });
 
  });

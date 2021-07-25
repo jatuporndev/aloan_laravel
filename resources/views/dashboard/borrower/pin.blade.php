@@ -81,7 +81,7 @@
 </div>
 
      <!-- Page content -->
-     <div class="container-fluid mt--5">
+     <div class="container-fluid mt--4">
       <div class="row justify-content-center">
         <div class=" col ">
           <div class="card">
@@ -92,27 +92,36 @@
               <div class="row">
              
               <?php   
-                 
+              $BorrowerID = Auth::guard('borrower')->user()->BorrowerID;
+                  $sql="SELECT *  FROM pined 
+                  INNER JOIN borrowlist ON pined.borrowlistID = borrowlist.borrowlistID
+                  INNER JOIN loaners ON borrowlist.LoanerID = loaners.LoanerID
+                  WHERE pined.BorrowerID = $BorrowerID";
+              
+                  $pin=DB::select($sql);     
               ?>
 
               
+                    @foreach($pin as $show)
 
-              <div class="col-xl-4 col-md-6">
-              <div class="card">
-              <div class="row justify-content-center">
-              <a href="">
-              <img class="rounded-circle" src="{{ url('/') }}/assets/uploadfile/Loaner/profile/" alt="image profile" width='100px' height='100px'>
-              </a>  
-              </div>
-              <div class="card-body">
-              <h3 class="card-title">คุณ </h3>
-              <p class="card-text">วงเงิน : 0 ~  บาท</p>
-              <p class="card-text">ดอกเบี้ยรายปี :  %</p>
-              <a href="" class="btn btn-primary">View</a>
-              </div>
-              </div>
-              </div>
+                        <div class="col-xl-4 col-md-6"  >
+                        <div class="card">
+                        <div class="row justify-content-center">
+                        <a href="borrower/viewborrower/{{$show->LoanerID}}">
+                        <img class="rounded-circle" src="{{ url('/') }}/assets/uploadfile/Loaner/profile/{{ $show->imageProfile }}" alt="image profile" width='100px' height='100px'>
+                        </a>  
+                        </div>
+                        <div class="card-body" >
+                        <h3 class="card-title">คุณ {{ $show->firstname }} {{ $show->lastname }}</h3>
+                        <p class="card-text">วงเงิน : 0 ~ {{ $show->money_max }} บาท</p>
+                        <p class="card-text">ดอกเบี้ยรายปี : {{ $show->interest }} %</p>
+                        <a href="borrower/viewborrower/{{$show->LoanerID}}" class="btn btn-primary">View</a>
+                        </div>
+                        </div>
+                        </div>
 
+                    @endforeach
+              
               
               </div>
             </div>
