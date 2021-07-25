@@ -10,13 +10,19 @@ use App\Models\Borrower;
 
 class ManageBorrowerController extends Controller
 {
-    public function show(){
+    public function show(Request $request){
         
-         
-      //  $sql = "SELECT * FROM borrowers WHERE verify = 0";
-       // $post = DB::select($sql);
-      //  $post = Borrower::paginate(10);
-      $post = Borrower::where('verify', '=', 0)->paginate(05);
+        $status=$request->get('status'); 
+        // $sql = "SELECT * FROM loaners WHERE verify = 0";
+         //$post = DB::select($sql);
+         if($status=="1"){
+         $post = Borrower::where('verify', '=', 0)->paginate(05);
+         }
+         if($status=="2"){
+         $post = Borrower::paginate(10);
+         }else{
+             $post = Borrower::where('verify', '=', 0)->paginate(05);
+         }
         
         return view('dashboard.admin.borrowermanage', ['post'=> $post]);
     }

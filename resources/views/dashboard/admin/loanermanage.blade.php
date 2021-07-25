@@ -2,7 +2,7 @@
 @extends('dashboard.admin.dashboardlayout')
 
 @section('content')
-<div class="header bg-primary pb-4">
+<div class="header bg-primary pb-4" >
       <div class="container-fluid">
         <div class="header-body">
           <div class="row align-items-center py-4">
@@ -23,20 +23,57 @@
 </div>
 
 
+<script >
+  //ajax
+function doalert(checkboxElem) {
+  if (checkboxElem.checked) {
+    const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    $("body").html(this.response);
+    document.getElementById("checkbox").checked = true;
+  }
+ 
+  xhttp.open("GET", "admin/loanermanage?status=2");
+  xhttp.send();
+
+  } else {
+    const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    $("body").html(this.response);
+  }
+  xhttp.open("GET", "admin/loanermanage?status=1");
+  xhttp.send();
+  }
+}
+
+
+
+
+</script>
+
 <!-- Page content -->
-<div class="container-fluid mt--7">
+<div class="container-fluid mt--7" >
       <div class="row">
         <div class="col">
           <div class="card">
+          <div style=" position: absolute;right: 0px;padding: 20px;">   
+          <form id="myform">
+            All <input type="checkbox" name="checkfield" id="checkbox"  onchange="doalert(this)"/>
+          </form>
+                </div>
             <!-- Card header -->
             <div class="card-header border-0">
               <h3 class="mb-0">Loaner table</h3>
+              
             </div>
+            
             <!-- Light table -->
-            <div class="table-responsive">
+            <div class="table-responsive" id="mydiv">
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
+                  
                   <tr>
+                    
                     <th scope="col" class="sort" >Email</th>
                     <th scope="col" class="sort" >Firstname</th>
                     <th scope="col" class="sort" >Lastname</th>
@@ -44,7 +81,7 @@
                     <th scope="col">Users</th>
                   </tr>
                 </thead>
-                <tbody class="list">
+                <tbody class="list" >
 
                   @foreach($post as $item)
                   <tr>

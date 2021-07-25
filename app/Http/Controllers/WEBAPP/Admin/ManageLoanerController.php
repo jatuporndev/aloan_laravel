@@ -11,14 +11,19 @@ use App\Models\Loaner;
 
 class ManageLoanerController extends Controller
 {
-    public function show(){
+    public function show(Request $request){
         
-         
+         $status=$request->get('status'); 
        // $sql = "SELECT * FROM loaners WHERE verify = 0";
         //$post = DB::select($sql);
-
+        if($status=="1"){
         $post = Loaner::where('verify', '=', 0)->paginate(05);
-       // $post = Loaner::paginate(10);
+        }
+        if($status=="2"){
+        $post = Loaner::paginate(10);
+        }else{
+            $post = Loaner::where('verify', '=', 0)->paginate(05);
+        }
         
         return view('dashboard.admin.loanermanage', ['post'=> $post]);
     }

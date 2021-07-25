@@ -21,13 +21,44 @@
     </div>
 </div>
 </div>
+<script >
+  //ajax
+function doalert(checkboxElem) {
+  if (checkboxElem.checked) {
+    const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    $("body").html(this.response);
+    document.getElementById("checkbox").checked = true;
+  }
+ 
+  xhttp.open("GET", "admin/borrowermanage?status=2");
+  xhttp.send();
 
+  } else {
+    const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    $("body").html(this.response);
+  }
+  xhttp.open("GET", "admin/borrowermanage?status=1");
+  xhttp.send();
+  }
+}
+
+
+
+
+</script>
 
 <!-- Page content -->
 <div class="container-fluid mt--7">
       <div class="row">
         <div class="col">
           <div class="card">
+          <div style=" position: absolute;right: 0px;padding: 20px;">   
+          <form id="myform">
+            All <input type="checkbox" name="checkfield" id="checkbox"  onchange="doalert(this)"/>
+          </form>
+                </div>
             <!-- Card header -->
             <div class="card-header border-0">
               <h3 class="mb-0">Borrower table</h3>
