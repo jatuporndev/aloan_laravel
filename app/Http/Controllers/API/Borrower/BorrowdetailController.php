@@ -17,7 +17,7 @@ class Borrowdetailcontroller extends Controller
         (SELECT settlement_date FROM history  WHERE BorrowDetailID = borrowdetail.BorrowDetailID AND status =0 LIMIT 1) as settlement_date FROM borrowdetail 
               INNER JOIN borrowlist ON borrowdetail.borrowlistID = borrowlist.borrowlistID
               INNER JOIN loaners ON borrowlist.LoanerID = loaners.LoanerID
-              WHERE 1 AND  BorrowerID = $borrowerID";
+              WHERE 1 AND  BorrowerID = $borrowerID AND borrowdetail.status = 0";
 
         $data = DB::select($sql);
 
