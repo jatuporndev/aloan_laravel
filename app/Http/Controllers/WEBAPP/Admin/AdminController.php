@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use DB;
 
 class AdminController extends Controller
 {
@@ -61,6 +62,44 @@ class AdminController extends Controller
         return redirect('/');
     }
 
-   
+    function profile(){
+        
+        return view('dashboard.admin.profile');
+    }
+
+    function updateInfo(Request $request){
+
+        
+        $validator = \Validator::make($request->all(),[
+            'email'=> 'required|email',
+            'firstname'=>'required',
+            'lastname'=>'required',
+            'phone'=>'required',
+            'address'=>'required',
+           
+
+        ]);
+
+        if(!$validator->passes()){
+            return response()->json(['status'=>0, 'error'=>$validator->errors()->toArray()]);
+        }else{
+            
+            $query = Admin::find(Auth::guard('admin')->user()->id)->update([
+                  'email'=>$request->email,
+                  'firstname'=>$request->firstname,
+                  'lastname'=>$request->lastname,        
+                  'phone'=>$request->phone,      
+                  'address'=>$request->address,        
+                
+             ]);
+
+            if(!$query){
+                 return response()->json(['status'=>0,'msg'=>'Something went wrong.']);
+             }else{
+                 return response()->json(['status'=>1,'msg'=>'อัปเดตข้อมูลสำเร็จ']);
+             }
+        
+        }
+     } 
 }
 
