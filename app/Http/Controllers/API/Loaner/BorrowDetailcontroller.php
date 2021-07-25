@@ -85,7 +85,7 @@ class BorrowDetailcontroller extends Controller
     public function index($LoanerID){
 
         $sql="SELECT *,ROUND(( (borrowdetail.Principle+(borrowdetail.Principle*(borrowdetail.Interest/100)))/borrowdetail.instullment_total ),2) as perints,
-        (SELECT settlement_date FROM history  WHERE BorrowDetailID = borrowdetail.BorrowDetailID AND status =0 LIMIT 1) as settlement_date,
+         IFNULL((SELECT settlement_date FROM history  WHERE BorrowDetailID = borrowdetail.BorrowDetailID AND status =0 LIMIT 1), 'ไม่มี')   as settlement_date ,
         (SELECT 'True' FROM history WHERE BorrowDetailID = borrowdetail.BorrowDetailID  AND status = 1 LIMIT 1) as checkpay
         
       

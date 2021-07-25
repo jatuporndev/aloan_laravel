@@ -81,7 +81,7 @@
 </div>
 
     <!-- Page content -->
-    <div class="container-fluid mt--1">
+    <div class="container-fluid mt--5">
     <form  action="{{ route('borrower.addRequest',['borrowlistID' =>$view->borrowlistID]) }}" method="POST" enctype="multipart/form-data" id="request">
               @csrf
       <div class="row justify-content-center">

@@ -82,7 +82,7 @@
 <link rel="stylesheet" href="assets/css/style.css" type="text/css">
 <link rel="stylesheet" href="assets/css/menu3Detail.css" type="text/css">
 <!-- Page content -->
-<div class="container-fluid mt--1">
+<div class="container-fluid mt--4">
   <form action="{{ route('borrower.payment',['BorrowDetailID' =>$view->BorrowDetailID]) }}" method="POST" enctype="multipart/form-data" id="request">
     @csrf
     <div class="row justify-content-center">
