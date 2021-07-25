@@ -69,7 +69,7 @@
             </li>
             <li class="nav-item">
             <a href="{{ route('borrower.article') }}" is class="nav-link {{ (request()->is('borrower/article*')) ? 'active' : ''}}">
-                <i class="ni ni-single-02 text-yellow"></i>
+                <i class="ni ni-notification-70 text-purple"></i>
                 <span class="nav-link-text">ข่าวสาร</span>
               </a>
             </li>
@@ -164,9 +164,6 @@
                           }else{
                             $('.phonee').each(function(){
                               $(this).html( $('#UpdateInfo').find( $('input[name="phone"]') ).val() );
-                            });
-                            $('.LineIDD').each(function(){
-                              $(this).html( $('#UpdateInfo').find( $('input[name="LineID"]') ).val() );
                             });
                               swal("Success!",data.msg,"success",{
                               button:"OK",

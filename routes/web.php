@@ -62,6 +62,8 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     Route::middleware(['auth:admins','PreventBackHistory'])->group(function(){
           Route::view('/home','dashboard.admin.home')->name('home');
+          Route::get('profile',[AdminController::class,'profile'])->name('profile');
+          Route::post('update-profile-info',[AdminController::class,'updateInfo'])->name('adminUpdateInfo');
           Route::view('/AdminAriticle','dashboard.admin.AdminAriticle')->name('AdminAriticle');
           Route::view('/adminmanage','dashboard.admin.adminmanage')->name('adminmanage');
           Route::post('/create',[AdminController::class,'create'])->name('create');

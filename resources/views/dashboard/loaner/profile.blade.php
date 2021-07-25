@@ -58,7 +58,7 @@
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-white d-inline-block mb-0">Loaner</h6>
+              <h6 class="h2 text-white d-inline-block mb-0">ข้อมูลโปรไฟล์ </h6>
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{ route('loaner.home') }}"><i class="fas fa-home"></i></a></li>
@@ -173,42 +173,136 @@
                   </div>
                 </div>
                 <hr class="my-4" />
+                </form>
                 <!-- Description -->
                 <div class="row align-items-center">
                 <div class="col-8">
                 <h6 class="heading-small text-muted mb-4">Bank information</h6>
                 </div>
                 <div class="col-4 text-right">
-                  <button type="" class="btn btn- btn-primary">เพิ่มบัญชี</button>
+                  <button type="button" class="btn btn- btn-primary" data-toggle="modal" data-target="#exampleModal">เพิ่มบัญชี</button>
                 </div>
               </div>
-                <div class="pl-lg-4">
-                <div class="row">
-                    <div class="col-md-5">
-                      <div class="form-group">
-                        <label class="form-control-label">ธนาคาร</label>
-                        <select class="form-control" name="bank" id="bank">
-                                <option value="ธนาคารกรุงเทพ"{{ Auth::guard('loaner')->user()->bank =="ธนาคารกรุงเทพ" ? 'selected' : ''}}>ธนาคารกรุงเทพ</option>
-                                <option value="ธนาคารกสิกรไทย"{{ Auth::guard('loaner')->user()->bank =="ธนาคารกสิกรไทย" ? 'selected' : ''}}>ธนาคารกสิกรไทย</option>
-                                </select>
-                      </div>
-                    </div>
-                    <div class="col-md-5">
-                      <div class="form-group">
-                        <label class="form-control-label">เลขที่บัญชีธนาคาร</label>
-                        <input type="text" name="IDBank" class="form-control" value="{{ Auth::guard('loaner')->user()->IDBank }}">
-                      </div>
-                      <span class="text-danger error-text IDBank_error"></span>
+              <p></p>
+                <div class="pl-lg-0">
+                <div class="table-responsive">
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col" class="sort" >ชื่อผู้ถือบัญชี</th>
+                    <th scope="col" class="sort" >เลขที่บัญชีธนาคาร</th>
+                    <th scope="col" class="sort" >ธนาคาร</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody class="list">
+
+                  <tr>
+                    <td>
+                    {{ Auth::guard('loaner')->user()->firstname }}         
+                    </td>
+
+                    <td>             
+                    {{ Auth::guard('loaner')->user()->IDBank }}                         
+                    </td>
+                    
+                    <td>
+                    {{ Auth::guard('loaner')->user()->bank }}
+                  </td>
+                    <td>
+                  <a href="" button class="btn btn-danger" type="button"> x </a>
+                    
+                    </td>
+                    
+                   
+                  </tr>
+    
+                  </tbody>
+              </table>
+            </div>
+                 
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                      <div class="modal-content">
+                                              <div class="modal-header">
+                                                  <h5 class="modal-title " id="exampleModalLabel">เพิ่มบัญชีธนาคาร</h5>
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                              </div>
+                                              <div class="modal-body">
+                                                <form  action="" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                      <div class="row">
+                                                          <div class="col-lg-5">
+                                                                <div class="form-group">
+                                                                    <h3 class="card-title col-md-12 col-form-label text-md-center">ธนาคาร</h3>
+                                                                </div>
+                                                          </div>
+
+                                                            <!-- php  -->
+                                                                <?php 
+                                                                $sql = "SELECT * FROM banklist";
+                                                                $post=DB::select($sql);
+                                                                  ?>
+                                                            <!-- end php  -->
+
+                                                          <div class="col-md-6">
+                                                          <div class="form-group">
+                                                            <select id="comboA" onchange="getComboA(this)" type="text"  class="form-control" name="bank" placeholder="Enter Bank" value="{{ old('bank') }}">
+                                                              @foreach($post as $item)
+                                                                    <option value="{{$item -> bankname}}">{{$item -> bankname}}</option>
+                                                              @endforeach
+                                                            </select>
+                                                          </div>   
+                                                            </div>   
+                                                      </div>
+                                                      <div class="row">
+                                                          <div class="col-lg-5">
+                                                                <div class="form-group">
+                                                                    <h3 class="card-title col-md-12 col-form-label text-md-left">เลขที่บัญชีธนาคาร</h3>
+                                                                </div>
+                                                          </div>
+                                                          <div class="col-md-6">
+                                                            <div class="input-group">
+                                                              <input class="form-control  text-center" name="" type="text" value=""> 
+                                                              <span class="text-danger error-text money_max_error"></span> 
+                                                              </div>   
+                                                            </div>    
+                                                      </div>
+                                                      <div class="row">
+                                                          <div class="col-lg-5">
+                                                                <div class="form-group">
+                                                                    <h3 class="card-title col-md-12 col-form-label text-md-center">ชื่อบัญชี</h3>
+                                                                </div>
+                                                          </div>
+                                                          <div class="col-md-6">
+                                                            <div class="input-group">
+                                                              <input class="form-control  text-center"  name="" type="text"  value=""> 
+                                                            
+                                                              <span class="text-danger error-text interest_error"></span> 
+                                                              </div>   
+                                                            </div>    
+                                                      </div>
+                                                      
+                                                    
+                                                  
+                                    
+                                                <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                                            <button type="submit" class="btn btn-success">บันทึก</button>
+                                                </div>
+                                                </form>
+                                            </div>
+                                </div>
+                          </div>
                     </div>
                    
                   </div>
                 </div>
               
             </div>
-          </div>
-        </div>
-      </div>
-      </form>
-    </div>
+        
 
 @endsection

@@ -64,7 +64,7 @@
             </li>
             <li class="nav-item">
             <a href="{{ route('loaner.article') }}" is class="nav-link {{ (request()->is('loaner/article*')) ? 'active' : ''}}">
-                <i class="ni ni-single-02 text-yellow"></i>
+                <i class="ni ni-notification-70 text-purple"></i>
                 <span class="nav-link-text">ข่าวสาร</span>
               </a>
             </li>

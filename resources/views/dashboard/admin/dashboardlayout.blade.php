@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Admin Dashboard</title>
   <base href="{{ \URL::to('/')}}">
   <!-- Favicon -->
@@ -61,12 +62,12 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ route('admin.AdminAriticle') }}" is class="nav-link {{ (request()->is('admin/AdminAriticle*')) ? 'active' : ''}}">
-              <i class="ni ni-tv-2 text-primary"></i>
+              <i class="ni ni-notification-70 text-purple"></i>
                 <span class="nav-link-text">Article</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="examples/profile.html">
+              <a class="nav-link" href="{{ route('admin.profile') }}" is class="nav-link {{ (request()->is('admin/profile*')) ? 'active' : ''}}">
                 <i class="ni ni-single-02 text-yellow"></i>
                 <span class="nav-link-text">Profile</span>
               </a>
@@ -127,29 +128,17 @@
                 <i class="ni ni-zoom-split-in"></i>
               </a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="ni ni-bell-55"></i>
-              </a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="ni ni-ungroup"></i>
-              </a>
-            </li>
           </ul>
           <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
             <li class="nav-item dropdown">
-              <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              
                 <div class="media align-items-center">
-                   <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src="assets/img/theme/team-4.jpg">
-                  </span>
+                   <span class="mb-0 text-sm  font-weight-bold" style="color:white">Welcome :</span> 
                   <div class="media-body  ml-2  d-none d-lg-block">
-                    <span class="mb-0 text-sm  font-weight-bold">{{ Auth::guard('admins')->user()->firstname }}</span>
+                    <span class="mb-0 text-sm  font-weight-bold" style="color:white">{{ Auth::guard('admins')->user()->firstname }}</span>
                   </div>
                 </div>
-              </a>
+             
             </li>
           </ul>
         </div>
@@ -194,6 +183,51 @@
       </script>
   @endif
 
+  <script>
+  $.ajaxSetup({
+     headers:{
+       'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+     }
+  });
+  
+  $(function(){
+    
+      $('#UpdateInfo').on('submit', function(e){
+          e.preventDefault();
+
+          $.ajax({
+                      url:$(this).attr('action'),
+                      method:$(this).attr('method'),
+                      data:new FormData(this),
+                      processData:false,
+                      dataType:'json',
+                      contentType:false,
+                      beforeSend:function(){
+                          $(document).find('span.error-text').text('');
+                      },
+                      success:function(data){
+                          if(data.status == 0){
+                              $.each(data.error, function(prefix, val){
+                                  $('span.'+prefix+'_error').text(val[0]);
+                              });
+                          }else{
+                            $('.phonee').each(function(){
+                              $(this).html( $('#UpdateInfo').find( $('input[name="phone"]') ).val() );
+                            });
+                            $('.LineIDD').each(function(){
+                              $(this).html( $('#UpdateInfo').find( $('input[name="LineID"]') ).val() );
+                            });
+                              swal("Success!",data.msg,"success",{
+                              button:"OK",
+                              });  
+                          }
+                      }
+                  });
+      });
+    
+  });
+
+  </script>
 
 </body>
 
