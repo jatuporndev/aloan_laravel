@@ -31,6 +31,7 @@ class BorrowerController extends Controller
             'image_face' => 'required|image|mimes:jpeg,png,jpg,|max:2048',
             'email' => ['required', 'string', 'email', 'max:255', 'unique:borrowers'],
             'password' => ['required', 'string', 'min:5', 'confirmed'],
+            'confirm'=>'required',
             
           ]);
 

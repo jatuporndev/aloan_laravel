@@ -89,7 +89,7 @@ $BorrowerID = Auth::guard('borrower')->user()->BorrowerID;
 
 
     <!-- Page content -->
-    <div class="container-fluid mt--5">
+    <div class="container-fluid mt--4">
      
     <form  action="{{ route('borrower.addRequest',['borrowlistID' =>$view->borrowlistID]) }}" method="POST" enctype="multipart/form-data" id="request">
               @csrf
@@ -106,9 +106,9 @@ $BorrowerID = Auth::guard('borrower')->user()->BorrowerID;
             </div>
             <div style=" position: absolute;right: 0px;padding: 25px 50px;">   
             @if($pin->pin =='False')
-                 <a href="{{ route('borrower.addPin',['borrowerID' =>$BorrowerID , 'BorrowelistID' =>$view->borrowlistID]) }}" button class="btn btn-info" style="color:#FFFFFF;"  type="button"> เพิ่มรายการโปรด </a> 
+                 <a href="{{ route('borrower.addPin',['borrowerID' =>$BorrowerID , 'BorrowelistID' =>$view->borrowlistID]) }}" button class="btn btn-info" style="color:#FFFFFF;"  type="button">เพิ่มรายการโปรด</a> 
             @elseif($pin->pin=='True')
-                 <a  href="{{ route('borrower.removePin',['borrowerID' =>$BorrowerID , 'BorrowelistID' =>$view->borrowlistID]) }}" button class="btn btn-danger" style="color:#FFFFFF;"  type="button"> ลบรายการโปรด </a> 
+                 <a  href="{{ route('borrower.removePin',['borrowerID' =>$BorrowerID , 'BorrowelistID' =>$view->borrowlistID]) }}" button class="btn btn-danger" style="color:#FFFFFF;"  type="button">ลบรายการโปรด</a> 
             @endif
                 </div>
             <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">

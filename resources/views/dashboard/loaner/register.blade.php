@@ -165,11 +165,21 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="confirm" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    คุณอ่านและยอมรับ <a href="{{ url('/cookie') }}">เงื่อนไขและข้อตกลง</a>
+                                </label>
+                            </div>
+                            <span class="text-danger">@error('confirm'){{ $message }} @enderror</span>
+                        <br />
                       <div class="text-center">
                           <button type="submit" class="btn btn-primary">Register</button>
                       </div>
                       <br>
+                      <div class="text-center">
                       <a href="{{ url('/multi') }}">I already have an account</a>
+                      </div>
                   </form>
                 </div>  
             </div>

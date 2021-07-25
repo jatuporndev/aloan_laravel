@@ -23,7 +23,7 @@
 </div>
 
 <!-- Page content -->
-<div class="container-fluid mt--5">
+<div class="container-fluid mt--6">
   <form  action="{{ route('admin.adminUpdateInfo') }}" method="POST" enctype="multipart/form-data" id="UpdateInfo">
   @csrf
       <div class="row">
@@ -32,7 +32,14 @@
             <img src="../assets/img/theme/img-1-1000x600.jpg" alt="Image placeholder" class="card-img-top">
             
             <div class="card-body pt-4 text-center">
-              <h3 class="card-title">{{ Auth::guard('admins')->user()->firstname }} {{ Auth::guard('admins')->user()->lastname }}</h3>
+              <div class="row">
+              <div class="col-8 col-md-6">
+              <h3 class="card-title firstnamee text-right">{{ Auth::guard('admins')->user()->firstname }}</h3>
+              </div>
+              <h3 class="card-title lastnamee">{{ Auth::guard('admins')->user()->lastname }}</h3>
+              </div>
+           
+             
               <p class="card-text phonee">{{ Auth::guard('admins')->user()->phone }}</p>
               
               </div>
@@ -114,5 +121,7 @@
       </div>
       </form>
     </div>
+    
+    {{ Auth::guard('admins')->user()->id }}
 
 @endsection

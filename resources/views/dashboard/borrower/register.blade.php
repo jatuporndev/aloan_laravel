@@ -88,7 +88,7 @@
                       <div class="form-group row">
                           <label for="salary" class="col-md-3 col-form-label text-md-right">Salary</label>
                           <div class="col-md-8">
-                          <input type="number" class="form-control" name="salary" placeholder="Enter salary" value="{{ old('salary') }}">
+                          <input type="number" min="1" class="form-control" name="salary" placeholder="Enter salary" value="{{ old('salary') }}">
                           <span class="text-danger">@error('salary'){{ $message }} @enderror</span>
                           </div>
                       </div>
@@ -174,11 +174,21 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="confirm" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    คุณอ่านและยอมรับ <a href="{{ url('/cookie') }}">เงื่อนไขและข้อตกลง</a>
+                                </label>
+                            </div>
+                            <span class="text-danger">@error('confirm'){{ $message }} @enderror</span>
+                        <br />
                       <div class="text-center">
                           <button type="submit" class="btn btn-primary">Register</button>
                       </div>
                       <br>
+                      <div class="text-center">
                       <a href="{{ url('/multi') }}">I already have an account</a>
+                      </div>
                   </form>
             </div>
             </div>

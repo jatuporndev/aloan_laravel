@@ -84,7 +84,7 @@ class AdminController extends Controller
             return response()->json(['status'=>0, 'error'=>$validator->errors()->toArray()]);
         }else{
             
-            $query = Admin::find(Auth::guard('admin')->user()->id)->update([
+            $query = Admin::find(Auth::guard('admins')->user()->id)->update([
                   'email'=>$request->email,
                   'firstname'=>$request->firstname,
                   'lastname'=>$request->lastname,        

@@ -61,13 +61,13 @@
             </li>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('admin.AdminAriticle') }}" is class="nav-link {{ (request()->is('admin/AdminAriticle*')) ? 'active' : ''}}">
+              <a href="{{ route('admin.AdminAriticle') }}" is class="nav-link {{ (request()->is('admin/AdminAriticle*')) ? 'active' : ''}}">
               <i class="ni ni-notification-70 text-purple"></i>
                 <span class="nav-link-text">Article</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('admin.profile') }}" is class="nav-link {{ (request()->is('admin/profile*')) ? 'active' : ''}}">
+              <a href="{{ route('admin.profile') }}" is class="nav-link {{ (request()->is('admin/profile*')) ? 'active' : ''}}">
                 <i class="ni ni-single-02 text-yellow"></i>
                 <span class="nav-link-text">Profile</span>
               </a>
@@ -133,7 +133,7 @@
             <li class="nav-item dropdown">
               
                 <div class="media align-items-center">
-                   <span class="mb-0 text-sm  font-weight-bold" style="color:white">Welcome :</span> 
+                   <span class="mb-0 text-sm  font-weight-bold" style="color:white">Welcome Admin :</span> 
                   <div class="media-body  ml-2  d-none d-lg-block">
                     <span class="mb-0 text-sm  font-weight-bold" style="color:white">{{ Auth::guard('admins')->user()->firstname }}</span>
                   </div>
@@ -214,8 +214,11 @@
                             $('.phonee').each(function(){
                               $(this).html( $('#UpdateInfo').find( $('input[name="phone"]') ).val() );
                             });
-                            $('.LineIDD').each(function(){
-                              $(this).html( $('#UpdateInfo').find( $('input[name="LineID"]') ).val() );
+                            $('.firstnamee').each(function(){
+                              $(this).html( $('#UpdateInfo').find( $('input[name="firstname"]') ).val() );
+                            });
+                            $('.lastnamee').each(function(){
+                              $(this).html( $('#UpdateInfo').find( $('input[name="lastname"]') ).val() );
                             });
                               swal("Success!",data.msg,"success",{
                               button:"OK",

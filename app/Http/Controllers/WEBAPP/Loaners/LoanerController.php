@@ -31,6 +31,7 @@ class LoanerController extends Controller
           'image' => 'required|image|mimes:jpeg,png,jpg,|max:2048',
           'email' => ['required', 'string', 'email', 'max:255', 'unique:loaners'],
           'password' => ['required', 'string', 'min:5', 'confirmed'],
+          'confirm'=>'required',
           
         ]);
         
