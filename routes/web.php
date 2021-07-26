@@ -63,6 +63,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     Route::middleware(['auth:admins','PreventBackHistory'])->group(function(){
           Route::view('/home','dashboard.admin.home')->name('home');
+          Route::view('/AdminBank','dashboard.admin.AdminBank')->name('AdminBank');
           Route::get('profile',[AdminController::class,'profile'])->name('profile');
           Route::post('update-profile-info',[AdminController::class,'updateInfo'])->name('adminUpdateInfo');
           Route::view('/AdminAriticle','dashboard.admin.AdminAriticle')->name('AdminAriticle');
@@ -79,6 +80,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
           Route::get('/borrowerview/update1/{BorrowerID}', [App\Http\Controllers\WEBAPP\Admin\ManageBorrowerController::class, 'update1']);
           Route::get('/borrowerview/update2/{BorrowerID}', [App\Http\Controllers\WEBAPP\Admin\ManageBorrowerController::class, 'update2']);
           Route::post('/addArticle',[ManageArticleController::class,'add'])->name('addArticle');
+          Route::post('/addBank',[ManageArticleController::class,'addBank'])->name('addBank');
           Route::get('/addArticleDetail/{ArticleID}',[ManageArticleController::class,'articledetail'])->name('addArticleDetail');
           Route::post('/Deletearticle/{ArticleID}',[ManageArticleController::class,'Deletearticle'])->name('Deletearticle');
           Route::post('/Updatearticle/{ArticleID}',[ManageArticleController::class,'Update'])->name('Updatearticle');

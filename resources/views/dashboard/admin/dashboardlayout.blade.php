@@ -67,6 +67,12 @@
               </a>
             </li>
             <li class="nav-item">
+              <a href="{{ route('admin.AdminBank') }}" is class="nav-link {{ (request()->is('admin/AdminBank*')) ? 'active' : ''}}">
+              <i class="ni ni-shop text-shop text-green"></i>
+                <span class="nav-link-text">Bank Mange</span>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="{{ route('admin.profile') }}" is class="nav-link {{ (request()->is('admin/profile*')) ? 'active' : ''}}">
                 <i class="ni ni-single-02 text-yellow"></i>
                 <span class="nav-link-text">Profile</span>

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use DB;
 use App\Models\Borrowers;
 use App\Models\Article;
+use App\Models\Bank;
+use App\Models\BankList;
 
 class ManageArticleController extends Controller
 {
@@ -66,5 +68,23 @@ class ManageArticleController extends Controller
         return   redirect()->route('admin.addArticleDetail',['ArticleID' =>$ArticleID])->with('success','สำเร็จแล้ว');;
 
     }
+
+    //addBank
+    public function addBank(Request $request){
+
+        date_default_timezone_set('Asia/Bangkok');
+        $data = new BankList(); 
+        $data-> bankname =$request->get('title');
+
+        $file = $request->file('image');
+        if(isset($file)){
+            $file->move('assets/uploadfile/bank/',$file->getClientOriginalName());
+            $data->imagebank = $file->getClientOriginalName();
+        } 
+        $data->save();
+        return redirect()->back()->with('success','success');
+
+    }
+
 
 }
