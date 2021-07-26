@@ -38,14 +38,11 @@
             ?>
 
 
-<div class="container posts">
-        <div class="posts__nav">
-                                </div>
+<div class="container">
+       
         <div class="row">
-            <div class="col-12 col-lg-8">
-                
-     
-
+            <div class="col-8 col-lg-12">
+            
 </br>
     <h3>บทความข่าวสาร</h3>
     <div class="text-muted mb-2">
@@ -56,9 +53,9 @@
                    @foreach($post as $item)           
             <li class="media py-3 px-2" style="border-bottom: solid #DBDBDB;">
                 <a href="/admin/addArticleDetail/{{$item->ArticleID}}" width="250" height="200">
-                    <img src="{{ url('/') }}/assets/uploadfile/article/{{ $item->image_article}}" width="200" height="170"  data-youtube="" data-no-play="true">
+                    <img src="{{ url('/') }}/assets/uploadfile/article/{{ $item->image_article}}" width="200" height="170" >
                 </a>
-                <div class="media-body col-9">
+                <div class="media-body col-10">
                     <h6 class="mt-0 mb-1">
                         <a  href="/admin/addArticleDetail/{{$item->ArticleID}}"><h2>{{$item->title}}</h2></a>
                     </h6>
@@ -75,23 +72,9 @@
            @endforeach
             </ul>
 
-                                                    <div class="">
-                                                        <div class="paginate">
+                                                   
                <!--     <div class="row"><div class="col-md-12"><ul class="pagination"><li class="page-item prev disabled"><a href="#" class="page-link"><span>«</span></a></li><li class="page-item active"><a href="#" class="page-link"><span>1 <span class="sr-only">(current)</span></span></a></li><li class="page-item"><a class="page-link" href="/blogs/%E0%B8%9A%E0%B8%97%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2?page=2">2</a></li><li class="page-item"><a class="page-link" href="/blogs/%E0%B8%9A%E0%B8%97%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2?page=3">3</a></li><li class="page-item"><a class="page-link" href="/blogs/%E0%B8%9A%E0%B8%97%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2?page=4">4</a></li><li class="page-item"><a class="page-link" href="/blogs/%E0%B8%9A%E0%B8%97%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2?page=5">5</a></li><li class="page-item disabled"><a href="#" class="page-link"><span>…</span></a></li><li class="page-item"><a class="page-link" href="/blogs/%E0%B8%9A%E0%B8%97%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2?page=9">9</a></li><li class="page-item next"><a class="page-link" href="/blogs/%E0%B8%9A%E0%B8%97%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2?page=2">»</a></li></ul></div></div> -->
-                </div>
-            
-                    </div>
-    
-
-    
-            </div>
-            <div class="col-12 col-lg-4">
-                                    <div class="card card--borderless mb-2">
-    
-
-    
-        </div>
-    </div>
+              
 
  </div>
         </div>
@@ -155,8 +138,9 @@
                           </div>
                     </div>
 
-
-
+</div>
+</div>
+</div>
 
 
 @endsection

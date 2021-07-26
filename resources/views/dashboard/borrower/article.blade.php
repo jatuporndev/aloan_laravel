@@ -9,10 +9,7 @@
           <form class="navbar-search navbar-search-light form-inline mr-sm-3" id="navbar-search-main">
             <div class="form-group mb-0">
               <div class="input-group input-group-alternative input-group-merge">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-search"></i></span>
-                </div>
-                <input class="form-control" placeholder="Search" type="text">
+                
               </div>
             </div>
             <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
@@ -90,14 +87,11 @@
 
 
 <div class="container posts">
-        <div class="posts__nav">
-                                </div>
+       
         <div class="row">
-            <div class="col-12 col-lg-8">
+            <div class="col-12 col-lg-12">
                 
-     
-
-</br>
+    </br>
     <h3>บทความข่าวสาร</h3>
     <div class="text-muted mb-2">
         ข่าวสาร
@@ -126,29 +120,18 @@
            @endforeach
             </ul>
 
-                                                    <div class="">
-                                                        <div class="paginate">
+                                                   
                <!--     <div class="row"><div class="col-md-12"><ul class="pagination"><li class="page-item prev disabled"><a href="#" class="page-link"><span>«</span></a></li><li class="page-item active"><a href="#" class="page-link"><span>1 <span class="sr-only">(current)</span></span></a></li><li class="page-item"><a class="page-link" href="/blogs/%E0%B8%9A%E0%B8%97%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2?page=2">2</a></li><li class="page-item"><a class="page-link" href="/blogs/%E0%B8%9A%E0%B8%97%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2?page=3">3</a></li><li class="page-item"><a class="page-link" href="/blogs/%E0%B8%9A%E0%B8%97%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2?page=4">4</a></li><li class="page-item"><a class="page-link" href="/blogs/%E0%B8%9A%E0%B8%97%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2?page=5">5</a></li><li class="page-item disabled"><a href="#" class="page-link"><span>…</span></a></li><li class="page-item"><a class="page-link" href="/blogs/%E0%B8%9A%E0%B8%97%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2?page=9">9</a></li><li class="page-item next"><a class="page-link" href="/blogs/%E0%B8%9A%E0%B8%97%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%99%E0%B8%B1%E0%B8%81%E0%B8%A8%E0%B8%B6%E0%B8%81%E0%B8%A9%E0%B8%B2?page=2">»</a></li></ul></div></div> -->
-                </div>
-            
-                    </div>
-    
-
-    
+                
             </div>
-            <div class="col-12 col-lg-4">
-                                    <div class="card card--borderless mb-2">
-    
+       
 
-    
-        </div>
-    </div>
-
- </div>
+            </div>
         </div>
       </div>
 </div>
-
+</div>
+</div>
 
 
 

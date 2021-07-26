@@ -42,7 +42,7 @@ class BorrowerRequestController extends Controller
         $re->borrowlistID = $borrowlistID;
         $re->save();
 
-        return redirect()->route('borrower.menu1')->with('success','ส่งคำขอสำเร็จ');; //ผ่าน
+        return redirect()->route('borrower.menu1')->with('success','ส่งคำขอสำเร็จ'); //ผ่าน
 
             }
 
