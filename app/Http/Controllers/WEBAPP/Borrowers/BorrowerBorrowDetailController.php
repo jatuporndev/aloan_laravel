@@ -48,7 +48,12 @@ class BorrowerBorrowDetailController extends Controller
 
     public function crateHistoryBill(Request $request,$BorrowDetailID)
     {       
-        
+        $sqlb="SELECT borrowdetail.*,loaners.*,(borrowdetail.Principle+(borrowdetail.Principle*(borrowdetail.Interest/100))) as total FROM borrowdetail 
+        INNER JOIN borrowlist ON borrowdetail.borrowlistID = borrowlist.borrowlistID
+        INNER JOIN loaners ON borrowlist.LoanerID = loaners.LoanerID
+        WHERE 1 AND  BorrowDetailID = $BorrowDetailID";
+       
+        $datab = DB::select($sqlb)[0];
 
         date_default_timezone_set('Asia/Bangkok');
         $data = new HistoryBill();
@@ -61,35 +66,33 @@ class BorrowerBorrowDetailController extends Controller
         if(isset($file)){
             $file->move('assets/uploadfile/Borrower/payment',$file->getClientOriginalName());
             $data->imageBill = $file->getClientOriginalName();
-        } 
-        $data->save();
+            $data->save();
 
-        $HisIDArray = $request->get('arrayHistoryID');
-        $HisIDArray = json_decode('['.$HisIDArray.']',true);
-
-
-        $sql="SELECT `historyDetailID` FROM `historydetailbill` WHERE 1 ORDER by `historyDetailID` DESC";
-        $datahis = DB::select($sql)[0];
-        
-        foreach ($HisIDArray as $historyID){
-        date_default_timezone_set('Asia/Bangkok');
-        $data = History::find($historyID);
-        $data-> date_pay = date('Y-m-d');
-        $data->historyDetailID = $datahis->historyDetailID;    
-        $data->status = 1;      
-        $data->save();
-
+            $HisIDArray = $request->get('arrayHistoryID');
+            $HisIDArray = json_decode('['.$HisIDArray.']',true);
+    
+    
+            $sql="SELECT `historyDetailID` FROM `historydetailbill` WHERE 1 ORDER by `historyDetailID` DESC";
+            $datahis = DB::select($sql)[0];
+            
+            foreach ($HisIDArray as $historyID){
+            date_default_timezone_set('Asia/Bangkok');
+            $data = History::find($historyID);
+            $data-> date_pay = date('Y-m-d');
+            $data->historyDetailID = $datahis->historyDetailID;    
+            $data->status = 1;      
+            $data->save();
+    
+            }
+    
+    
+            ///////////////////////////////////////////////////////
+           
+            return redirect()->route('borrower.menu3Detail',['BorrowDetailID' =>$BorrowDetailID])->with('success','สำเร็จแล้ว');;
+        } else{
+            return redirect()->route('borrower.menu3Detail',['BorrowDetailID' =>$BorrowDetailID])->with('fail','ไม่สำเร็จ');;
         }
-
-
-        ///////////////////////////////////////////////////////
-        $sqlb="SELECT borrowdetail.*,loaners.*,(borrowdetail.Principle+(borrowdetail.Principle*(borrowdetail.Interest/100))) as total FROM borrowdetail 
-        INNER JOIN borrowlist ON borrowdetail.borrowlistID = borrowlist.borrowlistID
-        INNER JOIN loaners ON borrowlist.LoanerID = loaners.LoanerID
-        WHERE 1 AND  BorrowDetailID = $BorrowDetailID";
        
-        $datab = DB::select($sqlb)[0];
-        return redirect()->route('borrower.menu3Detail',['BorrowDetailID' =>$BorrowDetailID])->with('success','สำเร็จแล้ว');;
     }
 
 }
