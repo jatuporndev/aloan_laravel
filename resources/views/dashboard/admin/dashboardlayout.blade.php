@@ -69,7 +69,7 @@
             <li class="nav-item">
               <a href="{{ route('admin.AdminBank') }}" is class="nav-link {{ (request()->is('admin/AdminBank*')) ? 'active' : ''}}">
               <i class="ni ni-shop text-shop text-green"></i>
-                <span class="nav-link-text">Bank Mange</span>
+                <span class="nav-link-text">Bank Manage</span>
               </a>
             </li>
             <li class="nav-item">

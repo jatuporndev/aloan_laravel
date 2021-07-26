@@ -96,11 +96,11 @@
 						  <thead>
 						    <tr>
 						
-						    	<th>ผู้ให้กู้</th>
+						    	<th>ผู้กู้รอโอนเงิน</th>
                   <th>จำนวนเงิน</th>
 						      <th>จำนวนงวด</th>
 						      <th>Status</th>
-						      <th>&nbsp;</th>
+						      <th>Action</th>
 						    </tr>
 						  </thead>
 						  <tbody>

@@ -65,7 +65,7 @@
     <div class="header-body">
       <div class="row align-items-center py-4">
         <div class="col-lg-6 col-7">
-          <h6 class="h2 text-white d-inline-block mb-0">Default</h6>
+          <h6 class="h2 text-white d-inline-block mb-0">ชำระเงิน</h6>
           <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
               <li class="breadcrumb-item"><a href="{{ route('borrower.home') }}"><i class="fas fa-home"></i></a></li>
@@ -113,22 +113,20 @@ WHERE LoanerID =$loanerID";
                 <!-- Description -->
                 <div class="form-group"  >
  
-    <fieldset>
+              <fieldset>
   
-      <div >  จำนวนเงินที่ต้องโอน : </div></br>
-        <span type="text" class="money" name="something" id="totalMoney">ยอดที่ต้องชำระ : {{$totalMoney}}</span>
-        <input type="hidden" name="moneyTotal" value="{{$totalMoney}}" >  
-        <input type="hidden" name="Moneybase" value="{{$Moneybase}}" > 
-        
-        
-        <span class="bath">บาท</span>
-    </fieldset>
+                <div >  จำนวนเงินที่ต้องโอน : </div></br>
+                <span type="text" class="money" name="something" id="totalMoney">ยอดที่ต้องชำระ : {{$totalMoney}}</span>
+                <input type="hidden" name="moneyTotal" value="{{$totalMoney}}" >  
+                <input type="hidden" name="Moneybase" value="{{$Moneybase}}" > 
+                <span class="bath">บาท</span>
+    
+              </fieldset>
   
-             
-  </div>
+             </div>
                 
                 
-  <input  type="hidden" name="arrayHistoryID" value='{{$arrayHistorID}}' >  
+              <input  type="hidden" name="arrayHistoryID" value='{{$arrayHistorID}}' >  
                   
                 <div style="margin: auto; width: 70%;">
                 <label class="form-control-label" >โอนไปที่</label>
@@ -163,26 +161,14 @@ WHERE LoanerID =$loanerID";
                                                         @endforeach
                                                       </table>
             
-</div>
+                </div>
 
-
-                  
-                     
-                      
                   <div style="margin: auto; width: 70%;">
                   <p>&nbsp;</p>
                         <label for="image">หลักฐานการโอน</label>
                         <input style="	cursor:pointer;" type="file" name="imageBill" class="form-control">  </br>
-                        <button style="background-color:#44c767;
-	border-radius:28px;
-	border:1px solid #18ab29;
-	cursor:pointer;
-	color:#ffffff;
-	font-size:17px;
-	padding:16px 31px;"
-    
-    type="submit">ยืนยัน</button>
-    <p>
+                        <button type="submit" class="btn btn-md btn-success">ยืนยัน</button>
+
                     </div>
      
                
@@ -190,52 +176,10 @@ WHERE LoanerID =$loanerID";
                 </div>
             
               </form>
-            </div>
-          </div>
-        </div>
-      </div>
+        
 
 
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

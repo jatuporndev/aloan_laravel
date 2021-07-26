@@ -7,12 +7,12 @@
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-white d-inline-block mb-0">Article</h6>
+              <h6 class="h2 text-white d-inline-block mb-0">Bank Manage</h6>
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{ route('admin.home') }}"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Dashboards</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">article</li>
+                  <li class="breadcrumb-item active" aria-current="page">Bank</li>
                 </ol>
               </nav>
             </div>
@@ -42,28 +42,17 @@
             ?>
 
 
-<div class="container posts">
-        <div class="posts__nav">
-                                </div>
-        <div class="row">
-            <div class="col-12 col-lg-8">
-                
-     
-
-</br>
-    <h3>Bank Manage</h3>
-  
-                        
-    <div  >
-						<table class="table table-responsive-xl">
-						  <thead>
-						    <tr>
-						    	<th>&nbsp;&nbsp;&nbsp;&nbsp;ธนาคาร</th>
-                                <th></th>
-	
-						    </tr>
-						  </thead>
-						  <tbody>
+<div class="pl-lg-0">
+                <div class="table-responsive">
+                <table class="table table-responsive-xl">
+                <thead>
+                  <tr>
+                  <th><h3 class="mb-0">ธนาคาร</h3></th>              
+                  </tr>
+                  <br>
+                  <br>
+                </thead>
+                <tbody class="list">
                           @foreach($post as $item)
 						    <tr class="alert" role="alert">          
 						      <td class="d-flex align-items-center">
@@ -76,24 +65,29 @@
 						      <td>
                            
 				        	</td>
+                  <td>
+                           
+				        	</td>
 						    </tr>
                             @endforeach
-                            </tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-
-</br></br>
+                  </tbody>
 
 
 
-<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="criModalLabel" aria-hidden="true">
+
+
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+
+
+
+                    <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="criModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h5 class="modal-title " id="criModalLabel">Add Article</h5>
+                                  <h5 class="modal-title " id="criModalLabel">Add Bank</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
@@ -104,12 +98,12 @@
                                                       <div class="row">
                                                           <div class="col-lg-4">
                                                                 <div class="form-group">
-                                                                    <h3 class="card-title col-md-11 col-form-label text-md-right">bank</h3>
+                                                                    <h3 class="card-title col-md-11 col-form-label text-md-right">Bank</h3>
                                                                 </div>
                                                           </div>
                                                           <div class="col-md-6">
                                                             <div class="input-group">
-                                                              <input class="form-control money_minn text-center" name="title"   > 
+                                                              <input class="form-control money_minn text-center" name="title"> 
                                                              
                                                               <span class="text-danger error-text money_min_error"></span>
                                                               </div>   
@@ -119,12 +113,12 @@
                                                       <div class="row">
                                                           <div class="col-lg-4">
                                                                 <div class="form-group">
-                                                                    <h3 class="card-title col-md-11 col-form-label text-md-right">Image bank</h3>
+                                                                    <h3 class="card-title col-md-11 col-form-label text-md-right">Image Bank</h3>
                                                                 </div>
                                                           </div>
                                                           <div class="col-md-6">
                                                             <div class="input-group">
-                                                              <input type="file" class="form-control money_minn text-center" name="image"   > 
+                                                              <input type="file" class="form-control text-center" name="image"> 
                                                              
                                                               <span class="text-danger error-text money_min_error"></span>
                                                               </div>   
@@ -140,9 +134,4 @@
                                 </div>
                           </div>
                     </div>
-
-
-
-
-
 @endsection

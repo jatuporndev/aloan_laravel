@@ -122,6 +122,5 @@
       </form>
     </div>
     
-    {{ Auth::guard('admins')->user()->id }}
 
 @endsection
