@@ -108,8 +108,16 @@ class BorrowlistController extends Controller
                 $save = $borrowerlist->save();
 
                 $moneyMax=$request->get('money_max');
-                $cri="UPDATE criterion SET money_max = $moneyMax,instullment_max= $borrowerlist->instullment_max
-                WHERE borrowlistID =$borrowerlist->borrowlistID AND money_max > $borrowerlist->money_max OR instullment_max > $borrowerlist->instullment_max";
+                $cri="UPDATE criterion SET money_max = $moneyMax
+                WHERE borrowlistID =$borrowerlist->borrowlistID AND money_max > $borrowerlist->money_max";
+                DB::select($cri);
+        
+                $cri="UPDATE criterion SET instullment_max= $borrowerlist->instullment_max
+                WHERE borrowlistID =$borrowerlist->borrowlistID AND   instullment_max > $borrowerlist->instullment_max ";
+                DB::select($cri);
+        
+                $cri="UPDATE criterion SET interest = $borrowerlist->interest
+                WHERE borrowlistID =$borrowerlist->borrowlistID AND interest > $borrowerlist->interest";
                 DB::select($cri);
 
             if( $save ){
