@@ -10,6 +10,31 @@ use DB;
 
 class ListController extends Controller
 {
+    public function index(Request $request)
+    {       
+        $spinM= $request->get('money_max');
+        $spinI = $request->get('interest');       
+        $search = $request->get('search');
+
+        $sql="SELECT *  FROM borrowlist 
+        INNER JOIN loaners ON loaners.LoanerID  = borrowlist.LoanerID
+        WHERE  borrowlist.status= '1' ";
+        
+        if($spinM!=""){
+            $sql.=" AND borrowlist.money_max>=$spinM";      
+        }
+        if($spinI!=""){
+            $sql.=" AND borrowlist.interest<=$spinI"; 
+        }
+        if($search!=""){
+            $sql.=" AND (loaners.Firstname LIKE '%$search%' 
+            OR loaners.Lastname LIKE '%$search%') ";
+        }
+       
+        $dataloaner=DB::select($sql);         
+        return view('dashboard.borrower.home', ['dataloaner'=> $dataloaner]);
+    }
+
     public function viewborrower($LoanerID){
 
         $sql="SELECT *  FROM borrowlist 

@@ -362,6 +362,9 @@
                     </td>
                     <td>
                     @if($bill-> status == 2)
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#aa{{$bill->historyDetailID}}">
+                            ตรวจสอบ
+                      </button>
                     @else
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#aa{{$bill->historyDetailID}}">
                             ตรวจสอบ

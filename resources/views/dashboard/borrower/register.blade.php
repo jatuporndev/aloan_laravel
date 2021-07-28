@@ -60,7 +60,7 @@
                       <div class="from-group">
                             <label for="birthday">Birthday</label>
                             <p></p>
-                            <input class="form-control @error('birthday') is-invalid @enderror" type="date" value="{{ old('birthday') }}" id="birthday" name="birthday">
+                            <input class="form-control @error('birthday') is-invalid @enderror" type="date" max="{{ date('Y-m-d') }}" value="{{ old('birthday') }}" id="birthday" name="birthday">
                             <span class="text-danger">@error('birthday'){{ $message }} @enderror</span>
                         </div>
                         <p></p>
@@ -177,7 +177,7 @@
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="confirm" id="flexCheckDefault">
                                 <label class="form-check-label" for="flexCheckDefault">
-                                    คุณอ่านและยอมรับ <a href="{{ url('/cookie') }}">เงื่อนไขและข้อตกลง</a>
+                                    คุณอ่านและยอมรับ <a href="{{ url('/cookie') }}" target="_blank">เงื่อนไขและข้อตกลง</a>
                                 </label>
                             </div>
                             <span class="text-danger">@error('confirm'){{ $message }} @enderror</span>

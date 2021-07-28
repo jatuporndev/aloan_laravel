@@ -19,6 +19,45 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
+           <!-- Search form -->
+           <div class="navbar-search navbar-search-light form-inline mr-sm-3" >
+            <div class="form-group mb-0">
+              <div class="input-group input-group-alternative input-group-merge">
+                <div class="input-group-prepend">
+               
+                </div>
+                <select class="form-control" id="mymoney" onchange="doalert(this.value,myints.value)">
+                    <option value="0">วงเงินสูงสุดทั้งหมด</option>
+                    <option value="5000">มากกว่า 5,000 บาท</option>
+                    <option value="10000">มากกว่า 10,000 บาท</option>
+                    <option value="50000">มากกว่า 50,000 บาท</option>
+                    <option value="100000">มากกว่า 100,000 บาท</option>
+                    <option value="1000000">มากกว่า 1,000,000 บาท</option>
+                  </select>
+              </div>
+            </div>
+            <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="navbar-search navbar-search-light form-inline mr-sm-3" >
+            <div class="form-group mb-0">
+              <div class="input-group input-group-alternative input-group-merge">
+                <div class="input-group-prepend">
+               
+                </div>
+                <select class="form-control" id="myints" onchange="doalert(mymoney.value,this.value)">
+                    <option value="10000">ดอกเบี้ยสูงสุดทั้งหมด</option>
+                    <option value="5">ไม่เกิน 5%</option>
+                    <option value="8">ไม่เกิน 8%</option>
+                    <option value="13">ไม่เกิน 13%</option>
+                  </select>
+              </div>
+            </div>
+            <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
           <!-- Navbar links -->
           <ul class="navbar-nav align-items-center  ml-md-auto ">
             <li class="nav-item d-xl-none">
@@ -72,14 +111,7 @@
     </div>
 </div>
 </div>
-<?php   
-            
-              $sql="SELECT *  FROM borrowlist 
-              INNER JOIN loaners ON loaners.LoanerID  = borrowlist.LoanerID
-              WHERE  borrowlist.status= '1' AND firstname LIKE '%%'";
-              $dataloaner=DB::select($sql);       
-                
-              ?>
+
 
            
 <script>
@@ -96,6 +128,26 @@ function myFunction() {
     }
   }
 }
+
+
+function doalert(moneyMax,interest) {
+  
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+  $("body").html(this.response);
+  document.getElementById("mymoney").value = moneyMax
+  document.getElementById("myints").value = interest
+
+  } 
+  xhttp.open("GET", "borrower/home?money_max="+moneyMax+"&interest="+interest);
+  xhttp.send();
+ 
+ 
+}
+
+
+
+
 </script>
 
         <!-- Page content -->
@@ -123,7 +175,7 @@ function myFunction() {
               <div class="card-body" >
               <h3 class="card-title">คุณ {{ $show->firstname }} {{ $show->lastname }}</h3>
               <p class="card-text">วงเงิน : 0 ~ {{ $show->money_max }} บาท</p>
-              <p class="card-text">ดอกเบี้ยรายปี : {{ $show->interest }} %</p>
+              <p class="card-text">ดอกเบี้ยรายปี : {{ $show->interest }}%</p>
               <a href="borrower/viewborrower/{{$show->LoanerID}}" class="btn btn-primary">View</a>
               </div>
               </div>

@@ -299,6 +299,7 @@
         WHERE history.BorrowDetailID = $view->BorrowDetailID ";
         $sql.=" AND  settlement_date <= '$Date' AND history.status = 0 ";
         $data1 = DB::select($sql);
+        $i = 0;
 ?>
 
    <table>
@@ -324,16 +325,23 @@
 
   @foreach($data1 as $bill)
   
+  
   <tr>
      @if($bill->dateset_status ==0)
     <td><input type="checkbox" id="myCheck" name="vehicle1" onclick="doAlert(this,{{$bill -> moneySet}},{{$bill -> HistoryID}})" ></td>
     @elseif($bill->dateset_status ==1)
-    <td><input type="checkbox" id="myCheck" name="vehicle1" value="{{$bill -> moneySet+ $bill -> interest_penalty_money }}"  checked disabled></td>
-    @php
+        @if($i==0)
+          <td><input type="checkbox" id="myCheck" name="vehicle1" value="{{$bill -> moneySet+ $bill -> interest_penalty_money }}"  checked disabled></td>
+          @php
     $moneysum =$bill -> moneySet + $bill -> interest_penalty_money;
+    $i=$i+1;
     @endphp
     
     <script type='text/javascript'> doFire(<?php echo $moneysum ?>,<?php echo $bill -> moneySet ?>,<?php echo $bill -> HistoryID ?>); </script>
+          @else
+          <td><input type="checkbox" id="myCheck" name="vehicle1" value="{{$bill -> moneySet+ $bill -> interest_penalty_money }}" onclick="doAlertFire(this,{{$bill -> moneySet+ $bill -> interest_penalty_money}},{{$bill -> HistoryID}},{{$bill -> moneySet}})" ></td>
+          @endif
+   
     @endif
     <td>
     <span class="name">รหัส {{$bill -> HistoryID}}</span>  <br/>
@@ -399,20 +407,48 @@ function doAlert(checkboxElem,moneyset,hisID) {
       const index = arrayHistoryID.indexOf(hisID);
       if (index > -1) {
         arrayHistoryID.splice(index, 1);
-}
+        }
+
     }
+    
     document.getElementById("totalMoney").innerHTML ="ยอดที่ต้องชำระ : "+ money;
     document.getElementById("total_Money").value = money;
     document.getElementById("Moneybase").value = moneyBase;
     document.getElementById("aryhistoryID").value = arrayHistoryID;
     console.log(arrayHistoryID);
+    console.log(moneyBase);
+}
+
+function doAlertFire(checkboxElem,moneyset,hisID,base) {
+  
+  if (checkboxElem.checked) {
+      money += moneyset;
+      moneyBase+=base;
+      arrayHistoryID.push(hisID);
+  } else {
+    money -= moneyset;
+    moneyBase-=base;
+    const index = arrayHistoryID.indexOf(hisID);
+    if (index > -1) {
+      arrayHistoryID.splice(index, 1);
+      }
+
+  }
+  
+  document.getElementById("totalMoney").innerHTML ="ยอดที่ต้องชำระ : "+ money;
+  document.getElementById("total_Money").value = money;
+  document.getElementById("Moneybase").value = moneyBase;
+  document.getElementById("aryhistoryID").value = arrayHistoryID;
+  console.log(arrayHistoryID);
+  console.log(moneyBase);
 }
     
     document.getElementById("totalMoney").innerHTML ="ยอดที่ต้องชำระ : "+ money ;
     document.getElementById("total_Money").value = money;
     document.getElementById("Moneybase").value = moneyBase;
     document.getElementById("aryhistoryID").value = arrayHistoryID;
-
+    console.log(arrayHistoryID);
+    console.log(moneyBase);
 </script>
 
 <?php 
@@ -469,7 +505,7 @@ $datahis = DB::select($sql);
                                                           
                                                             <div><button  style="background-color: #008CBA;color:#FFFFFF;" data-toggle="modal" data-target="#hisDetailna{{$item->historyDetailID}}" type="button" >ตรวจสอบ</button></div>
                                                             @elseif($item->status==2)
-                                                  
+                                                            <div><button  style="background-color: #008CBA;color:#FFFFFF;" data-toggle="modal" data-target="#hisDetailna{{$item->historyDetailID}}" type="button" >ตรวจสอบ</button></div>
                                                             @endif
                                                         </td>
                                                         </tr>

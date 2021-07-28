@@ -161,7 +161,8 @@ Route::prefix('borrower')->name('borrower.')->group(function(){
         });
 
      Route::middleware(['auth:borrower','PreventBackHistory'])->group(function(){
-            Route::view('/home','dashboard.borrower.home')->name('home');
+           // Route::view('/home','dashboard.borrower.home')->name('home');
+            Route::get('/home',[ListController::class,'index'])->name('home');
             Route::get('/profile',[BorrowerController::class,'profile'])->name('profile');
             Route::get('/pin',[BorrowerController::class,'pined'])->name('pin');
             Route::post('update-profile-info',[BorrowerController::class,'updateInfo'])->name('borrowerUpdateInfo');

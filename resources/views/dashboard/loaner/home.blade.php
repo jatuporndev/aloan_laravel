@@ -261,7 +261,7 @@
                                                           </div>
                                                           <div class="col-md-6">
                                                             <div class="input-group">
-                                                              <input class="form-control Interest_penaltyy text-center" name="Interest_penalty"  type="number" min="1" max="15"  value="{{$databorrowlist -> Interest_penalty}}">
+                                                              <input class="form-control Interest_penaltyy text-center" name="Interest_penalty"  type="number" min="1" max="{{($databorrowlist -> interest)+3}}"  value="{{$databorrowlist -> Interest_penalty}}">
                                                               <div class="input-group-append">
                                                                 <span class="input-group-text">%</span>
                                                               </div>

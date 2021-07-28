@@ -203,7 +203,7 @@ $BorrowerID = Auth::guard('borrower')->user()->BorrowerID;
                            </div>
                            <div class="row">
                               <div class="col-6 col-md-4">
-                                      <h3 class="card-title">จำนวนงวด</h3>
+                                      <h3 class="card-title">จำนวนงวดสูงสุด</h3>
                               </div>
                               <div class="col-6 col-md-4">
                               <p class="font-weight-bold  text-center" ></p>   
@@ -216,7 +216,7 @@ $BorrowerID = Auth::guard('borrower')->user()->BorrowerID;
 
                            <div class="row">
                               <div class="col-6 col-md-4">
-                                      <h3 class="card-title">ดอกเบี้ย(รายปี)</h3>
+                                      <h3 class="card-title">ดอกเบี้ยสูงสุด(รายปี)</h3>
                               </div>
                               <div class="col-6 col-md-4">
                               <p class="font-weight-bold  text-center" ></p>  
@@ -227,7 +227,7 @@ $BorrowerID = Auth::guard('borrower')->user()->BorrowerID;
                            </div>
                            <div class="row">
                               <div class="col-6 col-md-4">
-                                      <h3 class="card-title">ดอกเบี้ยค่าปรับ</h3>
+                                      <h3 class="card-title">ดอกเบี้ยค่าปรับสูงสุด</h3>
                               </div>
                               <div class="col-6 col-md-4">
                               <p class="font-weight-bold text-center" ></p>   
@@ -255,7 +255,7 @@ $BorrowerID = Auth::guard('borrower')->user()->BorrowerID;
                         $arraySalary=["0-9000","9000-15000","15000-50000","มากกว่า5หมื่น"];
 
                         $borrowerID =  Auth::guard('borrower')->user()->BorrowerID ;
-                        $sqlborrower="SELECT * FROM borrowers WHERE BorrowerID = borrowerID";
+                        $sqlborrower="SELECT * FROM borrowers WHERE BorrowerID = $borrowerID";
                         $borrower=DB::select($sqlborrower)[0];  
 
                         $Married = $borrower->married;
