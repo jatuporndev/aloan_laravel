@@ -182,7 +182,7 @@
               });
 
 
-          $('#UpdateInfo').on('submit', function(e){
+              $('#UpdateInfo').on('submit', function(e){
           e.preventDefault();
 
           $.ajax({

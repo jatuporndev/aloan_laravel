@@ -60,7 +60,7 @@ class LoanerHistoryController extends Controller
             $data = DB::select($sql);
         }
 
-        return redirect()->route('loaner.menu3');
+        return redirect()->route('loaner.menu3')->with('success','ยืนยันใบเสร็จชำระเงิน');
 
     }
 
@@ -76,7 +76,7 @@ class LoanerHistoryController extends Controller
         WHERE historyDetailID = $historyDetailID";
         $data = DB::select($sql);
 
-        return redirect()->route('loaner.menu3');
+        return redirect()->route('loaner.menu3')->with('success','ยกเลิกใบเสร็จชำระเงิน');
     }
 
 }

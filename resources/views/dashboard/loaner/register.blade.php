@@ -18,7 +18,7 @@
 </head>
 <body>
 
-<div class="container mt--2 pb-3">
+<div class="container mt-2 pb-3">
     <div class="row justify-content-center">
         <div class="col-lg-6 col-md-7">
             <div class="card bg-secondary border-0 mb-0">
@@ -42,9 +42,11 @@
                           <span class="text-danger">@error('lastname'){{ $message }} @enderror</span>
                           </div>
                       </div>
-                      <div class="form-group">
-                            <label for="gender">Gender</label>
-                            <p></p>
+                      <div class="form-group row">
+                      <div class="col-md-5">
+                            <label for="gender" class="col-md-9 col-form-label">Gender</label>
+                     </div>
+                     <div class="row">
                             <div class="from-check form-check-inline">
                                 <input class="form-check-input @error('gender') is-invalid @enderror" type="radio" name="gender" id="genderM" value="0" {{ old('gender') == '0' ? 'checked' : ''}}>
                                 <label for="genderM" class="form-check-label">Male</label>
@@ -54,12 +56,13 @@
                                 <label for="genderF" class="form-check-label">Female</label>
                                 <span class="text-danger">@error('gender'){{ $message }} @enderror</span>
                             </div>
+                            </div>
                       </div>
 
                         <div class="from-group">
                             <label for="birthday">Birthday</label>
                             <p></p>
-                            <input class="form-control @error('birthday') is-invalid @enderror" type="date" value="{{ old('birthday') }}" id="birthday" name="birthday">
+                            <input class="form-control @error('birthday') is-invalid @enderror" type="date" max="{{ date('Y-m-d') }}" value="{{ old('birthday') }}" id="birthday" name="birthday">
                             <span class="text-danger">@error('birthday'){{ $message }} @enderror</span>
                         </div>
                         <p></p>
@@ -71,7 +74,7 @@
                       <div class="form-group row">
                           <label for="phone" class="col-md-3 col-form-label text-md-right">Phone</label>
                           <div class="col-md-8">
-                          <input type="tel" class="form-control" name="phone" placeholder="Enter Phone" value="{{ old('phone') }}">
+                          <input type="tel" maxlength="10" class="form-control" name="phone" placeholder="Enter Phone" value="{{ old('phone') }}">
                           <span class="text-danger">@error('phone'){{ $message }} @enderror</span>
                           </div>
                       </div>
@@ -83,9 +86,11 @@
                           </div>
                       </div>
 
-                      <div class="form-group">
-                            <label for="married">Relationship Status</label>
-                            <p></p>
+                      <div class="form-group row">
+                      <div class="col-md-6">
+                            <label for="married" class="col-md-13 col-form-label text-md-left" >Relationship Status</label>
+                     </div>
+                     <div class="row">
                             <div class="from-check form-check-inline">
                                 <input class="form-check-input  @error('gender') is-invalid @enderror" type="radio" name="married" id="single" value="0" {{ old('married') == '0' ? 'checked' : ''}}>
                                 <label for="single" class="form-check-label">Single</label>
@@ -95,17 +100,18 @@
                                 <label for="marriedD" class="form-check-label">Married</label>
                                 <span class="text-danger">@error('married'){{ $message }} @enderror</span>
                             </div>
+                            </div>
                       </div>
 
                       <div class="form-group">
                         <label for="IDCard">เลขบัตรประชาชน</label>
-                        <input type="text" class="form-control" name="IDCard" placeholder="Enter IDCard" value="{{ old('IDCard') }}">
+                        <input type="text" tabindex="1" class="form-control" name="IDCard" placeholder="x-xxxx-xxxxx-xx-x" value="{{ old('IDCard') }}" onkeyup="autoTab(this)" minlength="13">
                         <span class="text-danger">@error('IDCard'){{ $message }} @enderror</span>
                     </div>
 
                     <div class="form-group">
                         <label for="IDCard_back">รหัสหลังบัตรประชาชน</label>
-                        <input type="text" class="form-control" name="IDCard_back" placeholder="Enter IDCard_back" value="{{ old('IDCard_back') }}">
+                        <input type="text" tabindex="1" class="form-control" name="IDCard_back" placeholder="xxx-xxxxxxx-xx" value="{{ old('IDCard_back') }}" onkeyup="autoTab1(this)" minlength="12">
                         <span class="text-danger">@error('IDCard_back'){{ $message }} @enderror</span>
                     </div>
 
@@ -168,7 +174,7 @@
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="confirm" id="flexCheckDefault">
                                 <label class="form-check-label" for="flexCheckDefault">
-                                    คุณอ่านและยอมรับ <a href="{{ url('/cookie') }}">เงื่อนไขและข้อตกลง</a>
+                                    คุณอ่านและยอมรับ <a href="{{ url('/cookie') }}" target="_blank">เงื่อนไขและข้อตกลง</a>
                                 </label>
                             </div>
                             <span class="text-danger">@error('confirm'){{ $message }} @enderror</span>
@@ -210,5 +216,43 @@
                             });             
                         </script>
                     @endif
+
+                    <script>
+function autoTab(obj) {
+    var pattern = new String("_-____-_____-__-_"); // กำหนดรูปแบบในนี้
+    var pattern_ex = new String("-"); // กำหนดสัญลักษณ์หรือเครื่องหมายที่ใช้แบ่งในนี้
+    var returnText = new String("");
+    var obj_l = obj.value.length;
+    var obj_l2 = obj_l - 1;
+    for (i = 0; i < pattern.length; i++) {
+        if (obj_l2 == i && pattern.charAt(i + 1) == pattern_ex) {
+            returnText += obj.value + pattern_ex;
+            obj.value = returnText;
+        }
+    }
+    if (obj_l >= pattern.length) {
+        obj.value = obj.value.substr(0, pattern.length);
+    }
+}
+</script>      
+
+<script>
+function autoTab1(obj) {
+    var pattern = new String("___-_______-__"); // กำหนดรูปแบบในนี้
+    var pattern_ex = new String("-"); // กำหนดสัญลักษณ์หรือเครื่องหมายที่ใช้แบ่งในนี้
+    var returnText = new String("");
+    var obj_l = obj.value.length;
+    var obj_l2 = obj_l - 1;
+    for (i = 0; i < pattern.length; i++) {
+        if (obj_l2 == i && pattern.charAt(i + 1) == pattern_ex) {
+            returnText += obj.value + pattern_ex;
+            obj.value = returnText;
+        }
+    }
+    if (obj_l >= pattern.length) {
+        obj.value = obj.value.substr(0, pattern.length);
+    }
+}
+</script>  
 </body>
 </html>

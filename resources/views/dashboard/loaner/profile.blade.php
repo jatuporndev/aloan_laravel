@@ -113,14 +113,14 @@
                 <div class="pl-lg-4">
                   <div class="row">
                   <div class="col-lg-6">
-                      <div class="form-group">
+                  <div class="form-group">
                         <label class="form-control-label">Email address</label>
                         <input type="email" name="email" class="form-control emaill" value="{{ Auth::guard('loaner')->user()->email }}">
                       </div>
                       <span class="text-danger error-text email_error"></span>
                     </div>
                     <div class="col-lg-6">
-                      <div class="form-group">
+                    <div class="form-group">
                       <label class="form-control-label">Relationship Status</label>
                                 <select class="form-control" name="married" id="married">
                                 <option value="0"{{ Auth::guard('loaner')->user()->married =="0" ? 'selected' : ''}}>โสด</option>
@@ -134,7 +134,6 @@
                       <div class="form-group">
                         <label class="form-control-label">Job</label>
                         <input type="text" name="job" class="form-control"  value="{{ Auth::guard('loaner')->user()->job }}">
-                      </div>
                       <span class="text-danger error-text job_error"></span>
                     </div>
                    

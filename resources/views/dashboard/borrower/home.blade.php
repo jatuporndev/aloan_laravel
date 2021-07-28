@@ -24,7 +24,7 @@
             <div class="form-group mb-0">
               <div class="input-group input-group-alternative input-group-merge">
                 <div class="input-group-prepend">
-               
+                <span class="input-group-text"><i class="fas fa-search"></i></span>
                 </div>
                 <select class="form-control" id="mymoney" onchange="doalert(this.value,myints.value)">
                     <option value="0">วงเงินสูงสุดทั้งหมด</option>
@@ -44,7 +44,7 @@
             <div class="form-group mb-0">
               <div class="input-group input-group-alternative input-group-merge">
                 <div class="input-group-prepend">
-               
+                <span class="input-group-text"><i class="fas fa-search"></i></span>
                 </div>
                 <select class="form-control" id="myints" onchange="doalert(mymoney.value,this.value)">
                     <option value="10000">ดอกเบี้ยสูงสุดทั้งหมด</option>

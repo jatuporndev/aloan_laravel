@@ -34,16 +34,8 @@
                 <i class="ni ni-zoom-split-in"></i>
               </a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="ni ni-bell-55"></i>
-              </a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="ni ni-ungroup"></i>
-              </a>
-            </li>
+          
+          
           </ul>
          
                 <div class="media align-items-center">
@@ -380,7 +372,7 @@
              
   </div>
   <p>&emsp;</p>
-              <button type="submit" class="btn btn-warning" name="Accept" style="background-color:#33BC40">
+              <button type="submit" class="btn btn-success" name="Accept" style="background-color:#33BC40">
                             ชำระเงิน
                       </button>
 
@@ -500,12 +492,12 @@ $datahis = DB::select($sql);
                                                         <td> 
                                                         @if($item->status==0)
                                                         
-                                                            <div><button  style="background-color: #008CBA;color:#FFFFFF;" data-toggle="modal" data-target="#hisDetailna{{$item->historyDetailID}}" type="button" >ตรวจสอบ</button></div>
+                                                            <div><button class="btn btn-info" data-toggle="modal" data-target="#hisDetailna{{$item->historyDetailID}}" type="button" >ตรวจสอบ</button></div>
                                                             @elseif($item->status==1)
                                                           
-                                                            <div><button  style="background-color: #008CBA;color:#FFFFFF;" data-toggle="modal" data-target="#hisDetailna{{$item->historyDetailID}}" type="button" >ตรวจสอบ</button></div>
+                                                            <div><button  class="btn btn-info" data-toggle="modal" data-target="#hisDetailna{{$item->historyDetailID}}" type="button" >ตรวจสอบ</button></div>
                                                             @elseif($item->status==2)
-                                                            <div><button  style="background-color: #008CBA;color:#FFFFFF;" data-toggle="modal" data-target="#hisDetailna{{$item->historyDetailID}}" type="button" >ตรวจสอบ</button></div>
+                                                            <div><button  class="btn btn-info" data-toggle="modal" data-target="#hisDetailna{{$item->historyDetailID}}" type="button" >ตรวจสอบ</button></div>
                                                             @endif
                                                         </td>
                                                         </tr>

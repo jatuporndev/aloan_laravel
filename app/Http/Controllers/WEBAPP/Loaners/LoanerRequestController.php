@@ -40,7 +40,7 @@ class LoanerRequestController extends Controller
         $user->save();
 
        
-        return redirect()->route('loaner.menu');
+        return redirect()->route('loaner.menu')->with('success','อนุมัติคำขอสำเร็จ');
     }
 
     public function updateUnpass($id,Request $request)
@@ -56,7 +56,7 @@ class LoanerRequestController extends Controller
         }
         
         $user->save();
-        return redirect()->route('loaner.menu');
+        return redirect()->route('loaner.menu')->with('success','ยกเลิกคำขอสำเร็จ');
     }
 
     public function ViewBorrowerRequest2($requestID)

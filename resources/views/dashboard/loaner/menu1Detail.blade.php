@@ -315,6 +315,7 @@
                                                 <div class="card-header">
                                                     <h3 class="mb-0">ประวัติการกู้</h3>
                                                 </div>
+                                                <div class="col-lg-15">
                                                     <div class="table-responsive">
                                                       <table  class="table align-items-center table-flush">
                                                       <thead class="thead-light">
@@ -369,7 +370,7 @@
                                                         </tbody>
                                                       </table>
                                                     </div>
-                                                        
+                                                    </div>  
                                                 <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
                                             

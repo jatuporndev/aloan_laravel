@@ -23,8 +23,8 @@ class LoanerController extends Controller
           'birthday' => ['required', 'date'],
           'phone' => ['required', 'string', 'max:10'],
           'job' => ['required', 'string', 'max:255'],
-          'IDCard' => ['required', 'string', 'max:13'],
-          'IDCard_back' => ['required', 'string', 'max:10'],
+          'IDCard' => 'required|string',
+          'IDCard_back' => 'required|string',
           'bank' => ['required', 'string'],
           'IDBank' => ['required', 'string', 'max:10'],
           'image_IDCard' => 'required|image|mimes:jpeg,png,jpg,|max:2048',
@@ -151,45 +151,41 @@ class LoanerController extends Controller
         return view('dashboard.loaner.profile');
     }
 
- function updateInfo(Request $request){
+    function updateInfo(Request $request){
 
-    
-    $validator = \Validator::make($request->all(),[
-        'email'=> 'required|email',
-        'married'=>'required',
-        'job'=>'required',
-        'phone'=>'required',
-        'LineID'=>'required',
-        'address'=>'required',
-        'bank'=>'required',
-        'IDBank'=>'required',
-
-    ]);
-
-    if(!$validator->passes()){
-        return response()->json(['status'=>0, 'error'=>$validator->errors()->toArray()]);
-    }else{
         
-        $query = Loaners::find(Auth::guard('loaner')->user()->LoanerID)->update([
-              'email'=>$request->email,
-              'salary'=>$request->salary,
-              'married'=>$request->married,
-              'job'=>$request->job,
-              'phone'=>$request->phone,
-              'LineID'=>$request->LineID,
-              'address'=>$request->address,
-              'IDBank'=>$request->IDBank,
-            
-         ]);
+        $validator = \Validator::make($request->all(),[
+            'email'=> 'required|email',
+            'married'=>'required',
+            'job'=>'required',
+            'phone'=>'required',
+            'LineID'=>'required',
+            'address'=>'required',
 
-        if(!$query){
-             return response()->json(['status'=>0,'msg'=>'Something went wrong.']);
-         }else{
-             return response()->json(['status'=>1,'msg'=>'อัปเดตข้อมูลสำเร็จ']);
-         }
-    
-    }
- }  
+        ]);
+
+        if(!$validator->passes()){
+            return response()->json(['status'=>0, 'error'=>$validator->errors()->toArray()]);
+        }else{
+            
+            $query = Loaners::find(Auth::guard('loaner')->user()->LoanerID)->update([
+                  'email'=>$request->email,
+                  'married'=>$request->married,
+                  'job'=>$request->job,
+                  'phone'=>$request->phone,
+                  'LineID'=>$request->LineID,
+                  'address'=>$request->address,
+                
+             ]);
+
+            if(!$query){
+                 return response()->json(['status'=>0,'msg'=>'Something went wrong.']);
+             }else{
+                 return response()->json(['status'=>1,'msg'=>'อัปเดตข้อมูลสำเร็จ']);
+             }
+        
+        }
+     }  
  
  function updatePicture(Request $request){
     $path = 'assets/uploadfile/Loaner/profile/';

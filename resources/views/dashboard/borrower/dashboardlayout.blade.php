@@ -165,6 +165,9 @@
                             $('.phonee').each(function(){
                               $(this).html( $('#UpdateInfo').find( $('input[name="phone"]') ).val() );
                             });
+                            $('.LineIDD').each(function(){
+                              $(this).html( $('#UpdateInfo').find( $('input[name="LineID"]') ).val() );
+                            });
                               swal("Success!",data.msg,"success",{
                               button:"OK",
                               });  
