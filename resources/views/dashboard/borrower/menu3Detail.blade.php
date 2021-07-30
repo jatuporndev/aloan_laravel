@@ -304,8 +304,11 @@
     }     
 
     let money=0;
+    let money2=0;
     let moneyBase=0;
+    let moneyBase2=0;
     let arrayHistoryID =[];
+    let check=false;
     function doFire(moneyset,moneybase,hisID) {
     money+=parseFloat(moneyset);
     moneyBase+=parseFloat(moneybase);
@@ -320,10 +323,10 @@
   
   <tr>
      @if($bill->dateset_status ==0)
-    <td><input type="checkbox" id="myCheck" name="vehicle1" onclick="doAlert(this,{{$bill -> moneySet}},{{$bill -> HistoryID}})" ></td>
+    <td><input type="checkbox" id="myCheck" name="vehicle" onclick="doAlert(this,{{$bill -> moneySet}},{{$bill -> HistoryID}})" ></td>
     @elseif($bill->dateset_status ==1)
         @if($i==0)
-          <td><input type="checkbox" id="myCheck" name="vehicle1" value="{{$bill -> moneySet+ $bill -> interest_penalty_money }}"  checked disabled></td>
+          <td><input type="checkbox" id="myCheck{{$bill -> HistoryID}}" name="vehicle1" value="{{$bill -> moneySet+ $bill -> interest_penalty_money }}"  checked disabled></td>
           @php
     $moneysum =$bill -> moneySet + $bill -> interest_penalty_money;
     $i=$i+1;
@@ -331,7 +334,7 @@
     
     <script type='text/javascript'> doFire(<?php echo $moneysum ?>,<?php echo $bill -> moneySet ?>,<?php echo $bill -> HistoryID ?>); </script>
           @else
-          <td><input type="checkbox" id="myCheck" name="vehicle1" value="{{$bill -> moneySet+ $bill -> interest_penalty_money }}" onclick="doAlertFire(this,{{$bill -> moneySet+ $bill -> interest_penalty_money}},{{$bill -> HistoryID}},{{$bill -> moneySet}})" ></td>
+          <td><input type="checkbox" id="myCheck{{$bill -> HistoryID}}" name="vehicle1" value="{{$bill -> HistoryID}}" onclick="doAlertFire(this,{{$bill -> moneySet+ $bill -> interest_penalty_money}},{{$bill -> HistoryID}},{{$bill -> moneySet}})" ></td>
           @endif
    
     @endif
@@ -403,44 +406,229 @@ function doAlert(checkboxElem,moneyset,hisID) {
 
     }
     
-    document.getElementById("totalMoney").innerHTML ="ยอดที่ต้องชำระ : "+ money;
-    document.getElementById("total_Money").value = money;
-    document.getElementById("Moneybase").value = moneyBase;
+    document.getElementById("totalMoney").innerHTML ="ยอดที่ต้องชำระ : "+ (money+money2);
+    document.getElementById("total_Money").value = (money+money2);
+    document.getElementById("Moneybase").value = (moneyBase+moneyBase2);
     document.getElementById("aryhistoryID").value = arrayHistoryID;
     console.log(arrayHistoryID);
-    console.log(moneyBase);
+    console.log(moneyBase+moneyBase2);
 }
 
 function doAlertFire(checkboxElem,moneyset,hisID,base) {
+ // console.log("start "+money);
   
+  money2 = 0;
+  moneyBase2=0;
+  var checkboxes = document.getElementsByName('vehicle1');
+  var checkboxArr=[];
+  
+  for(var i=0; i<checkboxes.length;i++){
+    
+    checkboxArr.push(checkboxes[i])
+    
+    if(checkboxArr[checkboxArr.indexOf(checkboxElem)] ==checkboxElem ){
+
+        break;
+        }
+   
+  }
+ 
+
   if (checkboxElem.checked) {
-      money += moneyset;
-      moneyBase+=base;
-      arrayHistoryID.push(hisID);
+    money2 += moneyset;
+    moneyBase2+=base;
+    arrayHistoryID.push(hisID)
+  
+  
   } else {
-    money -= moneyset;
-    moneyBase-=base;
+    money2 -= moneyset;
+    moneyBase2-=base;
     const index = arrayHistoryID.indexOf(hisID);
     if (index > -1) {
       arrayHistoryID.splice(index, 1);
       }
 
   }
+
+
   
-  document.getElementById("totalMoney").innerHTML ="ยอดที่ต้องชำระ : "+ money;
-  document.getElementById("total_Money").value = money;
-  document.getElementById("Moneybase").value = moneyBase;
+   
+  if(checkboxElem.checked  && !(checkboxArr[checkboxArr.indexOf(checkboxElem)-1]).checked ){
+    checkboxArr.shift();
+
+  for (var checkbox of checkboxArr) {
+   
+      
+        checkbox.checked = true;
+        checkbox.disabled  = true;
+
+        if(checkboxArr[checkboxArr.indexOf(checkbox)] ==checkboxElem ){
+                checkboxArr.pop(); 
+             
+                for(var i=0; i<checkboxArr.length;i++){
+                
+
+                  const index = arrayHistoryID.indexOf(parseInt(checkboxArr[i].value));
+                   if (index > -1) {
+                    arrayHistoryID.splice(index, 1);
+                    }
+                    
+        
+                   money2 += moneyset;
+                   moneyBase2+=base;
+                arrayHistoryID.push(parseInt(checkboxArr[i].value));
+              }
+             // console.log(checkboxArr);
+              checkboxArr=[]
+          break;
+        }
+        
+       
+    }
+    checkboxElem.disabled = false;
+  }else if(checkboxElem.checked  && (checkboxArr[checkboxArr.indexOf(checkboxElem)-1]).checked){
+    checkboxArr.shift();
+
+
+console.log(checkboxArr);
+
+for (var checkbox of checkboxArr) {
+
+  
+    checkbox.checked = true;
+    checkbox.disabled  = true;
+
+    if(checkboxArr[checkboxArr.indexOf(checkbox)] ==checkboxElem ){
+            checkboxArr.pop(); 
+         
+            for(var i=0; i<checkboxArr.length;i++){
+            
+
+              const index = arrayHistoryID.indexOf(parseInt(checkboxArr[i].value));
+               if (index > -1) {
+                arrayHistoryID.splice(index, 1);
+                }
+                
+               // if(checkboxArr.includes(checkboxArr[i])) {
+              //    continue;
+               // }
+
+
+               money2 += moneyset;
+               moneyBase2+=base;
+            arrayHistoryID.push(parseInt(checkboxArr[i].value));
+          }
+         // console.log(checkboxArr);
+          checkboxArr=[]
+      break;
+    }
+    
+   
+}
+checkboxElem.disabled = false;
+  }else if(!checkboxElem.checked  && !(checkboxArr[checkboxArr.indexOf(checkboxElem)-1]).checked){
+    checkboxArr.shift();
+    money2=0;
+    moneyBase2=0;
+
+//console.log(checkboxArr);
+
+for (var checkbox of checkboxArr) {
+
+  
+    checkbox.checked = false;
+    checkbox.disabled  = false;
+
+    if(checkboxArr[checkboxArr.indexOf(checkbox)] ==checkboxElem ){
+            checkboxArr.pop(); 
+         
+            for(var i=0; i<checkboxArr.length;i++){
+            
+
+              const index = arrayHistoryID.indexOf(parseInt(checkboxArr[i].value));
+               if (index > -1) {
+                arrayHistoryID.splice(index, 1);
+                }
+                
+
+
+               money2 = 0;
+               moneyBase2=0;
+            //arrayHistoryID.push(parseInt(checkboxArr[i].value));
+          }
+         // console.log(checkboxArr);
+          checkboxArr=[]
+      break;
+    }
+    
+   
+}
+checkboxElem.disabled = false;
+
+  }else if(!checkboxElem.checked  && (checkboxArr[checkboxArr.indexOf(checkboxElem)-1]).checked){
+    checkboxArr.shift();
+    money2=0;
+    moneyBase2=0;
+
+//console.log(checkboxArr);
+
+for (var checkbox of checkboxArr) {
+
+  
+    checkbox.checked = false;
+    checkbox.disabled  = false;
+
+    if(checkboxArr[checkboxArr.indexOf(checkbox)] ==checkboxElem ){
+            checkboxArr.pop(); 
+         
+            for(var i=0; i<checkboxArr.length;i++){
+            
+
+              const index = arrayHistoryID.indexOf(parseInt(checkboxArr[i].value));
+               if (index > -1) {
+                arrayHistoryID.splice(index, 1);
+                }
+                
+               // if(checkboxArr.includes(checkboxArr[i])) {
+              //    continue;
+               // }
+
+
+               money2 = 0;
+                moneyBase2=0;
+            //arrayHistoryID.push(parseInt(checkboxArr[i].value));
+          }
+         // console.log(checkboxArr);
+          checkboxArr=[]
+      break;
+    }
+    
+   
+}
+checkboxElem.disabled = false;
+  }
+
+
+
+  
+  document.getElementById("totalMoney").innerHTML ="ยอดที่ต้องชำระ : "+ (money+money2);
+  document.getElementById("total_Money").value = (money+money2);
+  document.getElementById("Moneybase").value = (moneyBase+moneyBase2);
   document.getElementById("aryhistoryID").value = arrayHistoryID;
   console.log(arrayHistoryID);
-  console.log(moneyBase);
+ 
+  //console.log("end "+money2);
+  console.log(moneyBase+moneyBase2);
+  
+  
 }
     
-    document.getElementById("totalMoney").innerHTML ="ยอดที่ต้องชำระ : "+ money ;
-    document.getElementById("total_Money").value = money;
-    document.getElementById("Moneybase").value = moneyBase;
+    document.getElementById("totalMoney").innerHTML ="ยอดที่ต้องชำระ : "+ (money+money2);
+    document.getElementById("total_Money").value = (money+money2);
+    document.getElementById("Moneybase").value = (moneyBase+moneyBase2);
     document.getElementById("aryhistoryID").value = arrayHistoryID;
     console.log(arrayHistoryID);
-    console.log(moneyBase);
+    console.log(moneyBase+moneyBase2);
 </script>
 
 <?php 
