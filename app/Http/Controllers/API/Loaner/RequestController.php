@@ -59,7 +59,17 @@ class RequestController extends Controller
     }
     public function updatePass($id,Request $request)
     {       
-        date_default_timezone_set('Asia/Bangkok');
+        $loanerID = $request->get('loanerID');  
+        $sql="SELECT * FROM borrowlist WHERE LoanerID = $loanerID";
+        $data= DB::select($sql)[0];
+
+        if($request->get('money_confirm') > $data-> money_max || $request->get('instullment_confirm') > $data-> instullment_max	){
+            return response()->json(array(
+                'message' => 'เกินจากจำนวนที่ตั้งไว้', 
+                'status' => 'fail'));
+           
+        }else{
+               date_default_timezone_set('Asia/Bangkok');
         $user = RequestM::find($id);
         $user->status = 1;     
         $user->dateCheck = date('Y-m-d');  
@@ -68,8 +78,12 @@ class RequestController extends Controller
         $user->save();
 
         return response()->json(array(
-            'message' => 'update successfully', 
+            'message' => 'สำเร็จ', 
             'status' => 'true'));
+        }
+
+
+     
     }
 
        public function viewUnpass($loanerID)

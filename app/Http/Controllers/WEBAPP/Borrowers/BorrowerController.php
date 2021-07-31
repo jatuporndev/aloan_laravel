@@ -29,13 +29,22 @@ class BorrowerController extends Controller
             'salary' => ['required', 'integer'],
             'image_IDCard' => 'required|image|mimes:jpeg,png,jpg,|max:2048',
             'image_face' => 'required|image|mimes:jpeg,png,jpg,|max:2048',
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:borrowers'],
+            'email' => ['required', 'string', 'email', 'max:255'],
             'password' => ['required', 'string', 'min:5', 'confirmed'],
             'confirm'=>'required',
             
           ]);
-
-           $image_IDCard = $request->file('image_IDCard');
+          
+          $emailBorrowers = $request->email;
+          $sqlBorrowers="SELECT * FROM Borrowers WHERE email = '$emailBorrowers' AND (verify =0 OR verify =1) ";
+          $dataBorrowers = DB::select($sqlBorrowers);
+  
+          if(!empty($dataBorrowers)){
+  
+            return redirect()->back()->with('fail','อีเมลซ้ำ'); 
+  
+          }else{
+        $image_IDCard = $request->file('image_IDCard');
            $new_name = rand() . '.' . $image_IDCard->getClientOriginalExtension();
            $image_IDCard->move(public_path('assets/uploadfile/Borrower/cardimage'), $image_IDCard->getClientOriginalName());
            $imageFileName = $image_IDCard->getClientOriginalName();
@@ -70,11 +79,19 @@ class BorrowerController extends Controller
         
 
           if( $save ){
-              return redirect()->back()->with('success','You are now registered successfully as borrower');
+              return redirect('multi')->with('success','You are now registered successfully as borrower');
 
           }else{
               return redirect()->back()->with('fail','Something went Wrong, failed to register');
           }
+
+          }
+
+
+         
+
+
+
     }
 
     function check(Request $request){

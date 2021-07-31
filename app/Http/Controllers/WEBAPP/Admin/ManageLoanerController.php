@@ -17,12 +17,14 @@ class ManageLoanerController extends Controller
        // $sql = "SELECT * FROM loaners WHERE verify = 0";
         //$post = DB::select($sql);
         if($status=="1"){
-        $post = Loaner::where('verify', '=', 0)->paginate(05);
+        $post = Loaner::where('verify', '=', 0)->get();
         }
         if($status=="2"){
-        $post = Loaner::paginate(10);
+           // $post = Loaner::where('verify', '!=', 0)->paginate(60);
+              $sql = "SELECT * FROM loaners";
+              $post = DB::select($sql);
         }else{
-            $post = Loaner::where('verify', '=', 0)->paginate(05);
+            $post = Loaner::where('verify', '=', 0)->get();
         }
         
         return view('dashboard.admin.loanermanage', ['post'=> $post]);

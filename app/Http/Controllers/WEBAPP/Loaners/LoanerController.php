@@ -29,7 +29,7 @@ class LoanerController extends Controller
           'IDBank' => ['required', 'string', 'max:10'],
           'image_IDCard' => 'required|image|mimes:jpeg,png,jpg,|max:2048',
           'image' => 'required|image|mimes:jpeg,png,jpg,|max:2048',
-          'email' => ['required', 'string', 'email', 'max:255', 'unique:loaners'],
+          'email' => ['required', 'string', 'email', 'max:255'],
           'password' => ['required', 'string', 'min:5', 'confirmed'],
           'confirm'=>'required',
           
@@ -45,6 +45,18 @@ class LoanerController extends Controller
          //อัปโหลดและบันทึกข้อมูล
          //$upload_location = 'assets/uploadfile/Loaner/cardimage/';
          //$full_path = $upload_location.$img_name;
+
+         $emailloaner = $request->email;
+         $sqlloaner="SELECT * FROM Loaners WHERE email = '$emailloaner' AND (verify =0 OR verify =1) ";
+         $datalaoner = DB::select($sqlloaner);
+ 
+         if(!empty($datalaoner)){
+ 
+            return redirect()->back()->with('fail','อีเมลซ้ำ');
+ 
+         }else{
+
+
 
          $image_IDCard = $request->file('image_IDCard');
          $new_name = rand() . '.' . $image_IDCard->getClientOriginalExtension();
@@ -92,11 +104,14 @@ class LoanerController extends Controller
 
         
          if( $save ){
-             return redirect()->back()->with('success','You are now registered successfully as loaner');
+             return redirect('multi/')->with('success','You are now registered successfully as loaner');
                                      
          }else{
              return redirect()->back()->with('fail','Something went Wrong, failed to register');
          }
+         }
+
+
   }
 
     

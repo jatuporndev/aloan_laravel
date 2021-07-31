@@ -112,7 +112,7 @@ function doalert(checkboxElem) {
             </div>
               <!-- Card footer -->
                <div class="card-footer py-4">
-              {{ $post->links('layouts.paginationlinks') }}
+              
             </div> 
           </div>
         </div>

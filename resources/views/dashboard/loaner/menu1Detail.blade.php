@@ -351,7 +351,11 @@
                                                           {{$item->date_start}}
                                                           </td>
                                                           <td>
+                                                            @if($item->instullment_total == 0)
+                                                          0
+                                                          @else
                                                           {{$item->remain}}
+                                                          @endif
                                                           </td>
                                                           <td>
                                                           {{$item->instullment_Amount}}
