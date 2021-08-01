@@ -2,17 +2,17 @@
 @extends('dashboard.admin.dashboardlayout')
 
 @section('content')
-<div class="header bg-primary pb-6">
+<div class="header bg-primary pb-4">
       <div class="container-fluid">
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-white d-inline-block mb-0">Admin</h6>
+              <h6 class="h2 text-white d-inline-block mb-0">Default</h6>
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{ route('admin.home') }}"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Dashboards</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Admin</li>
+                  <li class="breadcrumb-item active" aria-current="page">Default</li>
                 </ol>
               </nav>
             </div>
@@ -31,16 +31,8 @@
               </div>
             </div>
           </div>
-      </div>
-    </div>
-</div>
-
-<div class="container-fluid mt--6">
-
-
-        
-          <!-- Card stats -->
-           <div class="row">
+         <!-- Card stats -->
+         <div class="row">
             <div class="col-xl-3 col-md-6">
               <div class="card card-stats"> 
                 
@@ -218,8 +210,40 @@
                 </div> 
               </div>
             </div>
+</div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <!-- Page content -->
+    <div class="container-fluid mt--6">
+      <div class="row">
+        <div class="col-xl-8">
+          <div class="card bg-Secondary">
+            <div class="card-header bg-transparent">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h6 class="text-light text-uppercase ls-1 mb-1">Overview</h6>
+                  
+                </div>
+             
+              </div>
+            </div>
+            <div class="card-body">
+              <!-- Chart -->
+              <div class="chart">
+                <!-- Chart wrapper -->
+                <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+    </div>
+    </div>
 
-            <script>
+
+    <script>
 window.onload = function () {
  
 var chart = new CanvasJS.Chart("chartContainer", {
@@ -246,13 +270,6 @@ chart.render();
  
 }
 </script>
-
-            <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
-            
-          </div>
-        </div>
   
-
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 @endsection
