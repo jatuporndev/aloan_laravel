@@ -36,6 +36,8 @@
 </div>
 
 <div class="container-fluid mt--6">
+
+
         
           <!-- Card stats -->
            <div class="row">
@@ -97,6 +99,23 @@
                            $pertotal="ไม่มีข้อมูลเดือนก่อน";
                          }
 
+
+                   
+
+                        $mount=["","มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"];
+
+                        $sql7 = "SELECT MONTH(date_start) AS label, 
+                        COUNT(BorrowDetailID)  AS y 
+                        FROM borrowdetail 
+                        GROUP BY MONTH(date_start)
+                        ORDER BY MONTH(date_start) ASC";      
+                        $dataG=DB::select($sql7);
+                        $totalborrow=0;
+                        $dataPoints =array();
+                         foreach($dataG as $item){
+                          $totalborrow=$totalborrow+$item->y;
+                          array_push($dataPoints,array("label"=> $mount[$item->label], "y"=> $item->y));
+                         }
 
                       ?>
                      
@@ -199,6 +218,38 @@
                 </div> 
               </div>
             </div>
+
+            <script>
+window.onload = function () {
+ 
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2",
+	title: {
+		text: "ยอดจำนวนการกู้ทั้งหมด ("+ <?php echo $totalborrow ?>+")"
+	},
+	axisY: {
+		suffix: "",
+		scaleBreaks: {
+		autoCalculate: false
+		}
+	},
+	data: [{
+		type: "column",
+		indexLabel: "{y}",
+		indexLabelPlacement: "inside",
+		indexLabelFontColor: "white",
+		dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+	}]
+});
+chart.render();
+ 
+}
+</script>
+
+            <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
             
           </div>
         </div>
