@@ -129,4 +129,71 @@ class BorrowDetailcontroller extends Controller
 
     }
 
+    public function Dashborad($LoanerID){
+
+        $sql="SELECT borrowdetail.*,(SELECT SUM(money_total) FROM historydetailbill WHERE BorrowDetailID  = borrowdetail.BorrowDetailID) as total FROM borrowdetail
+        
+        INNER JOIN borrowlist ON borrowlist.borrowlistID = borrowdetail.borrowlistID
+        INNER JOIN Loaners ON borrowlist.LoanerID= Loaners.LoanerID
+        
+        WHERE borrowlist.LoanerID = $LoanerID
+        ";
+
+        $data = DB::select($sql);
+        return response()->json($data);
+    }
+
+    public function DashboradYM($LoanerID){
+        $sql="SELECT  MONTH(date_start) as month , YEAR(date_start) as years,borrowdetail.borrowDetailID FROM borrowdetail 
+        INNER JOIN borrowlist ON borrowlist.borrowlistID = borrowdetail.borrowlistID
+        INNER JOIN Loaners ON borrowlist.LoanerID= Loaners.LoanerID
+        WHERE borrowlist.LoanerID = $LoanerID
+        ";
+
+        $data = DB::select($sql);
+        return response()->json($data);
+    }
+    public function DashboradSum($LoanerID,Request $request){
+
+        $year=$request->get('year');
+        $mount=$request->get('mount');
+   
+        $sql="SELECT Principle , (SELECT IFNULL(SUM(money_total),0)  FROM historydetailbill WHERE BorrowDetailID  = borrowdetail.BorrowDetailID)   as total FROM borrowdetail
+        
+        INNER JOIN borrowlist ON borrowlist.borrowlistID = borrowdetail.borrowlistID
+        INNER JOIN Loaners ON borrowlist.LoanerID= Loaners.LoanerID WHERE borrowlist.LoanerID = $LoanerID";
+
+        if($year!="" ){
+        $sql.=" AND YEAR(borrowdetail.date_start) = $year";
+        }
+
+        if($mount!=""){
+            $sql.=" AND MONTH(borrowdetail.date_start) = $mount";
+        }
+       
+
+       $sql.= " AND borrowlist.LoanerID = $LoanerID " ;
+
+        $data = DB::select($sql);
+        return response()->json($data);
+    }
+    
+    public function DashboradSumDetail($LoanerID,Request $request){
+       
+        $year=$request->get('year');
+        $sql="SELECT  SUM((SELECT IFNULL(SUM(money_total),0) FROM historydetailbill WHERE BorrowDetailID  = borrowdetail.BorrowDetailID)) as total,
+        MONTH(date_start) as mouth FROM borrowdetail
+        
+        INNER JOIN borrowlist ON borrowlist.borrowlistID = borrowdetail.borrowlistID
+        INNER JOIN Loaners ON borrowlist.LoanerID= Loaners.LoanerID WHERE borrowlist.LoanerID = $LoanerID";
+        if($year!="" ){
+            $sql.=" AND YEAR(borrowdetail.date_start) = $year";
+            }
+
+       $sql.= " AND borrowlist.LoanerID = $LoanerID GROUP BY  MONTH(date_start)";
+
+        $data = DB::select($sql);
+        return response()->json($data);
+    }
+
 }

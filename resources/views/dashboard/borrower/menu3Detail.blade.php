@@ -279,8 +279,9 @@
 
 <?php
          date_default_timezone_set('Asia/Bangkok');
-         $datenow = date('Y-m-d');
-         $Date = date('Y-m-d');
+         $format='Y-m-d';//วันปัจจุบัน
+         $datenow = date($format);
+         $Date = date($format);
          $Date = strtotime("+1 months", strtotime($Date));
          $Date = date('Y-m-d',$Date); 
         $sql="SELECT history.*, IF(settlement_date < '$datenow', '1', '0') as dateset_status,
@@ -406,7 +407,7 @@ function doAlert(checkboxElem,moneyset,hisID) {
 
     }
     
-    document.getElementById("totalMoney").innerHTML ="ยอดที่ต้องชำระ : "+ (money+money2);
+    document.getElementById("totalMoney").innerHTML ="ยอดที่ต้องชำระ : "+ (money+money2).toFixed(2);
     document.getElementById("total_Money").value = (money+money2);
     document.getElementById("Moneybase").value = (moneyBase+moneyBase2);
     document.getElementById("aryhistoryID").value = arrayHistoryID;
@@ -611,7 +612,7 @@ checkboxElem.disabled = false;
 
 
   
-  document.getElementById("totalMoney").innerHTML ="ยอดที่ต้องชำระ : "+ (money+money2);
+  document.getElementById("totalMoney").innerHTML ="ยอดที่ต้องชำระ : "+ (money+money2).toFixed(2);
   document.getElementById("total_Money").value = (money+money2);
   document.getElementById("Moneybase").value = (moneyBase+moneyBase2);
   document.getElementById("aryhistoryID").value = arrayHistoryID;
@@ -623,7 +624,7 @@ checkboxElem.disabled = false;
   
 }
     
-    document.getElementById("totalMoney").innerHTML ="ยอดที่ต้องชำระ : "+ (money+money2);
+    document.getElementById("totalMoney").innerHTML ="ยอดที่ต้องชำระ : "+ (money+money2).toFixed(2);
     document.getElementById("total_Money").value = (money+money2);
     document.getElementById("Moneybase").value = (moneyBase+moneyBase2);
     document.getElementById("aryhistoryID").value = arrayHistoryID;

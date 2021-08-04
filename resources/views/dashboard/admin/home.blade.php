@@ -218,7 +218,7 @@
     <!-- Page content -->
     <div class="container-fluid mt--6">
       <div class="row">
-        <div class="col-xl-8">
+        <div class="col-xl">
           <div class="card bg-Secondary">
             <div class="card-header bg-transparent">
               <div class="row align-items-center">

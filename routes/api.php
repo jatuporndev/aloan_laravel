@@ -68,6 +68,10 @@ Route::get('loaner/borrowdetail/{LoanerID}', 'API\Loaner\BorrowDetailcontroller@
 Route::get('loaner/checkpayMenu/{borrowdetailID}', 'API\Loaner\BorrowDetailcontroller@checkpay');
 Route::get('ManuGetMoneydetail/{BorrowDetailID}', 'API\Loaner\Borrowdetailcontroller@ManuGetMoneydetail');
 Route::get('Bill/{BorrowDetailID}', 'API\Loaner\Borrowdetailcontroller@Bill');
+Route::get('Dashborad/{LoanerID}', 'API\Loaner\Borrowdetailcontroller@Dashborad');
+Route::get('DashboradSum/{LoanerID}', 'API\Loaner\Borrowdetailcontroller@DashboradSum');
+Route::get('DashboradYM/{LoanerID}', 'API\Loaner\Borrowdetailcontroller@DashboradYM');
+Route::get('DashboradSumDetail/{LoanerID}', 'API\Loaner\Borrowdetailcontroller@DashboradSumDetail');
 
 
 //Loaner -History

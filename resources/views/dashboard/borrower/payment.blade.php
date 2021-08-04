@@ -107,7 +107,7 @@ WHERE LoanerID =$loanerID";
               <fieldset>
   
                 <div >  จำนวนเงินที่ต้องโอน : </div></br>
-                <span type="text" class="money" name="something" id="totalMoney">ยอดที่ต้องชำระ : {{$totalMoney}}</span>
+                <span type="text" class="money" name="something" id="totalMoney">ยอดที่ต้องชำระ : {{number_format($totalMoney , 2, '.', '')}}</span>
                 <input type="hidden" name="moneyTotal" value="{{$totalMoney}}" >  
                 <input type="hidden" name="Moneybase" value="{{$Moneybase}}" > 
                 <span class="bath">บาท</span>

@@ -83,7 +83,7 @@
             <div class="row justify-content-center">
             <input type="file" name="borrower_image" id="borrower_image" style="opacity:0;height:1px;display:none"> 
             <a href="javascript:void(0)" id="change_picture_btn">
-                <div class="card-profile-image">
+                <div class="card-profile-image" style="height: 15px;">
                     <img src="{{ url('/') }}/assets/uploadfile/Borrower/profile/{{ Auth::guard('borrower')->user()->imageProfile }}" class="rounded-circle borrower_picture">
                 </div>
             </a>      
